@@ -105,6 +105,23 @@ class GitHubIssueNotifier:
                     "",
                 ]
             )
+        guidance = snapshot.get("trade_guidance")
+        if guidance:
+            lines.extend(
+                [
+                    "## 当前阶段与操作提示",
+                    "",
+                    f"- **当前阶段：** {guidance.get('stage', '等待')}",
+                    f"- **当前动作：** {guidance.get('summary', '')}",
+                    "",
+                ]
+            )
+            for step in guidance.get("steps", []):
+                lines.append(
+                    f"- **{step.get('stage', '步骤')}：** "
+                    f"{step.get('trigger', '')} → {step.get('action', '')}"
+                )
+            lines.append("")
         lines.extend(["## 触发提醒", ""])
         for alert in snapshot.get("alerts", []):
             lines.append(

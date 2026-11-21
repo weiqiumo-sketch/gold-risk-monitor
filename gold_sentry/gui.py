@@ -46,6 +46,7 @@ class GoldSentryApp:
         self.action_var = tk.StringVar(value="正在获取行情和新闻…")
         self.levels_var = tk.StringVar(value="正在计算买卖价位…")
         self.comparison_var = tk.StringVar(value="正在读取国内外金价…")
+        self.guidance_var = tk.StringVar(value="正在生成分阶段建议…")
         self.last_signature = ""
         self._build_style()
         self._build_layout()
@@ -171,6 +172,15 @@ class GoldSentryApp:
             fg=AMBER,
             font=("Microsoft YaHei UI", 10, "bold"),
         ).pack(anchor="w", pady=(8, 0))
+        tk.Label(
+            signal,
+            textvariable=self.guidance_var,
+            bg=PANEL_2,
+            fg=TEXT,
+            justify="left",
+            wraplength=1020,
+            font=("Microsoft YaHei UI", 10),
+        ).pack(anchor="w", pady=(6, 0))
 
         body = tk.PanedWindow(
             self.root,
@@ -332,6 +342,14 @@ class GoldSentryApp:
             )
         else:
             self.comparison_var.set("国内外金价对比暂不可用")
+        guidance = snapshot.get("trade_guidance")
+        if guidance:
+            self.guidance_var.set(
+                f"当前阶段：{guidance.get('stage', '等待')}。"
+                f"{guidance.get('summary', '')}"
+            )
+        else:
+            self.guidance_var.set("当前阶段：等待完整数据。")
         levels = snapshot.get("trade_levels")
         if levels:
             buy = levels["buy"]

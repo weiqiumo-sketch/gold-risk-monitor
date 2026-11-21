@@ -30,7 +30,11 @@
             <option value="auto">自动</option>
             <option value="mobile">手机版</option>
             <option value="desktop">电脑版</option>
-          </select>
+            </select>
+        </label>
+        <label class="text-size-switch">
+          <input id="large-text" type="checkbox" checked>
+          <span>大字</span>
         </label>
       </div>
     </header>
@@ -135,6 +139,23 @@
     </section>
     <p id="level-note" class="level-note">单位：元/克。价位按最近约 2 小时结构和 5 分钟 ATR 计算。</p>
 
+    <section id="guidance" class="panel guidance-panel">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow">ACTION GUIDE</p>
+          <h2>当前阶段与分阶段操作</h2>
+        </div>
+        <span id="guidance-stage" class="pill">等待分析</span>
+      </div>
+      <p id="guidance-summary" class="guidance-summary">正在生成当前操作提示。</p>
+      <details class="guidance-details">
+        <summary>展开分阶段买卖规则</summary>
+        <ol id="guidance-steps" class="guidance-steps">
+          <li>等待价格、新闻和风控数据。</li>
+        </ol>
+      </details>
+    </section>
+
     <section class="metrics" aria-label="关键指标">
       <article class="card">
         <span class="label">综合评分</span>
@@ -225,6 +246,7 @@
       <div id="news-list" class="news-list">
         <div class="empty">等待新闻数据</div>
       </div>
+      <button id="news-toggle" class="news-toggle" type="button" hidden>展开更多新闻</button>
     </section>
 
     <details class="method panel">

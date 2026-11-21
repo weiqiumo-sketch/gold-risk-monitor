@@ -5,7 +5,7 @@
   --panel-strong: #132238;
   --line: rgba(151, 177, 210, 0.14);
   --text: #edf5ff;
-  --muted: #8fa3bb;
+  --muted: #a8b8ca;
   --gold: #f0be62;
   --gold-soft: rgba(240, 190, 98, 0.14);
   --green: #44d7a4;
@@ -29,6 +29,7 @@ body {
     linear-gradient(180deg, #07101b 0%, #08131f 50%, #050a12 100%);
   color: var(--text);
   font-family: Inter, "Microsoft YaHei UI", "PingFang SC", system-ui, sans-serif;
+  font-size: 16px;
 }
 
 a { color: inherit; }
@@ -144,9 +145,31 @@ a { color: inherit; }
   box-shadow: 0 0 0 2px rgba(240, 190, 98, 0.12);
 }
 
+.text-size-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 29px;
+  padding: 0 8px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #0c1725;
+  color: var(--muted);
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.text-size-switch input {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  accent-color: var(--gold);
+}
+
 #overview,
 #comparison,
 #plans,
+#guidance,
 #market,
 #news { scroll-margin-top: 24px; }
 
@@ -363,6 +386,48 @@ h1 {
 }
 
 .comparison-panel.unavailable .comparison-grid { opacity: 0.55; }
+
+.guidance-panel {
+  margin-bottom: 14px;
+}
+
+.guidance-summary {
+  margin: 14px 0 0;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.7;
+}
+
+.guidance-details {
+  margin-top: 12px;
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+
+.guidance-details summary {
+  width: fit-content;
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.guidance-steps {
+  display: grid;
+  gap: 10px;
+  margin: 13px 0 0;
+  padding-left: 24px;
+}
+
+.guidance-steps li {
+  padding-left: 5px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.guidance-steps b { color: var(--text); }
 
 .plans {
   display: grid;
@@ -692,6 +757,24 @@ h1 {
 .news-item h3 { margin: 0; font-size: 12px; line-height: 1.5; }
 .news-meta { display: flex; gap: 8px; margin-top: 7px; color: var(--muted); font-size: 9px; flex-wrap: wrap; }
 
+.news-toggle {
+  display: block;
+  width: 100%;
+  min-height: 46px;
+  margin-top: 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.045);
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.news-toggle:hover { border-color: rgba(240, 190, 98, 0.4); }
+.news-toggle[hidden] { display: none; }
+
 .method { margin-top: 16px; }
 .method summary { cursor: pointer; color: var(--text); font-size: 13px; font-weight: 700; }
 .method-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 18px; }
@@ -757,7 +840,8 @@ html[data-layout="mobile"] #last-updated {
 }
 
 html[data-layout="mobile"] .view-switch > span { display: none; }
-html[data-layout="mobile"] .view-switch select { height: 25px; font-size: 9px; }
+html[data-layout="mobile"] .view-switch select { height: 28px; font-size: 11px; }
+html[data-layout="mobile"] .text-size-switch { min-height: 27px; font-size: 10px; }
 
 html[data-layout="mobile"] .hero {
   grid-template-columns: 1fr;
@@ -802,6 +886,9 @@ html[data-layout="mobile"] .comparison-spread { grid-column: 1 / -1; }
 html[data-layout="mobile"] .comparison-price { padding: 13px; }
 html[data-layout="mobile"] .comparison-price > strong { font-size: 26px; }
 html[data-layout="mobile"] .comparison-spread > strong { font-size: 23px; }
+html[data-layout="mobile"] .guidance-summary { font-size: 14px; }
+html[data-layout="mobile"] .guidance-details summary { font-size: 12px; }
+html[data-layout="mobile"] .guidance-steps li { font-size: 12px; }
 
 html[data-layout="mobile"] .alert {
   padding: 13px 14px;
@@ -849,6 +936,7 @@ html[data-layout="mobile"] .news-meta { gap: 5px; font-size: 8px; }
 html[data-layout="mobile"] #overview,
 html[data-layout="mobile"] #comparison,
 html[data-layout="mobile"] #plans,
+html[data-layout="mobile"] #guidance,
 html[data-layout="mobile"] #market,
 html[data-layout="mobile"] #news { scroll-margin-top: 88px; }
 
@@ -929,4 +1017,67 @@ html[data-layout="mobile"] .mobile-nav a:focus-visible {
   html.layout-transition .content-grid {
     transition: none;
   }
+}
+
+html[data-readable="large"] body { font-size: 17px; }
+html[data-readable="large"] .muted { font-size: 15px; }
+html[data-readable="large"] .pill { font-size: 14px; }
+html[data-readable="large"] .view-switch,
+html[data-readable="large"] .text-size-switch { font-size: 14px; }
+html[data-readable="large"] .eyebrow { font-size: 13px; }
+html[data-readable="large"] .hero-copy { font-size: 17px; }
+html[data-readable="large"] .alert strong { font-size: 17px; }
+html[data-readable="large"] .alert p { font-size: 16px; }
+html[data-readable="large"] .comparison-label { font-size: 14px; }
+html[data-readable="large"] .comparison-change-row { font-size: 14px; }
+html[data-readable="large"] .comparison-change-row b { font-size: 16px; }
+html[data-readable="large"] .comparison-price small,
+html[data-readable="large"] .comparison-price time,
+html[data-readable="large"] .comparison-spread small { font-size: 14px; }
+html[data-readable="large"] .comparison-spread > b { font-size: 16px; }
+html[data-readable="large"] .comparison-note { font-size: 14px; }
+html[data-readable="large"] .plan-side { font-size: 14px; }
+html[data-readable="large"] .plan-status { font-size: 14px; }
+html[data-readable="large"] .plan-levels span { font-size: 14px; }
+html[data-readable="large"] .plan-levels strong { font-size: 17px; }
+html[data-readable="large"] .level-note { font-size: 14px; }
+html[data-readable="large"] .guidance-summary { font-size: 18px; }
+html[data-readable="large"] .guidance-details summary { font-size: 16px; }
+html[data-readable="large"] .guidance-steps li { font-size: 16px; }
+html[data-readable="large"] .card .label { font-size: 16px; }
+html[data-readable="large"] .card small { font-size: 15px; }
+html[data-readable="large"] .return-grid span { font-size: 14px; }
+html[data-readable="large"] .return-grid strong { font-size: 18px; }
+html[data-readable="large"] .macro-item strong { font-size: 17px; }
+html[data-readable="large"] .macro-item b { font-size: 18px; }
+html[data-readable="large"] .macro-item small { font-size: 15px; }
+html[data-readable="large"] .reasons li { font-size: 16px; }
+html[data-readable="large"] .news-item h3 { font-size: 17px; }
+html[data-readable="large"] .news-meta { font-size: 14px; }
+html[data-readable="large"] .method p { font-size: 16px; }
+html[data-readable="large"] .sources,
+html[data-readable="large"] footer { font-size: 14px; }
+html[data-readable="large"] .chart-max,
+html[data-readable="large"] .chart-min,
+html[data-readable="large"] .chart-last { font-size: 14px; }
+
+html[data-readable="large"][data-layout="mobile"] .top-status .pill {
+  font-size: 12px;
+}
+
+html[data-readable="large"][data-layout="mobile"] #last-updated {
+  max-width: 170px;
+  font-size: 13px;
+}
+
+html[data-readable="large"][data-layout="mobile"] .brand strong { font-size: 16px; }
+html[data-readable="large"][data-layout="mobile"] .brand small { font-size: 12px; }
+html[data-readable="large"][data-layout="mobile"] .view-switch select,
+html[data-readable="large"][data-layout="mobile"] .text-size-switch {
+  font-size: 13px;
+}
+
+html[data-readable="large"][data-layout="mobile"] .mobile-nav a {
+  min-height: 52px;
+  font-size: 13px;
 }

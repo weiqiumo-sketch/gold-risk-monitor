@@ -1,7 +1,11 @@
 const $ = (selector) => document.querySelector(selector);
 const viewSelect = $("#view-mode");
+const largeTextToggle = $("#large-text");
 const mobileMedia = window.matchMedia("(max-width: 720px)");
 const viewKey = "goldsentry-view-mode";
+const textSizeKey = "goldsentry-large-text";
+let latestSnapshot = null;
+let newsExpanded = false;
 
 function effectiveView(mode) {
   if (mode === "mobile" || mode === "desktop") return mode;
@@ -13,6 +17,7 @@ function applyViewMode(mode, persist = false) {
   document.documentElement.dataset.view = normalized;
   document.documentElement.dataset.layout = effectiveView(normalized);
   if (viewSelect) viewSelect.value = normalized;
+  if (latestSnapshot) renderNews(latestSnapshot.news);
   if (persist) {
     localStorage.setItem(viewKey, normalized);
     const url = new URL(window.location.href);
@@ -35,6 +40,18 @@ function initializeViewMode() {
   }
   mobileMedia.addEventListener("change", () => {
     applyViewMode(document.documentElement.dataset.view || "auto");
+  });
+}
+
+function initializeTextSize() {
+  const stored = localStorage.getItem(textSizeKey);
+  const enabled = stored !== "false";
+  document.documentElement.dataset.readable = enabled ? "large" : "standard";
+  if (largeTextToggle) largeTextToggle.checked = enabled;
+  largeTextToggle?.addEventListener("change", () => {
+    const large = largeTextToggle.checked;
+    document.documentElement.dataset.readable = large ? "large" : "standard";
+    localStorage.setItem(textSizeKey, large ? "true" : "false");
   });
 }
 
@@ -286,6 +303,37 @@ function renderComparison(comparison) {
   setText("#comparison-note", `${comparison.note || ""} ${timingNote}`);
 }
 
+function renderGuidance(guidance) {
+  const stage = $("#guidance-stage");
+  if (!guidance) {
+    stage.className = "pill stale";
+    stage.textContent = "等待分析";
+    setText("#guidance-summary", "当前没有可执行建议，等待完整数据。");
+    return;
+  }
+  stage.className = "pill live";
+  stage.textContent = guidance.stage || "观察";
+  setText("#guidance-summary", guidance.summary || "等待下一步确认。");
+  const host = $("#guidance-steps");
+  host.replaceChildren();
+  for (const step of guidance.steps || []) {
+    const item = document.createElement("li");
+    const stageLabel = document.createElement("b");
+    stageLabel.textContent = `${step.stage || "步骤"}：`;
+    const trigger = document.createElement("span");
+    trigger.textContent = `${step.trigger || ""} → `;
+    const action = document.createElement("span");
+    action.textContent = step.action || "";
+    item.append(stageLabel, trigger, action);
+    host.append(item);
+  }
+  if (!host.children.length) {
+    const item = document.createElement("li");
+    item.textContent = "等待完整阶段规则。";
+    host.append(item);
+  }
+}
+
 function renderTradeLevels(levels) {
   const buyPlan = $("#buy-plan");
   const sellPlan = $("#sell-plan");
@@ -329,6 +377,7 @@ function renderTradeLevels(levels) {
 
 function renderNews(news) {
   const host = $("#news-list");
+  const toggle = $("#news-toggle");
   host.replaceChildren();
   if (!Array.isArray(news) || news.length === 0) {
     const empty = document.createElement("div");
@@ -337,7 +386,9 @@ function renderNews(news) {
     host.append(empty);
     return;
   }
-  for (const item of news.slice(0, 14)) {
+  const mobile = document.documentElement.dataset.layout === "mobile";
+  const limit = mobile && !newsExpanded ? 6 : 14;
+  for (const item of news.slice(0, limit)) {
     const anchor = document.createElement("a");
     anchor.className = "news-item";
     anchor.href = item.url || "#";
@@ -363,9 +414,12 @@ function renderNews(news) {
     anchor.append(mark, body);
     host.append(anchor);
   }
+  toggle.hidden = !(mobile && news.length > 6);
+  toggle.textContent = newsExpanded ? "收起新闻" : `展开其余 ${news.length - 6} 条新闻`;
 }
 
 function render(snapshot) {
+  latestSnapshot = snapshot;
   const price = Number(snapshot.display_price ?? snapshot.price_cny_per_gram);
   const change = Number(snapshot.price_change_pct || 0) / 100;
   setText("#price", Number.isFinite(price) ? `¥${formatNumber(price)}` : "--");
@@ -412,6 +466,7 @@ function render(snapshot) {
   renderAlerts(snapshot.alerts);
   renderComparison(snapshot.gold_comparison);
   renderTradeLevels(snapshot.trade_levels);
+  renderGuidance(snapshot.trade_guidance);
   renderChart(snapshot.chart_points);
   renderMacro(snapshot.macro_points);
   renderReasons(snapshot.reasons);
@@ -461,6 +516,11 @@ async function loadSnapshot() {
 }
 
 initializeViewMode();
+initializeTextSize();
 initializeMobileNavigation();
+$("#news-toggle")?.addEventListener("click", () => {
+  newsExpanded = !newsExpanded;
+  if (latestSnapshot) renderNews(latestSnapshot.news);
+});
 loadSnapshot();
 setInterval(loadSnapshot, 60_000);

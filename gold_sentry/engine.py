@@ -175,6 +175,169 @@ def build_trade_levels(
     }
 
 
+def build_trade_guidance(
+    trade_levels: dict[str, Any] | None,
+    is_fresh: bool,
+    current_price_cny: float | None,
+    buy_point_active: bool,
+    sell_point_active: bool,
+) -> dict[str, Any]:
+    if not trade_levels or current_price_cny is None:
+        return {
+            "stage": "数据不足",
+            "summary": "暂不执行交易，等待完整价格、汇率和买卖位数据。",
+            "steps": [],
+        }
+    buy = trade_levels["buy"]
+    sell = trade_levels["sell"]
+    buy_breakout = buy["breakout_entry_cny"]
+    buy_zone_low, buy_zone_high = buy["pullback_zone_cny"]
+    buy_stop = buy["stop_cny"]
+    buy_target_1 = buy["target1_cny"]
+    buy_target_2 = buy["target2_cny"]
+    sell_breakdown = sell["breakdown_entry_cny"]
+    sell_zone_low, sell_zone_high = sell["rebound_zone_cny"]
+    sell_stop = sell["stop_cny"]
+    sell_target_1 = sell["target1_cny"]
+    sell_target_2 = sell["target2_cny"]
+
+    common_steps = [
+        {
+            "stage": "风控上限",
+            "trigger": "每次交易前",
+            "action": "计划总亏损不超过账户净值的 0.25%—0.5%，禁止摊平亏损。",
+        },
+        {
+            "stage": "计划失效",
+            "trigger": f"突破止损 {buy_stop:,.2f} / {sell_stop:,.2f}",
+            "action": "取消对应计划；已经入场时按纪律退出。",
+        },
+    ]
+    if not is_fresh:
+        return {
+            "stage": "休市复评",
+            "summary": (
+                f"暂停下单。恢复交易后，在 {sell_breakdown:,.2f}—"
+                f"{buy_breakout:,.2f} 元/克之间等待方向确认。"
+            ),
+            "steps": [
+                {
+                    "stage": "多头",
+                    "trigger": f"15 分钟收盘站上 {buy_breakout:,.2f}",
+                    "action": (
+                        f"第一笔试仓 30%；回踩 {buy_zone_low:,.2f}—"
+                        f"{buy_zone_high:,.2f} 不破再投 30%，剩余等待更高低点。"
+                    ),
+                },
+                {
+                    "stage": "空头",
+                    "trigger": f"15 分钟收盘跌破 {sell_breakdown:,.2f}",
+                    "action": (
+                        f"第一笔试仓 30%；反抽 {sell_zone_low:,.2f}—"
+                        f"{sell_zone_high:,.2f} 承压再投 30%，剩余等待更低高点。"
+                    ),
+                },
+                {
+                    "stage": "止盈",
+                    "trigger": (
+                        f"多头 {buy_target_1:,.2f}/{buy_target_2:,.2f}；"
+                        f"空头 {sell_target_1:,.2f}/{sell_target_2:,.2f}"
+                    ),
+                    "action": "第一目标减仓 30%—40%，第二目标再减仓 30%，余仓移动止损。",
+                },
+                *common_steps,
+            ],
+        }
+    if buy_point_active:
+        return {
+            "stage": "多头条件确认",
+            "summary": (
+                f"价格已站上 {buy_breakout:,.2f}。首次试仓不超过计划仓位 30%，"
+                "确认回踩后再逐级增加。"
+            ),
+            "steps": [
+                {
+                    "stage": "第一笔",
+                    "trigger": f"有效突破 {buy_breakout:,.2f}",
+                    "action": "投入计划仓位 30%，同时把总亏损上限设为 1R。",
+                },
+                {
+                    "stage": "第二笔",
+                    "trigger": f"回踩 {buy_zone_low:,.2f}—{buy_zone_high:,.2f} 不破",
+                    "action": "再投入 30%；若跌回突破位下方则停止加仓。",
+                },
+                {
+                    "stage": "第三笔",
+                    "trigger": "形成更高低点且成交方向仍偏多",
+                    "action": "投入剩余 40%；加仓后重新计算总风险并把整体止损上移。",
+                },
+                {
+                    "stage": "止盈",
+                    "trigger": f"第一目标 {buy_target_1:,.2f}，第二目标 {buy_target_2:,.2f}",
+                    "action": "第一目标卖出 30%—40%，第二目标再卖出 30%，余仓移动止损。",
+                },
+                *common_steps,
+            ],
+        }
+    if sell_point_active:
+        return {
+            "stage": "空头条件确认",
+            "summary": (
+                f"价格已跌破 {sell_breakdown:,.2f}。首次试空不超过计划仓位 30%，"
+                "反抽无力后再逐级增加。"
+            ),
+            "steps": [
+                {
+                    "stage": "第一笔",
+                    "trigger": f"有效跌破 {sell_breakdown:,.2f}",
+                    "action": "投入计划仓位 30%，同时把总亏损上限设为 1R。",
+                },
+                {
+                    "stage": "第二笔",
+                    "trigger": f"反抽 {sell_zone_low:,.2f}—{sell_zone_high:,.2f} 后承压",
+                    "action": "再投入 30%；若重新站上破位位则停止加仓。",
+                },
+                {
+                    "stage": "第三笔",
+                    "trigger": "形成更低高点且成交方向仍偏空",
+                    "action": "投入剩余 40%；加仓后重新计算总风险并把整体止损下移。",
+                },
+                {
+                    "stage": "止盈",
+                    "trigger": f"第一目标 {sell_target_1:,.2f}，第二目标 {sell_target_2:,.2f}",
+                    "action": "第一目标回补 30%—40%，第二目标再回补 30%，余仓移动止损。",
+                },
+                *common_steps,
+            ],
+        }
+    return {
+        "stage": "区间等待",
+        "summary": (
+            f"当前 {current_price_cny:,.2f} 位于 {sell_breakdown:,.2f}—"
+            f"{buy_breakout:,.2f} 元/克无优势区，不追单。"
+        ),
+        "steps": [
+            {
+                "stage": "向上",
+                "trigger": f"站上 {buy_breakout:,.2f}",
+                "action": (
+                    f"只投 30% 试仓；回踩 {buy_zone_low:,.2f}—"
+                    f"{buy_zone_high:,.2f} 守住后才考虑第二笔。"
+                ),
+            },
+            {
+                "stage": "向下",
+                "trigger": f"跌破 {sell_breakdown:,.2f}",
+                "action": (
+                    f"只投 30% 试仓；反抽 {sell_zone_low:,.2f}—"
+                    f"{sell_zone_high:,.2f} 承压后才考虑第二笔。"
+                ),
+            },
+            *common_steps,
+        ],
+    }
+
+
 def analyze_bars(
     bars: list[Bar],
     now: datetime,
@@ -598,6 +761,13 @@ def compose_snapshot(
             "价格已跌破结构支撑位，成交方向同步偏空。"
             "反抽承压时可考虑减仓或做空，收回止损位则计划失效。"
         )
+    trade_guidance = build_trade_guidance(
+        trade_levels,
+        bool(market_metrics["is_fresh"]),
+        display_price,
+        buy_point_active,
+        sell_point_active,
+    )
     risk_score = round(
         100
         * _clamp(
@@ -761,6 +931,11 @@ def compose_snapshot(
                 ),
             }
         )
+    for alert in alerts:
+        alert["message"] += (
+            f" 当前阶段：{trade_guidance['stage']}。"
+            f"下一步：{trade_guidance['summary']}"
+        )
 
     level_signature = ""
     if trade_levels and trade_levels["active_side"] == "BUY":
@@ -784,7 +959,7 @@ def compose_snapshot(
         alert_signature_source.encode("utf-8")
     ).hexdigest()[:16]
     return {
-        "schema_version": 3,
+        "schema_version": 4,
         "generated_at": generated.astimezone(timezone.utc),
         "generated_at_china": generated.astimezone(CN_TZ),
         "market_time": market_time,
@@ -822,6 +997,7 @@ def compose_snapshot(
         "decision": decision,
         "action_text": action_text,
         "trade_levels": trade_levels,
+        "trade_guidance": trade_guidance,
         "gold_comparison": gold_comparison,
         "reasons": reasons,
         "alerts": alerts,
