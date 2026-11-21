@@ -84,6 +84,37 @@ class GitHubIssueNotifier:
                 f"- **[{alert.get('severity')}] {alert.get('title')}：** "
                 f"{alert.get('message')}"
             )
+        levels = snapshot.get("trade_levels")
+        if levels:
+            active = {
+                "BUY": "买入 / 做多",
+                "SELL": "卖出 / 做空",
+                "NEUTRAL": "中性",
+            }.get(levels.get("active_side"), "中性")
+            buy = levels["buy"]
+            sell = levels["sell"]
+            lines.extend(
+                [
+                    "",
+                    "## 行动价位",
+                    "",
+                    f"- **当前偏向：** {active}",
+                    f"- **买入 / 做多：** 突破 `{buy['breakout_entry']:,.1f}`，"
+                    f"回踩 `{buy['pullback_zone'][0]:,.1f}—{buy['pullback_zone'][1]:,.1f}`，"
+                    f"止损 `{buy['stop']:,.1f}`，目标 "
+                    f"`{buy['target1']:,.1f}` / `{buy['target2']:,.1f}`。"
+                    f"状态：{buy['status']}",
+                    f"- **卖出 / 做空：** 破位 `{sell['breakdown_entry']:,.1f}`，"
+                    f"反抽 `{sell['rebound_zone'][0]:,.1f}—{sell['rebound_zone'][1]:,.1f}`，"
+                    f"止损 `{sell['stop']:,.1f}`，目标 "
+                    f"`{sell['target1']:,.1f}` / `{sell['target2']:,.1f}`。"
+                    f"状态：{sell['status']}",
+                    f"- **计算口径：** ATR `{levels.get('atr', 0):,.1f}`，"
+                    f"结构高 `{levels.get('structure_high', 0):,.1f}`，"
+                    f"结构低 `{levels.get('structure_low', 0):,.1f}`。",
+                    f"- **重要限制：** {levels.get('note', '')}",
+                ]
+            )
         lines.extend(["", "## 主要新闻", ""])
         for item in snapshot.get("news", [])[:6]:
             sentiment = float(item.get("sentiment", 0))

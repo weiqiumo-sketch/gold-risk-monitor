@@ -42,6 +42,126 @@ def _directional_window(bars: list[Bar]) -> tuple[float, float, float]:
     return buy_volume, sell_volume, sum(bar.volume for bar in bars)
 
 
+def _round_price(value: float) -> float:
+    return round(value, 1)
+
+
+def build_trade_levels(
+    bars: list[Bar],
+    current_price: float,
+    is_fresh: bool,
+    signal_type: str,
+    bias_score: float,
+) -> dict[str, Any]:
+    if len(bars) < 20:
+        raise ValueError("构建买卖点至少需要 20 根价格数据")
+    atr_bars = bars[-15:]
+    true_ranges: list[float] = []
+    for index, bar in enumerate(atr_bars):
+        previous_close = (
+            bars[-16].close
+            if index == 0 and len(bars) >= 16
+            else atr_bars[index - 1].close
+        )
+        true_ranges.append(
+            max(
+                bar.high - bar.low,
+                abs(bar.high - previous_close),
+                abs(bar.low - previous_close),
+            )
+        )
+    atr = max(sum(true_ranges) / len(true_ranges), max(current_price * 0.0002, 0.1))
+    structure = bars[-25:-1] if len(bars) >= 25 else bars[:-1]
+    resistance = max(bar.high for bar in structure)
+    support = min(bar.low for bar in structure)
+
+    breakout = resistance + atr * 0.15
+    pullback_low = breakout - atr * 0.85
+    pullback_high = breakout - atr * 0.30
+    long_stop = min(support - atr * 0.25, pullback_low - atr * 0.75)
+    long_risk = max(breakout - long_stop, atr)
+    long_target_1 = breakout + long_risk * 1.5
+    long_target_2 = breakout + long_risk * 2.5
+
+    breakdown = support - atr * 0.15
+    rebound_low = breakdown + atr * 0.30
+    rebound_high = breakdown + atr * 0.85
+    short_stop = max(resistance + atr * 0.25, rebound_high + atr * 0.75)
+    short_risk = max(short_stop - breakdown, atr)
+    short_target_1 = breakdown - short_risk * 1.5
+    short_target_2 = breakdown - short_risk * 2.5
+
+    if not is_fresh:
+        buy_status = "休市，下一交易时段复评"
+        sell_status = "休市，下一交易时段复评"
+    elif current_price >= breakout:
+        buy_status = "突破已触发，等待回踩不破"
+    elif pullback_low <= current_price <= pullback_high:
+        buy_status = "价格进入回踩买入区"
+    else:
+        buy_status = f"等待突破 {_round_price(breakout):,.1f}"
+    if not is_fresh:
+        pass
+    elif current_price <= breakdown:
+        sell_status = "破位已触发，等待反抽承压"
+    elif rebound_low <= current_price <= rebound_high:
+        sell_status = "价格进入反抽卖出区"
+    else:
+        sell_status = f"等待跌破 {_round_price(breakdown):,.1f}"
+
+    if signal_type == "BUY":
+        active_side = "BUY"
+    elif signal_type == "SELL":
+        active_side = "SELL"
+    elif bias_score >= 0.08:
+        active_side = "BUY"
+    elif bias_score <= -0.08:
+        active_side = "SELL"
+    else:
+        active_side = "NEUTRAL"
+
+    return {
+        "active_side": active_side,
+        "atr": _round_price(atr),
+        "structure_high": _round_price(resistance),
+        "structure_low": _round_price(support),
+        "buy": {
+            "name": "买入 / 做多计划",
+            "breakout_entry": _round_price(breakout),
+            "pullback_zone": [
+                _round_price(pullback_low),
+                _round_price(pullback_high),
+            ],
+            "stop": _round_price(long_stop),
+            "target1": _round_price(long_target_1),
+            "target2": _round_price(long_target_2),
+            "risk_reward": "1.5R / 2.5R",
+            "status": buy_status,
+            "distance_pct": (breakout / current_price - 1) * 100,
+            "triggered": current_price >= breakout,
+        },
+        "sell": {
+            "name": "卖出 / 做空计划",
+            "breakdown_entry": _round_price(breakdown),
+            "rebound_zone": [
+                _round_price(rebound_low),
+                _round_price(rebound_high),
+            ],
+            "stop": _round_price(short_stop),
+            "target1": _round_price(short_target_1),
+            "target2": _round_price(short_target_2),
+            "risk_reward": "1.5R / 2.5R",
+            "status": sell_status,
+            "distance_pct": (breakdown / current_price - 1) * 100,
+            "triggered": current_price <= breakdown,
+        },
+        "note": (
+            "价位基于最近约 2 小时结构与 14 根 5 分钟 ATR。"
+            "突破和回踩均为条件单参考，成交前需重新确认价格、成交量和新闻。"
+        ),
+    }
+
+
 def analyze_bars(
     bars: list[Bar],
     now: datetime,
@@ -358,6 +478,45 @@ def compose_snapshot(
     else:
         action_score = _clamp(0.75 * news.score + 0.25 * macro_score)
     signal_type, decision, action_text = _decision(action_score, market_metrics, news)
+    trade_levels = (
+        build_trade_levels(
+            market.bars,
+            float(price),
+            bool(market_metrics["is_fresh"]),
+            signal_type,
+            float(action_score),
+        )
+        if market and isinstance(price, (int, float))
+        else None
+    )
+    buy_point_active = bool(
+        market_metrics["is_fresh"]
+        and trade_levels
+        and trade_levels["buy"]["triggered"]
+        and market_metrics["market_score"] >= 0.12
+        and news.score > -0.35
+    )
+    sell_point_active = bool(
+        market_metrics["is_fresh"]
+        and trade_levels
+        and trade_levels["sell"]["triggered"]
+        and market_metrics["market_score"] <= -0.12
+        and news.score < 0.35
+    )
+    if buy_point_active and signal_type in {"WATCH", "HOLD"}:
+        signal_type = "BUY"
+        decision = "买入条件已经达到"
+        action_text = (
+            "价格已站上结构突破位，成交方向同步偏多。"
+            "等待回踩不破后分批执行，跌破止损位则计划失效。"
+        )
+    elif sell_point_active and signal_type in {"WATCH", "HOLD"}:
+        signal_type = "SELL"
+        decision = "卖出条件已经达到"
+        action_text = (
+            "价格已跌破结构支撑位，成交方向同步偏空。"
+            "反抽承压时可考虑减仓或做空，收回止损位则计划失效。"
+        )
     risk_score = round(
         100
         * _clamp(
@@ -405,27 +564,69 @@ def compose_snapshot(
         )
 
     alerts: list[dict[str, Any]] = []
-    if market_metrics["is_fresh"] and market_metrics["large_buy"]:
+    if market_metrics["is_fresh"] and (
+        (market_metrics["large_buy"] and action_score >= 0.12)
+        or buy_point_active
+    ):
         alerts.append(
             {
                 "type": "BUY",
                 "severity": "高" if risk_score >= 60 else "中",
-                "title": "检测到显著买盘",
+                "title": (
+                    "检测到显著买盘"
+                    if market_metrics["large_buy"]
+                    else "价格达到买入条件"
+                ),
                 "message": (
-                    f"15 分钟成交量异常放大至 {market_metrics['volume_ratio']:.2f} 倍，"
-                    f"买盘方向占优，现价 {price:,.2f} 美元。"
+                    (
+                        f"15 分钟成交量异常放大至 {market_metrics['volume_ratio']:.2f} 倍，"
+                        f"买盘方向占优，现价 {price:,.2f} 美元。"
+                        if market_metrics["large_buy"]
+                        else f"价格已站上结构突破位，现价 {price:,.2f} 美元。"
+                    )
+                    + (
+                        f" 突破买点 {trade_levels['buy']['breakout_entry']:,.1f}，"
+                        f"回踩区 {trade_levels['buy']['pullback_zone'][0]:,.1f}—"
+                        f"{trade_levels['buy']['pullback_zone'][1]:,.1f}，"
+                        f"止损 {trade_levels['buy']['stop']:,.1f}，"
+                        f"目标 {trade_levels['buy']['target1']:,.1f} / "
+                        f"{trade_levels['buy']['target2']:,.1f}。"
+                        if trade_levels
+                        else ""
+                    )
                 ),
             }
         )
-    if market_metrics["is_fresh"] and market_metrics["large_sell"]:
+    if market_metrics["is_fresh"] and (
+        (market_metrics["large_sell"] and action_score <= -0.12)
+        or sell_point_active
+    ):
         alerts.append(
             {
                 "type": "SELL",
                 "severity": "高" if risk_score >= 60 else "中",
-                "title": "检测到大量抛售",
+                "title": (
+                    "检测到大量抛售"
+                    if market_metrics["large_sell"]
+                    else "价格达到卖出条件"
+                ),
                 "message": (
-                    f"15 分钟成交量异常放大至 {market_metrics['volume_ratio']:.2f} 倍，"
-                    f"卖盘方向占优，现价 {price:,.2f} 美元。"
+                    (
+                        f"15 分钟成交量异常放大至 {market_metrics['volume_ratio']:.2f} 倍，"
+                        f"卖盘方向占优，现价 {price:,.2f} 美元。"
+                        if market_metrics["large_sell"]
+                        else f"价格已跌破结构支撑位，现价 {price:,.2f} 美元。"
+                    )
+                    + (
+                        f" 破位卖点 {trade_levels['sell']['breakdown_entry']:,.1f}，"
+                        f"反抽区 {trade_levels['sell']['rebound_zone'][0]:,.1f}—"
+                        f"{trade_levels['sell']['rebound_zone'][1]:,.1f}，"
+                        f"止损 {trade_levels['sell']['stop']:,.1f}，"
+                        f"目标 {trade_levels['sell']['target1']:,.1f} / "
+                        f"{trade_levels['sell']['target2']:,.1f}。"
+                        if trade_levels
+                        else ""
+                    )
                 ),
             }
         )
@@ -452,15 +653,24 @@ def compose_snapshot(
             }
         )
 
+    level_signature = ""
+    if trade_levels and trade_levels["active_side"] == "BUY":
+        level_signature = (
+            f"|BUY:{round(trade_levels['buy']['breakout_entry'] / 5) * 5}"
+        )
+    elif trade_levels and trade_levels["active_side"] == "SELL":
+        level_signature = (
+            f"|SELL:{round(trade_levels['sell']['breakdown_entry'] / 5) * 5}"
+        )
     alert_signature_source = "|".join(
         f"{alert['type']}:{alert['title']}:{alert['severity']}"
         for alert in alerts
-    )
+    ) + level_signature
     alert_signature = hashlib.sha256(
         alert_signature_source.encode("utf-8")
     ).hexdigest()[:16]
     return {
-        "schema_version": 1,
+        "schema_version": 2,
         "generated_at": generated.astimezone(timezone.utc),
         "generated_at_china": generated.astimezone(CN_TZ),
         "market_time": market_time,
@@ -490,6 +700,7 @@ def compose_snapshot(
         "signal_type": signal_type,
         "decision": decision,
         "action_text": action_text,
+        "trade_levels": trade_levels,
         "reasons": reasons,
         "alerts": alerts,
         "alert_signature": alert_signature,

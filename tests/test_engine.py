@@ -3,7 +3,12 @@ from __future__ import annotations
 import unittest
 from datetime import datetime, timedelta, timezone
 
-from gold_sentry.engine import analyze_bars, analyze_news, compose_snapshot
+from gold_sentry.engine import (
+    analyze_bars,
+    analyze_news,
+    build_trade_levels,
+    compose_snapshot,
+)
 from gold_sentry.models import Bar, NewsItem
 
 
@@ -78,6 +83,41 @@ class MarketAnalysisTests(unittest.TestCase):
         self.assertEqual(sell["signal_type"], "SELL")
         self.assertGreater(buy["composite_score"], 0)
         self.assertLess(sell["composite_score"], 0)
+        self.assertEqual(buy["trade_levels"]["active_side"], "BUY")
+        self.assertEqual(sell["trade_levels"]["active_side"], "SELL")
+
+    def test_trade_levels_have_valid_long_and_short_ordering(self) -> None:
+        bars = make_bars("buy", self.now)
+        levels = build_trade_levels(
+            bars,
+            current_price=bars[-1].close,
+            is_fresh=True,
+            signal_type="BUY",
+            bias_score=0.7,
+        )
+        buy = levels["buy"]
+        sell = levels["sell"]
+        self.assertLess(buy["stop"], buy["pullback_zone"][0])
+        self.assertLess(buy["pullback_zone"][1], buy["breakout_entry"])
+        self.assertLess(buy["breakout_entry"], buy["target1"])
+        self.assertLess(buy["target1"], buy["target2"])
+        self.assertLess(sell["target2"], sell["target1"])
+        self.assertLess(sell["target1"], sell["breakdown_entry"])
+        self.assertLess(sell["breakdown_entry"], sell["rebound_zone"][0])
+        self.assertLess(sell["rebound_zone"][1], sell["stop"])
+        self.assertEqual(levels["active_side"], "BUY")
+
+    def test_stale_trade_levels_are_not_presented_as_live_triggers(self) -> None:
+        bars = make_bars("sell", self.now - timedelta(hours=2))
+        levels = build_trade_levels(
+            bars,
+            current_price=bars[-1].close,
+            is_fresh=False,
+            signal_type="SELL",
+            bias_score=-0.7,
+        )
+        self.assertIn("下一交易时段", levels["buy"]["status"])
+        self.assertIn("下一交易时段", levels["sell"]["status"])
 
 
 class NewsAnalysisTests(unittest.TestCase):

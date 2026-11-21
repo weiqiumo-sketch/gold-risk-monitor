@@ -44,6 +44,44 @@
       <article class="alert skeleton">正在检查风险阈值…</article>
     </section>
 
+    <section class="plans" aria-label="买卖价位计划">
+      <article id="buy-plan" class="plan buy-plan">
+        <div class="plan-head">
+          <div>
+            <span class="plan-side">LONG</span>
+            <h2>买入 / 做多计划</h2>
+          </div>
+          <span id="buy-plan-status" class="plan-status">等待价位</span>
+        </div>
+        <div class="plan-levels">
+          <div><span>突破买入</span><strong id="buy-breakout">--</strong></div>
+          <div><span>回踩区间</span><strong id="buy-pullback">--</strong></div>
+          <div><span>止损</span><strong id="buy-stop">--</strong></div>
+          <div><span>第一目标</span><strong id="buy-target1">--</strong></div>
+          <div><span>第二目标</span><strong id="buy-target2">--</strong></div>
+          <div><span>盈亏比</span><strong id="buy-rr">--</strong></div>
+        </div>
+      </article>
+      <article id="sell-plan" class="plan sell-plan">
+        <div class="plan-head">
+          <div>
+            <span class="plan-side">SHORT</span>
+            <h2>卖出 / 做空计划</h2>
+          </div>
+          <span id="sell-plan-status" class="plan-status">等待价位</span>
+        </div>
+        <div class="plan-levels">
+          <div><span>破位卖出</span><strong id="sell-breakdown">--</strong></div>
+          <div><span>反抽区间</span><strong id="sell-rebound">--</strong></div>
+          <div><span>止损</span><strong id="sell-stop">--</strong></div>
+          <div><span>第一目标</span><strong id="sell-target1">--</strong></div>
+          <div><span>第二目标</span><strong id="sell-target2">--</strong></div>
+          <div><span>盈亏比</span><strong id="sell-rr">--</strong></div>
+        </div>
+      </article>
+    </section>
+    <p id="level-note" class="level-note">价位按最近约 2 小时结构和 5 分钟 ATR 计算。</p>
+
     <section class="metrics" aria-label="关键指标">
       <article class="card">
         <span class="label">综合评分</span>

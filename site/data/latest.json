@@ -1,7 +1,7 @@
 {
-  "schema_version": 1,
-  "generated_at": "2026-11-21T03:22:57.589430+00:00",
-  "generated_at_china": "2026-11-21T11:22:57.589430+08:00",
+  "schema_version": 2,
+  "generated_at": "2026-11-21T03:30:15.669100+00:00",
+  "generated_at_china": "2026-11-21T11:30:15.669100+08:00",
   "market_time": "2026-11-20T21:59:57+00:00",
   "symbol": "GC=F",
   "price": 3539.0,
@@ -9,42 +9,79 @@
   "day_high": 3638.1,
   "day_low": 3502.9,
   "market_status": "休市或数据延迟",
-  "data_age_minutes": 323.0098238333333,
-  "buy_volume_proxy": 939.512547496601,
+  "data_age_minutes": 330.31115166666666,
+  "buy_volume_proxy": 915.6060711213241,
   "sell_volume_proxy": 0.0,
-  "volume_ratio": 0.37628865979381443,
+  "volume_ratio": 0.3739754098360656,
   "signed_volume_ratio": 1.0,
   "return_15m": 0.0016132089245479708,
   "return_1h": 0.003800743695423048,
-  "market_score": 0.2212092827077749,
-  "momentum_score": 0.23607153825604552,
-  "flow_score": 0.209049255441008,
-  "news_score": -0.4765,
-  "news_impact": 0.9139,
+  "market_score": 0.22029830213767987,
+  "momentum_score": 0.2356178622691206,
+  "flow_score": 0.207764116575592,
+  "news_score": -0.4671,
+  "news_impact": 0.9052,
   "news_summary": "利空黄金的新闻占优",
   "macro_score": 0.06666666666666667,
-  "composite_score": -0.34070833333333334,
-  "risk_score": 41.3,
-  "confidence": 49.7,
+  "composite_score": -0.33365833333333333,
+  "risk_score": 40.9,
+  "confidence": 49.6,
   "signal_type": "WATCH",
   "decision": "休市观察",
   "action_text": "当前没有新鲜价格数据，继续监测新闻和宏观风险；恢复交易后再判断买卖方向。",
+  "trade_levels": {
+    "active_side": "SELL",
+    "atr": 6.2,
+    "structure_high": 3544.3,
+    "structure_low": 3503.8,
+    "buy": {
+      "name": "买入 / 做多计划",
+      "breakout_entry": 3545.2,
+      "pullback_zone": [
+        3539.9,
+        3543.4
+      ],
+      "stop": 3502.2,
+      "target1": 3609.7,
+      "target2": 3652.7,
+      "risk_reward": "1.5R / 2.5R",
+      "status": "休市，下一交易时段复评",
+      "distance_pct": 0.17612459215614606,
+      "triggered": false
+    },
+    "sell": {
+      "name": "卖出 / 做空计划",
+      "breakdown_entry": 3502.9,
+      "rebound_zone": [
+        3504.7,
+        3508.2
+      ],
+      "stop": 3545.9,
+      "target1": 3438.4,
+      "target2": 3395.4,
+      "risk_reward": "1.5R / 2.5R",
+      "status": "休市，下一交易时段复评",
+      "distance_pct": -1.020993265333603,
+      "triggered": false
+    },
+    "note": "价位基于最近约 2 小时结构与 14 根 5 分钟 ATR。突破和回踩均为条件单参考，成交前需重新确认价格、成交量和新闻。"
+  },
   "reasons": [
-    "15 分钟成交量为基准的 0.38 倍，方向成交差 +100%",
+    "15 分钟成交量为基准的 0.37 倍，方向成交差 +100%",
     "15 分钟涨跌 +0.16%，1 小时涨跌 +0.38%",
     "中性",
     "收益率下降，支持黄金",
-    "黄金新闻 60 条，情绪分 -0.48，利空黄金的新闻占优"
+    "黄金新闻 60 条，情绪分 -0.47，利空黄金的新闻占优"
   ],
   "alerts": [
     {
       "type": "NEWS",
       "severity": "高",
       "title": "重大利空黄金新闻",
-      "message": "新闻情绪分 -0.48、冲击度 0.91，利空黄金的新闻占优。"
+      "message": "新闻情绪分 -0.47、冲击度 0.91，利空黄金的新闻占优。"
     }
   ],
-  "alert_signature": "ad0543e278c3f813",
+  "alert_signature": "7d4efbd5bbfdbc3c",
   "macro_points": [
     {
       "key": "DX-Y.NYB",
@@ -68,7 +105,7 @@
       "source": "247wallst.com",
       "published_at": "2026-11-21T01:01:24+00:00",
       "sentiment": 0.0,
-      "importance": 0.6697,
+      "importance": 0.6671,
       "matched_terms": []
     },
     {
@@ -77,7 +114,7 @@
       "source": "NDTV",
       "published_at": "2026-11-20T17:17:09+00:00",
       "sentiment": -1.0,
-      "importance": 0.6568,
+      "importance": 0.6551,
       "matched_terms": [
         "-gold sinks",
         "-one-year low"
@@ -89,7 +126,7 @@
       "source": "The Times of India",
       "published_at": "2026-11-20T14:16:00+00:00",
       "sentiment": -0.7333,
-      "importance": 0.6171,
+      "importance": 0.6157,
       "matched_terms": [
         "-price crash"
       ]
@@ -100,7 +137,7 @@
       "source": "BigGo Finance",
       "published_at": "2026-11-20T12:11:06+00:00",
       "sentiment": -0.8,
-      "importance": 0.5934,
+      "importance": 0.5921,
       "matched_terms": [
         "-gold plunges"
       ]
@@ -111,7 +148,7 @@
       "source": "Investing.com South Africa",
       "published_at": "2026-11-20T20:16:36+00:00",
       "sentiment": -1.0,
-      "importance": 0.5782,
+      "importance": 0.5762,
       "matched_terms": [
         "-fed hike",
         "-hike bets",
@@ -124,7 +161,7 @@
       "source": "Beinsure",
       "published_at": "2026-11-20T09:58:20+00:00",
       "sentiment": -0.8,
-      "importance": 0.5711,
+      "importance": 0.5699,
       "matched_terms": [
         "-rate hike"
       ]
@@ -135,21 +172,9 @@
       "source": "FXEmpire",
       "published_at": "2026-11-21T02:00:27+00:00",
       "sentiment": -0.5333,
-      "importance": 0.5669,
+      "importance": 0.5641,
       "matched_terms": [
         "-selloff"
-      ]
-    },
-    {
-      "title": "Gold (XAUUSD), Silver, Platinum Forecasts – Gold Tests New Lows Amid Panic In Markets",
-      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNSHlkVV92b21POWFZanFRbHlZQVFOSktkVmx1Smltcm1OZGIyQVpVbUNJcTBGYWdFZnNWT1BkdzRqSHFLRnRrNlRDZUpLZlNVcWxoTXdDM2JBVkRaOF9aNkw1ZG92U3E4d3JTb0dZZW1rU0hJWUVzOGVTRm51YldseHkxNk5CTDVEZ0tzb1BlVExYT25QUlZibEZaVktlRU9GbXVvLVFjbENXUlcwakVXM1RwU0Z3VVZOV1hhYlZHSUN5cWoyVVlOSGNn?oc=5",
-      "source": "FXEmpire",
-      "published_at": "2026-11-21T00:38:22+00:00",
-      "sentiment": -1.0,
-      "importance": 0.5364,
-      "matched_terms": [
-        "-new lows",
-        "-panic in markets"
       ]
     },
     {
@@ -158,7 +183,7 @@
       "source": "BullionVault",
       "published_at": "2026-11-20T17:34:15+00:00",
       "sentiment": 0.0,
-      "importance": 0.5359,
+      "importance": 0.5341,
       "matched_terms": []
     },
     {
@@ -167,10 +192,22 @@
       "source": "TradingView",
       "published_at": "2026-11-20T17:33:39+00:00",
       "sentiment": -1.0,
-      "importance": 0.5358,
+      "importance": 0.534,
       "matched_terms": [
         "-rate hike",
         "-hike bets"
+      ]
+    },
+    {
+      "title": "Gold (XAUUSD), Silver, Platinum Forecasts – Gold Tests New Lows Amid Panic In Markets",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNSHlkVV92b21POWFZanFRbHlZQVFOSktkVmx1Smltcm1OZGIyQVpVbUNJcTBGYWdFZnNWT1BkdzRqSHFLRnRrNlRDZUpLZlNVcWxoTXdDM2JBVkRaOF9aNkw1ZG92U3E4d3JTb0dZZW1rU0hJWUVzOGVTRm51YldseHkxNk5CTDVEZ0tzb1BlVExYT25QUlZibEZaVktlRU9GbXVvLVFjbENXUlcwakVXM1RwU0Z3VVZOV1hhYlZHSUN5cWoyVVlOSGNn?oc=5",
+      "source": "FXEmpire",
+      "published_at": "2026-11-21T00:38:22+00:00",
+      "sentiment": -1.0,
+      "importance": 0.5338,
+      "matched_terms": [
+        "-new lows",
+        "-panic in markets"
       ]
     },
     {
@@ -179,16 +216,7 @@
       "source": "Geomechanics.io",
       "published_at": "2026-11-21T00:01:39+00:00",
       "sentiment": 0.0,
-      "importance": 0.5235,
-      "matched_terms": []
-    },
-    {
-      "title": "Gold price fall nears $3,500 as miners face soaring costs",
-      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQYTBKNGdIMDJlUk1JZ3E1dm1pOEtVZmVuT3l5UmRYaHhXMVZVQXdCMlhDVmpYc0FwXzdydlBlMFZDeV9XS2lndUoyaFc1TE5DaXN6T09zTTJNSVgxZVRGbHdMS3dLZnJadlRLdlBDTzRwSlU4VUFwV09ZV2dLdk5LUHhzNHRNSjg?oc=5",
-      "source": "Mining.com",
-      "published_at": "2026-11-20T23:50:45+00:00",
-      "sentiment": 0.0,
-      "importance": 0.5197,
+      "importance": 0.521,
       "matched_terms": []
     },
     {
@@ -197,7 +225,16 @@
       "source": "BigGo Finance",
       "published_at": "2026-11-20T16:25:00+00:00",
       "sentiment": 0.0,
-      "importance": 0.5197,
+      "importance": 0.518,
+      "matched_terms": []
+    },
+    {
+      "title": "Gold price fall nears $3,500 as miners face soaring costs",
+      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQYTBKNGdIMDJlUk1JZ3E1dm1pOEtVZmVuT3l5UmRYaHhXMVZVQXdCMlhDVmpYc0FwXzdydlBlMFZDeV9XS2lndUoyaFc1TE5DaXN6T09zTTJNSVgxZVRGbHdMS3dLZnJadlRLdlBDTzRwSlU4VUFwV09ZV2dLdk5LUHhzNHRNSjg?oc=5",
+      "source": "Mining.com",
+      "published_at": "2026-11-20T23:50:45+00:00",
+      "sentiment": 0.0,
+      "importance": 0.5172,
       "matched_terms": []
     },
     {
@@ -206,7 +243,7 @@
       "source": "Shanghai Metals Market",
       "published_at": "2026-11-20T16:20:00+00:00",
       "sentiment": 0.0,
-      "importance": 0.5186,
+      "importance": 0.5169,
       "matched_terms": []
     },
     {
@@ -215,7 +252,7 @@
       "source": "finance.yahoo.com",
       "published_at": "2026-11-20T22:56:19+00:00",
       "sentiment": -0.6667,
-      "importance": 0.5016,
+      "importance": 0.4992,
       "matched_terms": [
         "-hawkish"
       ]
@@ -226,7 +263,7 @@
       "source": "The Jewelry Wire",
       "published_at": "2026-11-20T14:35:43+00:00",
       "sentiment": -0.7333,
-      "importance": 0.4961,
+      "importance": 0.4947,
       "matched_terms": [
         "-price crash"
       ]
@@ -237,20 +274,8 @@
       "source": "FXEmpire",
       "published_at": "2026-11-20T14:19:50+00:00",
       "sentiment": 0.0,
-      "importance": 0.4929,
+      "importance": 0.4915,
       "matched_terms": []
-    },
-    {
-      "title": "Gold Set for Worst Week Since March on Hawkish Fed, AI Selloff",
-      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNRkRDQWZYNXlObXhXM0Q1TEFtSXhxV24ySVdMUnNCVWRRSnJDTkVBLWtJR1lTWEliYzRIbWhWeEFRYzUySHFObzRJajNFWW5wd2lmZ0tIeXpQaFZfdlRZaFJEUTdRVkFKUW1HNDZ1dWhXU1QzSFpIOF80MUJkSWJsdTY1ME9CRUVVYVY0SllFVFYzR0pVVER4YjVSNGp6Y2tIR0ZSRW5yS1VHSHV2OU9MU2lB?oc=5",
-      "source": "Bloomberg.com",
-      "published_at": "2026-11-20T22:12:39+00:00",
-      "sentiment": -1.0,
-      "importance": 0.4876,
-      "matched_terms": [
-        "-hawkish",
-        "-selloff"
-      ]
     },
     {
       "title": "Gold price heads for worst weekly loss since March",
@@ -258,7 +283,7 @@
       "source": "Mining.com.au",
       "published_at": "2026-11-20T21:32:21+00:00",
       "sentiment": 0.0,
-      "importance": 0.4753,
+      "importance": 0.4731,
       "matched_terms": []
     },
     {
@@ -267,7 +292,7 @@
       "source": "Kitco",
       "published_at": "2026-11-20T21:26:44+00:00",
       "sentiment": 0.0,
-      "importance": 0.4736,
+      "importance": 0.4714,
       "matched_terms": []
     },
     {
@@ -276,7 +301,7 @@
       "source": "Yahoo Finance",
       "published_at": "2026-11-20T12:11:16+00:00",
       "sentiment": -0.8,
-      "importance": 0.4685,
+      "importance": 0.4672,
       "matched_terms": [
         "-rate hike"
       ]
@@ -287,7 +312,7 @@
       "source": "CoinMarketCap",
       "published_at": "2026-11-20T21:06:54+00:00",
       "sentiment": -0.6667,
-      "importance": 0.4677,
+      "importance": 0.4655,
       "matched_terms": [
         "-gold sinks"
       ]
@@ -298,7 +323,7 @@
       "source": "USA Today",
       "published_at": "2026-11-20T21:04:00+00:00",
       "sentiment": -0.6,
-      "importance": 0.4668,
+      "importance": 0.4647,
       "matched_terms": [
         "-gold falls"
       ]
@@ -309,7 +334,7 @@
       "source": "Kitco",
       "published_at": "2026-11-20T21:00:25+00:00",
       "sentiment": 0.0,
-      "importance": 0.4658,
+      "importance": 0.4637,
       "matched_terms": []
     },
     {
@@ -318,7 +343,7 @@
       "source": "Yahoo Finance",
       "published_at": "2026-11-20T11:00:00+00:00",
       "sentiment": 0.0,
-      "importance": 0.4561,
+      "importance": 0.4549,
       "matched_terms": []
     },
     {
@@ -327,7 +352,7 @@
       "source": "Kitco",
       "published_at": "2026-11-20T20:12:13+00:00",
       "sentiment": 0.0,
-      "importance": 0.452,
+      "importance": 0.45,
       "matched_terms": []
     },
     {
@@ -336,7 +361,7 @@
       "source": "ChemAnalyst",
       "published_at": "2026-11-20T19:58:13+00:00",
       "sentiment": 0.0,
-      "importance": 0.4481,
+      "importance": 0.4461,
       "matched_terms": []
     },
     {
@@ -345,7 +370,7 @@
       "source": "FXEmpire",
       "published_at": "2026-11-20T09:46:25+00:00",
       "sentiment": -0.6,
-      "importance": 0.4442,
+      "importance": 0.443,
       "matched_terms": [
         "-gold slides"
       ]
@@ -356,7 +381,7 @@
       "source": "TradingView",
       "published_at": "2026-11-20T07:07:00+00:00",
       "sentiment": -0.6,
-      "importance": 0.421,
+      "importance": 0.42,
       "matched_terms": [
         "-gold slides"
       ]
@@ -367,11 +392,20 @@
       "source": "Livemint",
       "published_at": "2026-11-20T06:53:53+00:00",
       "sentiment": -1.0,
-      "importance": 0.4192,
+      "importance": 0.4182,
       "matched_terms": [
         "-rate-hike",
         "-sell-off"
       ]
+    },
+    {
+      "title": "Gold price prediction today: Will gold continue to crash? Check November 20, 2026 outlook",
+      "url": "https://news.google.com/rss/articles/CBMiogJBVV95cUxQX1dlS1puVC1xNGp0MnpnZUhBZnFHajdTUGZyZkZCa3RCRWllMkNhVEt1dlcyMWVpUEY2bjRpWnRpSy1ucmVxcHhJOVlUUXR6b1RpaHFsLTdZUVl5dmhTajF2SnpqTjIwSGFYM0p0c3c5SUhWQ2x0czEyOW52UlFFYW9Wa290ZkR3Ny0tZ0taaHlVMVdnSjhCSWxib2dnVGk0Q09yN2Y4bDhHdXZ4dTc4NHZ0MXJndFVCb1VoNXluY0NXU1FoSXFkVk1tamlVOHBMaXJyWUZkSEF3bFAwNXVaLU5lNjA3VXRCa1ZsZHJMQVdOSkZmMG1LcmxudHJTYjFSOXNaeXpmVHZtSUMyWE1MNlV0aHBxTEFjdU9XbUFuSnRUZ9IBpwJBVV95cUxOZzRaejIzQzgxNmNJek5rVXhuWEdzOWpyMUFmbmF5X0JEZnNqR2pxaUZSc2c1VHBJeXFZeHJDRjgxdWVONV9TNmhLbS10cTFMb2pqWF83RnhaUnRpVlZDMF9DSnpWVWdDSFB0RjBZMXVDOXMyb0RoM1JTS1ZETTQ5aGlDRW5ZQUtCZTN6LUVCVTVqY0s0Z3pTWXdFVXBPUnNTQXFhN3BGQVBEUXU3VmU4YzVxZ0RZbEkzNXpET2ticW95UzYzOVF5cG9tT0d2TjR6MkdSR2xEcUNJU3pWZ29GOXFzbDBZZUtBTzluX2JXazV3SEhMMW9ZdG0tMGdza2JUbkpwVmstanBIdFFBZ3pBdUQxZ1REQ21OMk5rbDZibXlDemlOQW9Z?oc=5",
+      "source": "The Times of India",
+      "published_at": "2026-11-20T06:51:00+00:00",
+      "sentiment": 0.0,
+      "importance": 0.4178,
+      "matched_terms": []
     }
   ],
   "chart_points": [
@@ -397,7 +431,7 @@
     },
     {
       "time": "2026-11-20T22:30:00+08:00",
-      "price": 3572.8
+      "price": 3572.9
     },
     {
       "time": "2026-11-20T22:35:00+08:00",
@@ -409,7 +443,7 @@
     },
     {
       "time": "2026-11-20T22:45:00+08:00",
-      "price": 3576.2
+      "price": 3576.5
     },
     {
       "time": "2026-11-20T22:50:00+08:00",
@@ -417,15 +451,15 @@
     },
     {
       "time": "2026-11-20T22:55:00+08:00",
-      "price": 3578.9
+      "price": 3579.3
     },
     {
       "time": "2026-11-20T23:00:00+08:00",
-      "price": 3573.8
+      "price": 3574.0
     },
     {
       "time": "2026-11-20T23:05:00+08:00",
-      "price": 3568.3
+      "price": 3567.9
     },
     {
       "time": "2026-11-20T23:10:00+08:00",
@@ -437,11 +471,11 @@
     },
     {
       "time": "2026-11-20T23:20:00+08:00",
-      "price": 3535.3
+      "price": 3535.6
     },
     {
       "time": "2026-11-20T23:25:00+08:00",
-      "price": 3537.0
+      "price": 3537.5
     },
     {
       "time": "2026-11-20T23:30:00+08:00",
@@ -469,7 +503,7 @@
     },
     {
       "time": "2026-11-21T00:00:00+08:00",
-      "price": 3540.5
+      "price": 3540.1
     },
     {
       "time": "2026-11-21T00:05:00+08:00",
@@ -497,7 +531,7 @@
     },
     {
       "time": "2026-11-21T00:35:00+08:00",
-      "price": 3549.3
+      "price": 3549.1
     },
     {
       "time": "2026-11-21T00:40:00+08:00",
@@ -509,7 +543,7 @@
     },
     {
       "time": "2026-11-21T00:50:00+08:00",
-      "price": 3539.9
+      "price": 3540.1
     },
     {
       "time": "2026-11-21T00:55:00+08:00",
@@ -529,15 +563,15 @@
     },
     {
       "time": "2026-11-21T01:15:00+08:00",
-      "price": 3532.0
+      "price": 3532.2
     },
     {
       "time": "2026-11-21T01:20:00+08:00",
-      "price": 3530.7
+      "price": 3530.5
     },
     {
       "time": "2026-11-21T01:25:00+08:00",
-      "price": 3530.5
+      "price": 3530.9
     },
     {
       "time": "2026-11-21T01:30:00+08:00",
@@ -545,7 +579,7 @@
     },
     {
       "time": "2026-11-21T01:35:00+08:00",
-      "price": 3528.4
+      "price": 3528.8
     },
     {
       "time": "2026-11-21T01:40:00+08:00",
@@ -561,7 +595,7 @@
     },
     {
       "time": "2026-11-21T01:55:00+08:00",
-      "price": 3531.7
+      "price": 3531.8
     },
     {
       "time": "2026-11-21T02:00:00+08:00",
@@ -569,7 +603,7 @@
     },
     {
       "time": "2026-11-21T02:05:00+08:00",
-      "price": 3526.9
+      "price": 3527.1
     },
     {
       "time": "2026-11-21T02:10:00+08:00",
@@ -597,7 +631,7 @@
     },
     {
       "time": "2026-11-21T02:40:00+08:00",
-      "price": 3506.9
+      "price": 3507.0
     },
     {
       "time": "2026-11-21T02:45:00+08:00",
@@ -625,7 +659,7 @@
     },
     {
       "time": "2026-11-21T03:15:00+08:00",
-      "price": 3518.2
+      "price": 3517.9
     },
     {
       "time": "2026-11-21T03:20:00+08:00",
@@ -661,7 +695,7 @@
     },
     {
       "time": "2026-11-21T04:00:00+08:00",
-      "price": 3518.0
+      "price": 3517.8
     },
     {
       "time": "2026-11-21T04:05:00+08:00",
@@ -669,7 +703,7 @@
     },
     {
       "time": "2026-11-21T04:10:00+08:00",
-      "price": 3514.9
+      "price": 3514.7
     },
     {
       "time": "2026-11-21T04:15:00+08:00",
@@ -677,11 +711,11 @@
     },
     {
       "time": "2026-11-21T04:20:00+08:00",
-      "price": 3517.4
+      "price": 3517.1
     },
     {
       "time": "2026-11-21T04:25:00+08:00",
-      "price": 3515.7
+      "price": 3515.9
     },
     {
       "time": "2026-11-21T04:30:00+08:00",
@@ -762,8 +796,8 @@
   ],
   "source_status": [
     "GC=F: Yahoo Finance 5-minute chart",
-    "^TNX: Yahoo Finance hourly chart",
     "DX-Y.NYB: Yahoo Finance hourly chart",
+    "^TNX: Yahoo Finance hourly chart",
     "Bing News: 0 条",
     "GDELT: 75 条",
     "Google News: 100 条",

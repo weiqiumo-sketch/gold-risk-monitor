@@ -209,6 +209,84 @@ h1 {
 .alert p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
 .alert.skeleton { color: var(--muted); font-size: 12px; }
 
+.plans {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.plan {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  transition: 0.2s ease;
+}
+
+.plan.active {
+  border-color: rgba(240, 190, 98, 0.45);
+  background:
+    linear-gradient(135deg, rgba(240, 190, 98, 0.08), transparent 55%),
+    var(--panel);
+}
+
+.buy-plan.active { border-color: rgba(68, 215, 164, 0.4); }
+.sell-plan.active { border-color: rgba(255, 113, 134, 0.4); }
+
+.plan-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.plan-head h2 { margin: 3px 0 0; font-size: 16px; }
+.plan-side {
+  color: var(--gold);
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+}
+
+.buy-plan .plan-side { color: var(--green); }
+.sell-plan .plan-side { color: var(--red); }
+
+.plan-status {
+  max-width: 58%;
+  padding: 5px 8px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.4;
+  text-align: right;
+}
+
+.plan-levels {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+  margin-top: 14px;
+}
+
+.plan-levels div {
+  padding: 9px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.plan-levels span { display: block; color: var(--muted); font-size: 8px; }
+.plan-levels strong { display: block; margin-top: 4px; font-size: 12px; }
+
+.level-note {
+  margin: 0 2px 16px;
+  color: #65788f;
+  font-size: 9px;
+  line-height: 1.5;
+}
+
 .metrics {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -486,7 +564,7 @@ footer {
   .shell { width: min(100% - 24px, 1420px); padding-top: 14px; }
   .topbar { align-items: flex-start; margin-bottom: 36px; }
   .top-status { align-items: flex-end; flex-direction: column; }
-  .metrics, .method-grid { grid-template-columns: 1fr; }
+  .metrics, .method-grid, .plans { grid-template-columns: 1fr; }
   .return-grid { grid-template-columns: 1fr 1fr; }
   .panel { padding: 17px; }
   .range { display: none; }

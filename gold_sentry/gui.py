@@ -40,6 +40,7 @@ class GoldSentryApp:
         self.risk_var = tk.StringVar(value="--")
         self.decision_var = tk.StringVar(value="等待数据")
         self.action_var = tk.StringVar(value="正在获取行情和新闻…")
+        self.levels_var = tk.StringVar(value="正在计算买卖价位…")
         self.last_signature = ""
         self._build_style()
         self._build_layout()
@@ -180,6 +181,23 @@ class GoldSentryApp:
         self.canvas.bind("<Configure>", lambda _event: self._draw_chart())
         tk.Label(
             left,
+            text="买卖点计划",
+            bg=PANEL,
+            fg=TEXT,
+            font=("Microsoft YaHei UI", 11, "bold"),
+        ).pack(anchor="w", padx=14, pady=(7, 3))
+        tk.Label(
+            left,
+            textvariable=self.levels_var,
+            bg=PANEL,
+            fg=MUTED,
+            justify="left",
+            anchor="w",
+            wraplength=520,
+            font=("Microsoft YaHei UI", 9),
+        ).pack(fill="x", padx=14, pady=(0, 8))
+        tk.Label(
+            left,
             text="风险提醒",
             bg=PANEL,
             fg=TEXT,
@@ -282,6 +300,22 @@ class GoldSentryApp:
         self.risk_var.set(f"{snapshot.get('risk_score', 0):.1f}")
         self.decision_var.set(str(snapshot.get("decision", "观望")))
         self.action_var.set(str(snapshot.get("action_text", "")))
+        levels = snapshot.get("trade_levels")
+        if levels:
+            buy = levels["buy"]
+            sell = levels["sell"]
+            self.levels_var.set(
+                f"买入：突破 {buy['breakout_entry']:,.1f}，回踩 "
+                f"{buy['pullback_zone'][0]:,.1f}—{buy['pullback_zone'][1]:,.1f}，"
+                f"止损 {buy['stop']:,.1f}，目标 {buy['target1']:,.1f} / "
+                f"{buy['target2']:,.1f}\n"
+                f"卖出：破位 {sell['breakdown_entry']:,.1f}，反抽 "
+                f"{sell['rebound_zone'][0]:,.1f}—{sell['rebound_zone'][1]:,.1f}，"
+                f"止损 {sell['stop']:,.1f}，目标 {sell['target1']:,.1f} / "
+                f"{sell['target2']:,.1f}"
+            )
+        else:
+            self.levels_var.set("行情不足，暂不计算买卖价位。")
         signal_type = snapshot.get("signal_type")
         color = GREEN if signal_type == "BUY" else RED if signal_type == "SELL" else AMBER
         self.risk_value_label.configure(fg=color)

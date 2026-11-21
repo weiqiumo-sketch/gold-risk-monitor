@@ -155,6 +155,47 @@ function renderReasons(reasons) {
   }
 }
 
+function renderTradeLevels(levels) {
+  const buyPlan = $("#buy-plan");
+  const sellPlan = $("#sell-plan");
+  buyPlan.classList.remove("active");
+  sellPlan.classList.remove("active");
+  if (!levels || !levels.buy || !levels.sell) {
+    setText("#buy-plan-status", "行情不足，暂不计算");
+    setText("#sell-plan-status", "行情不足，暂不计算");
+    setText("#level-note", "当前行情不足，无法计算稳定结构位；恢复交易后自动生成。");
+    return;
+  }
+  if (levels.active_side === "BUY") buyPlan.classList.add("active");
+  if (levels.active_side === "SELL") sellPlan.classList.add("active");
+
+  setText("#buy-plan-status", levels.buy.status || "--");
+  setText("#buy-breakout", `$${formatNumber(levels.buy.breakout_entry, 1)}`);
+  setText(
+    "#buy-pullback",
+    `$${formatNumber(levels.buy.pullback_zone[0], 1)}—${formatNumber(levels.buy.pullback_zone[1], 1)}`,
+  );
+  setText("#buy-stop", `$${formatNumber(levels.buy.stop, 1)}`);
+  setText("#buy-target1", `$${formatNumber(levels.buy.target1, 1)}`);
+  setText("#buy-target2", `$${formatNumber(levels.buy.target2, 1)}`);
+  setText("#buy-rr", levels.buy.risk_reward || "--");
+
+  setText("#sell-plan-status", levels.sell.status || "--");
+  setText("#sell-breakdown", `$${formatNumber(levels.sell.breakdown_entry, 1)}`);
+  setText(
+    "#sell-rebound",
+    `$${formatNumber(levels.sell.rebound_zone[0], 1)}—${formatNumber(levels.sell.rebound_zone[1], 1)}`,
+  );
+  setText("#sell-stop", `$${formatNumber(levels.sell.stop, 1)}`);
+  setText("#sell-target1", `$${formatNumber(levels.sell.target1, 1)}`);
+  setText("#sell-target2", `$${formatNumber(levels.sell.target2, 1)}`);
+  setText("#sell-rr", levels.sell.risk_reward || "--");
+  setText(
+    "#level-note",
+    `${levels.note || ""} ATR ${formatNumber(levels.atr, 1)} · 结构高 ${formatNumber(levels.structure_high, 1)} · 结构低 ${formatNumber(levels.structure_low, 1)}`,
+  );
+}
+
 function renderNews(news) {
   const host = $("#news-list");
   host.replaceChildren();
@@ -238,6 +279,7 @@ function render(snapshot) {
   setTone($("#macro-score"), macroScore);
 
   renderAlerts(snapshot.alerts);
+  renderTradeLevels(snapshot.trade_levels);
   renderChart(snapshot.chart_points);
   renderMacro(snapshot.macro_points);
   renderReasons(snapshot.reasons);
