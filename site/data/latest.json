@@ -1,7 +1,7 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-21T03:44:44.647558+00:00",
-  "generated_at_china": "2026-11-21T11:44:44.647558+08:00",
+  "generated_at": "2026-11-21T03:52:29.001386+00:00",
+  "generated_at_china": "2026-11-21T11:52:29.001386+08:00",
   "market_time": "2026-11-20T21:59:57+00:00",
   "symbol": "GC=F",
   "price": 3539.0,
@@ -16,7 +16,7 @@
   "day_high_cny_per_gram": 781.34,
   "day_low_cny_per_gram": 752.31,
   "market_status": "休市或数据延迟",
-  "data_age_minutes": 344.7941259666667,
+  "data_age_minutes": 352.5333564333333,
   "buy_volume_proxy": 939.512547496601,
   "sell_volume_proxy": 0.0,
   "volume_ratio": 0.37628865979381443,
@@ -26,13 +26,13 @@
   "market_score": 0.2212092827077749,
   "momentum_score": 0.23607153825604552,
   "flow_score": 0.209049255441008,
-  "news_score": -0.2851,
-  "news_impact": 0.4229,
+  "news_score": -0.4913,
+  "news_impact": 0.8966,
   "news_summary": "利空黄金的新闻占优",
   "macro_score": 0.06666666666666667,
-  "composite_score": -0.19715833333333335,
-  "risk_score": 21.6,
-  "confidence": 35.6,
+  "composite_score": -0.35180833333333333,
+  "risk_score": 40.6,
+  "confidence": 49.9,
   "signal_type": "WATCH",
   "decision": "休市观察",
   "action_text": "当前没有新鲜价格数据，继续监测新闻和宏观风险；恢复交易后再判断买卖方向。",
@@ -98,18 +98,18 @@
     "15 分钟涨跌 +0.16%，1 小时涨跌 +0.38%",
     "中性",
     "收益率下降，支持黄金",
-    "黄金新闻 2 条，情绪分 -0.29，利空黄金的新闻占优",
+    "黄金新闻 60 条，情绪分 -0.49，利空黄金的新闻占优",
     "美元兑人民币汇率 6.6800，价格已按 1 金衡盎司 = 31.1034768 克折算为人民币/克"
   ],
   "alerts": [
     {
       "type": "NEWS",
-      "severity": "中",
+      "severity": "高",
       "title": "重大利空黄金新闻",
-      "message": "新闻情绪分 -0.29、冲击度 0.42，利空黄金的新闻占优。"
+      "message": "新闻情绪分 -0.49、冲击度 0.90，利空黄金的新闻占优。"
     }
   ],
-  "alert_signature": "08b869e262167d0d",
+  "alert_signature": "7d4efbd5bbfdbc3c",
   "macro_points": [
     {
       "key": "DX-Y.NYB",
@@ -140,7 +140,124 @@
       "source": "247wallst.com",
       "published_at": "2026-11-21T01:01:24+00:00",
       "sentiment": 0.0,
-      "importance": 0.6618,
+      "importance": 0.6591,
+      "matched_terms": []
+    },
+    {
+      "title": "Gold price crash: From Rs 1.80 lakh to below Rs 1.25 lakh, will gold now plunge to Rs 1 lakh per 10 gms?",
+      "url": "https://news.google.com/rss/articles/CBMilgJBVV95cUxObWp6YlYxaDBlYjRfb0dWYk92WXQwT1gzVmxpdFZGd1NySWJSbUdBR2pabUQ0SHFnYXFVWXkwaDlQSGtTd3BpOE5tYVpmWTVoelY2WHhaZWZtSHJpbWtlZ1hNbExlQ000M25rMTNxblhQQWVManJDRWlQOWtTWWhCX2J6YkM3SHZpSkdxMDB4N29IYnd4cnJJZ2NUS21fXzl4QjZWNzVjNG4xMkdrSi02Ui1wMnZGUjN3eDVVa1FjZjBhekRQUWNQcU9iWFRWMVBlZGNVRG1RRFppV3dhZWtCaFFCUFFOUVQ3N2lPRGUzdHBISC1RT3Y4eUJiZDQ2Rk5iUE1lejNnUXRzejk4OEQ0MVhJWm03dw?oc=5",
+      "source": "The Times of India",
+      "published_at": "2026-11-20T14:16:00+00:00",
+      "sentiment": -0.7333,
+      "importance": 0.6113,
+      "matched_terms": [
+        "-price crash"
+      ]
+    },
+    {
+      "title": "Gold Plunges to 14-Month Low as Four Banks Warn on Precious Metals Risk on Same Day",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE41bzViU1g2VWp0OElaVkx5N1hJUUJkY1BmeVZvRjFaN1dPbVZwT3UtT2ZJeFptZGYtVjVqNVFsZktpNFJidW1ZcEMxR1g1NFliYXBkQmFaYmJSbGc4cm5Tb05zNE0yRDlBN2QtWGk4Tmhjb3hrNUE?oc=5",
+      "source": "BigGo Finance",
+      "published_at": "2026-11-20T12:11:06+00:00",
+      "sentiment": -0.8,
+      "importance": 0.5882,
+      "matched_terms": [
+        "-gold plunges"
+      ]
+    },
+    {
+      "title": "Gold Price Crash Tests $3,500 as Fed Hike Bets Reach 97%",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOZ0pScGRiYmZpdXBhdWhGdUM5RXFDTEliYjZvRDQ3UTloeUFsQWRtVzN3YzlCQXJ2bjRCaHVIRkxwb0d4QVlYRzJCSmc1bTd5aHAzNjBiM2pUbzNudDBKVV8yUlJkbGtsWFo2UDRIZjFHd2c2SkZfdXBPV2tsdWtvRy1OYmY2M2NJYWFZa2FmRm1aYmQxbWVIUHNrU0s5Zw?oc=5",
+      "source": "Investing.com South Africa",
+      "published_at": "2026-11-20T20:16:36+00:00",
+      "sentiment": -1.0,
+      "importance": 0.57,
+      "matched_terms": [
+        "-fed hike",
+        "-hike bets",
+        "-price crash"
+      ]
+    },
+    {
+      "title": "Gold price crashes 36% from record high as Fed rate hike fears intensify",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1JTTAtMmdoZmhoemR3dll6THFLRjgzYnhHYU5wOVRnVFJ2VF9hYUtoTUEtWGJUaWdGWWczVWg1NTVHOHl2cU9DNlJBekdadU9xdmpIeTd1TFh3WmhRSU11bTNoaXpWa3AySXZsV3dobw?oc=5",
+      "source": "Beinsure",
+      "published_at": "2026-11-20T09:58:20+00:00",
+      "sentiment": -0.8,
+      "importance": 0.5664,
+      "matched_terms": [
+        "-rate hike"
+      ]
+    },
+    {
+      "title": "Gold (XAU/USD) Price Forecast: Deepening Selloff Nears Major Support",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPOEZjQ2ZoWURweVpkOHVUUk92cmlKM2lyeXV2ZFdma2tjemIwYU54Q1hxQ2p2ODlxOTdjMGQtUGJrNWdJYzc5OTZrWk1XZnJIblB0U2d2TjdmaS1uSGREVVNHY2JpQTQzS2RPNEVQdU9WZ0VHc1VrLWVZa0hlazlBUlZDSUhPX0RLQjRjYVdaLW9WajQ5MkwtLXRrcUhJQTBBNlFrSTlSUXlPU0dLbGRZYWVtMTBuRzQ?oc=5",
+      "source": "FXEmpire",
+      "published_at": "2026-11-21T02:00:27+00:00",
+      "sentiment": -0.5333,
+      "importance": 0.5557,
+      "matched_terms": [
+        "-selloff"
+      ]
+    },
+    {
+      "title": "Gold (XAUUSD), Silver, Platinum Forecasts – Gold Tests New Lows Amid Panic In Markets",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNSHlkVV92b21POWFZanFRbHlZQVFOSktkVmx1Smltcm1OZGIyQVpVbUNJcTBGYWdFZnNWT1BkdzRqSHFLRnRrNlRDZUpLZlNVcWxoTXdDM2JBVkRaOF9aNkw1ZG92U3E4d3JTb0dZZW1rU0hJWUVzOGVTRm51YldseHkxNk5CTDVEZ0tzb1BlVExYT25QUlZibEZaVktlRU9GbXVvLVFjbENXUlcwakVXM1RwU0Z3VVZOV1hhYlZHSUN5cWoyVVlOSGNn?oc=5",
+      "source": "FXEmpire",
+      "published_at": "2026-11-21T01:30:00+00:00",
+      "sentiment": -1.0,
+      "importance": 0.5444,
+      "matched_terms": [
+        "-new lows",
+        "-panic in markets"
+      ]
+    },
+    {
+      "title": "'Everything Crash' Sees Gold Price Extend Longest Slump Since 1970",
+      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQY0Qwdm5RRlNVeVhxUnY5aHFwQWxTT1A2MzhzanZidl9Ed29NeU1YLVpIYl9oLWhXUGxGRFFZekFucEhZVC1qVzFpM3JWYjNsck5BaEZ5MFBLdmJXSnZjN1J6LWw0S1E2QjQzYk1pbDRXelJhVnNTU3NtSVZadHN3a1Y1cGE1VzQ3RW5hRzRHaTU?oc=5",
+      "source": "BullionVault",
+      "published_at": "2026-11-20T17:34:15+00:00",
+      "sentiment": 0.0,
+      "importance": 0.5289,
+      "matched_terms": []
+    },
+    {
+      "title": "Gold's slide deepens as AI rout, rate hike bets hurt bullion",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPTThwVlFEZElBdUI1bnlXSFNEaUp1NTZrSm9JdThSQkg1QkR3dHB4X2hzOExqMFdvcHpYTTE3N1VxRk8yVFZrMzl1TnR2SC1DUGZuTDhFcXRqN0VITjg4enJxWUlZRDhEU1hqWGs5YWdTOS1KUV9CckpvdE5LbklpVUpkeTM4ZkZSUHg0WEV4eXR4ajJzT1gtUHpYaG0wdEY4RHp0R2ZjQlhNclQ5Y2ZkUEh0TlduMVhGVnJwaC03Tjh5cmF6MWdvNg?oc=5",
+      "source": "TradingView",
+      "published_at": "2026-11-20T17:33:39+00:00",
+      "sentiment": -1.0,
+      "importance": 0.5287,
+      "matched_terms": [
+        "-rate hike",
+        "-hike bets"
+      ]
+    },
+    {
+      "title": "Gold price fall nears $3,500: cost and capex pressures for mine planners",
+      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPTmc0NklkLXVFcFkzMzQ2RGRqMjdSTk1QNk0wZDhIWVN0TnJEVnlUaWlieXpDU1lGb21aQjJTaVB2aHpzcG16Q0xLYVRJVW5icVdvNW91M0JXMWRaM3JEQm9IcTAwbEw0M19wVjhhcTB4Vk9ab0dUekllb0FEcUMyUkNvY1ktN19yNEgwb25DTEFLUzFoc2F6X3ZfQnAxYWs0d3ljSTFjZHpWWXdPWWlj?oc=5",
+      "source": "Geomechanics.io",
+      "published_at": "2026-11-21T00:01:39+00:00",
+      "sentiment": 0.0,
+      "importance": 0.5134,
+      "matched_terms": []
+    },
+    {
+      "title": "Gold Miners Slump Toward Yearly Lows as Bullion Breaks Below $3,600",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBIUTdoRVZkTnJlMXRIMHdsVmxIY3Vid2pUajZHNmtGd0NWRndCVFRWMThROE9JazNQblVaRmtVMDRSOFlhN0JlN1J4OW1yS0o2aHZYWHFUTjBoM3N4X0lKcGoybVdrSmZoZ1U1WGEzVWh4ODk3eUE?oc=5",
+      "source": "BigGo Finance",
+      "published_at": "2026-11-20T16:25:00+00:00",
+      "sentiment": 0.0,
+      "importance": 0.5131,
+      "matched_terms": []
+    },
+    {
+      "title": "Gold price fall nears $3,500 as miners face soaring costs",
+      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQYTBKNGdIMDJlUk1JZ3E1dm1pOEtVZmVuT3l5UmRYaHhXMVZVQXdCMlhDVmpYc0FwXzdydlBlMFZDeV9XS2lndUoyaFc1TE5DaXN6T09zTTJNSVgxZVRGbHdMS3dLZnJadlRLdlBDTzRwSlU4VUFwV09ZV2dLdk5LUHhzNHRNSjg?oc=5",
+      "source": "Mining.com",
+      "published_at": "2026-11-20T23:50:45+00:00",
+      "sentiment": 0.0,
+      "importance": 0.5098,
       "matched_terms": []
     },
     {
@@ -149,9 +266,182 @@
       "source": "finance.yahoo.com",
       "published_at": "2026-11-20T22:56:19+00:00",
       "sentiment": -0.6667,
-      "importance": 0.4945,
+      "importance": 0.4921,
       "matched_terms": [
         "-hawkish"
+      ]
+    },
+    {
+      "title": "Are we seeing a gold price crash?",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5hUDNBNFItRWhtQU1lMzhhVy16bnhjR1o5WHUwR3Q3ZUVWenZuU3lDQnpGM1dKNG03WVVNVkdiUkVzcE52bEpJYl91WHlrYmMzWUtGajlOZGZiR2RjbElQcTJsV2drR0J6bWs1eTVuZHh0X2ZDWDE3bjNn?oc=5",
+      "source": "The Jewelry Wire",
+      "published_at": "2026-11-20T14:35:43+00:00",
+      "sentiment": -0.7333,
+      "importance": 0.4902,
+      "matched_terms": [
+        "-price crash"
+      ]
+    },
+    {
+      "title": "Gold Price Forecast – Final Capitulation Toward $3,500 Is Underway",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOeDBRU3NCaDIwZ1F0dXhCMEhxU3kxekRJWDVGenNBOTZMN2UzUUh1SDR2RkVTczd3WXYxdDhrcTRSRThhRndmOHkzRC13eFd1NWg0eUIycjJXUlJab2xnZjB1ZWVQMEt4eWQtS0syMVc5SmlMZDcyMC1LcnZrRGZ2TTZ0UGtaaTdwdkFrTHN6TDVoNXVjVVJBd0lfVnp3Yk1QQkNzdncxa195OEZKQk1YcEtXUQ?oc=5",
+      "source": "FXEmpire",
+      "published_at": "2026-11-20T14:19:50+00:00",
+      "sentiment": 0.0,
+      "importance": 0.487,
+      "matched_terms": []
+    },
+    {
+      "title": "Gold Set for Worst Week Since March on Hawkish Fed, AI Selloff",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNRkRDQWZYNXlObXhXM0Q1TEFtSXhxV24ySVdMUnNCVWRRSnJDTkVBLWtJR1lTWEliYzRIbWhWeEFRYzUySHFObzRJajNFWW5wd2lmZ0tIeXpQaFZfdlRZaFJEUTdRVkFKUW1HNDZ1dWhXU1QzSFpIOF80MUJkSWJsdTY1ME9CRUVVYVY0SllFVFYzR0pVVER4YjVSNGp6Y2tIR0ZSRW5yS1VHSHV2OU9MU2lB?oc=5",
+      "source": "Bloomberg.com",
+      "published_at": "2026-11-20T22:12:39+00:00",
+      "sentiment": -1.0,
+      "importance": 0.4785,
+      "matched_terms": [
+        "-hawkish",
+        "-selloff"
+      ]
+    },
+    {
+      "title": "Gold price heads for worst weekly loss since March",
+      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBQSEpjLUJmOGNzSmd1SG9sTnFhckNJRG50ajJfNEZ5NzlHZWUzUWxXZjliYkVOWG1FOW5jLU5wNWxMaFo1eUJMSnA5ZTZkOVl4SjIzT2l2dkNQT2lYeENKZDFNbUtTRllXS0JSR3RFMUJDSThzVVNzN2xTWlVTZw?oc=5",
+      "source": "Mining.com.au",
+      "published_at": "2026-11-20T21:32:21+00:00",
+      "sentiment": 0.0,
+      "importance": 0.4665,
+      "matched_terms": []
+    },
+    {
+      "title": "Gold and silver could return to mid-2025 levels as inflation-hedge bid evaporates – SIA’s Cieszynski",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNQ3ZMcmk4MjJQRmowMV9QcmJ2SVhYUkh1dkR5dl9wUnRUVHFhSzlMV3czMktCNjM3ck9wTVU4Yzg3Ri1hdjRGVlZTaENhZnM1R3JjZVRtSkVGNE5Ra1lZM3pSb1FpNVdIdVNqVmJTQUU0Z2dqZzU1TlphX0h3eTFVZVJFYjJUb3JfM0VZZ0ZtX2k0NjBWbFd6SWU0ME14ek5HZ0UxdmMyWkp4el9ybU15dDlqRWFObXYyUXIzVHJn?oc=5",
+      "source": "Kitco",
+      "published_at": "2026-11-20T21:26:44+00:00",
+      "sentiment": 0.0,
+      "importance": 0.4648,
+      "matched_terms": []
+    },
+    {
+      "title": "Gold price today, Friday, November 20, 2026: Gold prices continue to fall as rate hike expectations crystallize",
+      "url": "https://news.google.com/rss/articles/CBMikAJBVV95cUxPTWVucXBjLXNwR3NFaDRBOEtsSTVNUnFfeXRCb3hndUlvT0V4VGpuV0ZLbnI1dzEzZmtOTnNMMlFZdVVkaFFTQ0M2aXY1S3dFOFRja1FwRFpYUFpXM0J4dGxCV0pMcEhoclJfa0NxR1loR2NEalljdjNMZEpVdkNzeS1QWUtZS1laRHYydWRGTFQwNi01MDdaNmhpZzlDTGZtUExVUURYWHJ0bTNiY3R5ZXhhbThvQmtadWtOOGxmc1EzeTdVSl9keGJxdGxvTzZkNHVTQjhZQWtlY0w0M1gtOFd1VlhLRXo0aFNTdEszb0ltQ0NZOXJfVXRqdE43TERBR0U2bWUzb3U4TVRwQ3hOdw?oc=5",
+      "source": "Yahoo Finance",
+      "published_at": "2026-11-20T12:11:16+00:00",
+      "sentiment": -0.8,
+      "importance": 0.4632,
+      "matched_terms": [
+        "-rate hike"
+      ]
+    },
+    {
+      "title": "Why Is Bitcoin Falling? BTC Price Breaks $60K as Gold Sinks Too",
+      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOdWJaOGItOV9Jd3RJVWFQMWxaSmFGWXBtSWU0cWV3cy14U25KaWFmU2twN2o0WkJ6R0ZoSUFnNnEyajhWNVNlNlRVZDBpZHFOcmN4ZXlyTVBDdnNkdG5XQTVkUC1nVHlPZlpPQWVJQmZRRUZ6U01CVUYtODYycXRibWtlTW5LWG5fVnc?oc=5",
+      "source": "CoinMarketCap",
+      "published_at": "2026-11-20T21:06:54+00:00",
+      "sentiment": -0.6667,
+      "importance": 0.4591,
+      "matched_terms": [
+        "-gold sinks"
+      ]
+    },
+    {
+      "title": "Gold Price Today: Gold Falls 2.33% on November 20, 2026",
+      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPSUtnZGVIdmJYekQ1VmF3aWRJREx5aGNEcVpiOEhNc3U5bFNHeUd5eGl4MV9iZXI0dEdhd0tRTV91WkpQdzA0ZVlZVDc5LXViZlZnVXFJczhnTFBmYTZ2QUxiTDhyWXpQRk1wbUZ6aUlKN0xJeDFYUERyeFJ4T3FvSzVfb2twZEg3bjRYTmtOZXV4U2xRVmNEUHc1Z0N3d21zaUx3?oc=5",
+      "source": "USA Today",
+      "published_at": "2026-11-20T21:04:00+00:00",
+      "sentiment": -0.6,
+      "importance": 0.4583,
+      "matched_terms": [
+        "-gold falls"
+      ]
+    },
+    {
+      "title": "Gold and silver prices fall again: How much lower could they go?",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPbkh2d29XWFItYzI5aWhZeTZuZmNTMFJoaGYzQy02MHQxR1Iwc0RCelhrUGZaYkNYSEs2NDNsLVJqU3ZoeW9ndWxxeWdnamxDak5GbE1YX2hNM2lZNVlQQU52QkF5X0V1eDF3eVI4d2ZVdk1yWFNiMTNMT1B3RjFuSlpQaXhhZlVBbmd0SlpPdDZ3RF9VMTBDdDJQN0d3OVFEbG1VZ2hn?oc=5",
+      "source": "Kitco",
+      "published_at": "2026-11-20T21:00:25+00:00",
+      "sentiment": 0.0,
+      "importance": 0.4573,
+      "matched_terms": []
+    },
+    {
+      "title": "Peter Schiff says there’s something ‘most investors don’t understand’ about gold as it crashes — is the glitter gone?",
+      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQQmkxU3M1SDdLeWlqYV9iMXBLZ0lYNXA5Wk0zY3FFdGJsRnJhbUZvakl0c3BoekpfaGdJSW5IUHc4ak52eVJKVW83OXhqcjVKTmRNQWNiaUpiSGxpYXVSc1VsQ0JhX3N6dXBNYktMaG42R1dmVFNlQ0ZkWVF5WVc1bl9tbHpqUjY3d2ZiNVFUM3hCX1NweEUyb01FaW9CY29sT1ZIbw?oc=5",
+      "source": "Yahoo Finance",
+      "published_at": "2026-11-20T11:00:00+00:00",
+      "sentiment": 0.0,
+      "importance": 0.4512,
+      "matched_terms": []
+    },
+    {
+      "title": "Gold price could drop $300 if $3,500/oz fails, and buyers might hold off until the Fed – Walsh Trading’s Lusk",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQY1gxakxUOS1VZGh6VUEwdDhhdDAySkdGT3JQU2pUMnVXN2RiNFRHV3g1MEtsaEtfQUVVNGNPRnJTSVJiSGdVTmRFVVVGLTZhcG1jenZPb2JKYWtweUltNi1fLWlFSXVlVWFPNEU2aHlPSkNkUFQyaDEyZlAwVy1waVFZY0dtSGtGTUVUOWw4eUFTRTJ5RENUVUw4Qk9nMFJKbGNTamNHU3F6NDEydHZHU3RLMUhXb2NGd2Jz?oc=5",
+      "source": "Kitco",
+      "published_at": "2026-11-20T20:12:13+00:00",
+      "sentiment": 0.0,
+      "importance": 0.4439,
+      "matched_terms": []
+    },
+    {
+      "title": "Customs Gridlock Traps $715 Million in Bullion as Wedding Season Intensifies India's Supply Constraints",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxORVNzMWxaTDRnT19fTVprcmJzLXljSDNpUXdjaXRfc3RWRnBrRlRjQy1wZjViZWU4RkxCZl84Q3I2SnNpWlF6dV96dXRreDNHZFpIUGZsUWhEeVcwNGZkeXJhb1R5NE5ITWhSWkE4WDhneVBuZWhtdmN1Q3Rxcmw4UndUa0d0aFhrd1pyYWxISXVfa1habkpBeHR5U1NBYzNTaU5PVHlfME42WThkSm9mZXhGZTV2aGFpei1uRUxYSQ?oc=5",
+      "source": "ChemAnalyst",
+      "published_at": "2026-11-20T19:58:13+00:00",
+      "sentiment": 0.0,
+      "importance": 0.4401,
+      "matched_terms": []
+    },
+    {
+      "title": "Gold (XAUUSD) Price Forecast: Gold Slides Toward Stronger Support Zone",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNRjRkY0lyemhhMVZfaDA5d3Jld093TGFWSmdnR2F5RWU2SlltckxtRTJseTFrXzNaLXo0b2tWMzl3X2x4RlhURnhncmtFMXlPdFp0T3d6c1dZY2R2RFdoOGdCcHRoLUtVanJuMjlpYkIwUVVEa3JDc0pIbXdCTVdFWUhDWjdidEMwd2VNTVYyRWNaQ1lBdGxfRE53VDNtbWxLam16NUlXWk04Z243V3dnWFl5dk9iOHdKRnc?oc=5",
+      "source": "FXEmpire",
+      "published_at": "2026-11-20T09:46:25+00:00",
+      "sentiment": -0.6,
+      "importance": 0.4396,
+      "matched_terms": [
+        "-gold slides"
+      ]
+    },
+    {
+      "title": "XAUUSD: Gold Slides Toward $3,500, Heads for Worst Week Since March",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNendtUGQyYWo5Uk9WNHNwZmZCLUxZbTVxS3lWb2ZtQ1pCREQxdURPWUtvMjR1azNRRTZfbGtBV2JaT2NKVU9fX2dsOFJ4TTVibFV3VlpPa1JnLVVqOVBGa0NzbmVhaGVzMEpWVjdDNXcxZFdVMTNINVBjeVhheDl6ZXNrQnEyUVdxcVE4QkE5bkdQOUk2Tjc0b2VOQ2h3TWR6WW00RE45dU1Kb2RDYzVBNEtuaHNBNXZfamRxWFIyRmxQYk13?oc=5",
+      "source": "TradingView",
+      "published_at": "2026-11-20T07:07:00+00:00",
+      "sentiment": -0.6,
+      "importance": 0.417,
+      "matched_terms": [
+        "-gold slides"
+      ]
+    },
+    {
+      "title": "Gold, silver ETFs crash up to 7.5%: Why the bullion sell-off is deepening on Fed rate-hike fears",
+      "url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxPV2QyMlcxbC1WNXBfMi1GRC1oMmFTT1Q2OVhjeTBWN254dWdqZk1HSE1rYjM3WmxpUXFTZDdxTkdEUzZDcFdDUUxXbVdiVzNmOXo5enlBeXFTQXNuMm5XZlQ2TjFiam5EOG9kMjZpdWNnSC1XVl9WejBYZi1rQ0hnUGlhdTc3R2RkcTY0eFhHRTUtNVJubWRYMzNVV01WNmJCT3FpMEU1VXhLbzVUWnUtWnNqRnB6NkxMVzRNbVNjbXpWdm9YcU9EOS1NYlJJLWJ3Y3Jia09GbXRObDJ2MXZRcTUwX2NUWkQyUFJ5MEJwWmhmNUHSAfgBQVVfeXFMT0pyQ21ibXAweDBXUEpFNjBldFhUNjRkZW9MMEpvTjhpN1FWT1N1Y0NqVFhBN28wOWVXd25vaUVKQnR5VU10TmJSdEF1TDctOW5FM0ttdDhVelJ5N0htZ1pBTGF2Rzh6aGdiRGdDOE5KVmlPcEFqWGJ5LVpfNUdDZktkUURaN205MXJYT2VXWkMwX3ZLU3BBM1BXUFdKcmRHMEFNaHJtcHpCN2xLSmZYcmNRT2w3NFNfamx4bFFWcUJUcGlYSzZzMlpudWZYNTNpOWtqaE1wUEp3NDhyNjhvTGZZQ1dhalllRElha2FKbDVxTnJiVVd2aFc?oc=5",
+      "source": "Livemint",
+      "published_at": "2026-11-20T06:53:53+00:00",
+      "sentiment": -1.0,
+      "importance": 0.4153,
+      "matched_terms": [
+        "-rate-hike",
+        "-sell-off"
+      ]
+    },
+    {
+      "title": "Gold price prediction today: Will gold continue to crash? Check November 20, 2026 outlook",
+      "url": "https://news.google.com/rss/articles/CBMiogJBVV95cUxQX1dlS1puVC1xNGp0MnpnZUhBZnFHajdTUGZyZkZCa3RCRWllMkNhVEt1dlcyMWVpUEY2bjRpWnRpSy1ucmVxcHhJOVlUUXR6b1RpaHFsLTdZUVl5dmhTajF2SnpqTjIwSGFYM0p0c3c5SUhWQ2x0czEyOW52UlFFYW9Wa290ZkR3Ny0tZ0taaHlVMVdnSjhCSWxib2dnVGk0Q09yN2Y4bDhHdXZ4dTc4NHZ0MXJndFVCb1VoNXluY0NXU1FoSXFkVk1tamlVOHBMaXJyWUZkSEF3bFAwNXVaLU5lNjA3VXRCa1ZsZHJMQVdOSkZmMG1LcmxudHJTYjFSOXNaeXpmVHZtSUMyWE1MNlV0aHBxTEFjdU9XbUFuSnRUZ9IBpwJBVV95cUxOZzRaejIzQzgxNmNJek5rVXhuWEdzOWpyMUFmbmF5X0JEZnNqR2pxaUZSc2c1VHBJeXFZeHJDRjgxdWVONV9TNmhLbS10cTFMb2pqWF83RnhaUnRpVlZDMF9DSnpWVWdDSFB0RjBZMXVDOXMyb0RoM1JTS1ZETTQ5aGlDRW5ZQUtCZTN6LUVCVTVqY0s0Z3pTWXdFVXBPUnNTQXFhN3BGQVBEUXU3VmU4YzVxZ0RZbEkzNXpET2ticW95UzYzOVF5cG9tT0d2TjR6MkdSR2xEcUNJU3pWZ29GOXFzbDBZZUtBTzluX2JXazV3SEhMMW9ZdG0tMGdza2JUbkpwVmstanBIdFFBZ3pBdUQxZ1REQ21OMk5rbDZibXlDemlOQW9Z?oc=5",
+      "source": "The Times of India",
+      "published_at": "2026-11-20T06:51:00+00:00",
+      "sentiment": 0.0,
+      "importance": 0.4149,
+      "matched_terms": []
+    },
+    {
+      "title": "Gold price crash: Yellow metal and silver slump over 4% each on MCX - CNBC TV18",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNRGZpR3FZaVdXUkxnX1VzUnlNZWx2QXNrY3F2UXJaMmliX21xZEdZV0lwUVkzYlNZa1VPNjRFZkV1T0E1TVhkRXlpeXZ3Y1pwemdTZG9waVo2VDY1NFpac0JRaHctOFpnY093NzhpMlVQZXd1Z2dZVVhOTkd1ZzZMclpVMXVITGdZclZHY2hkcHB4S1JTcHYwV1c2TnFxTy1abHEwaE8xUWpIbWdmTTQyQWctOXdUUQ?oc=5",
+      "source": "LinkedIn",
+      "published_at": "2026-11-20T06:29:37+00:00",
+      "sentiment": -0.7333,
+      "importance": 0.4122,
+      "matched_terms": [
+        "-price crash"
       ]
     }
   ],
@@ -639,12 +929,12 @@
   ],
   "source_status": [
     "GC=F: Yahoo Finance 5-minute chart",
+    "DX-Y.NYB: Yahoo Finance hourly chart",
     "CNY=X: Yahoo Finance hourly chart",
     "^TNX: Yahoo Finance hourly chart",
-    "DX-Y.NYB: Yahoo Finance hourly chart",
     "Bing News: 0 条",
     "GDELT: 获取失败 - request failed after 3 attempts: HTTP Error 429: Too Many Requests",
-    "Google News: 获取失败 - request failed after 3 attempts: HTTP Error 503: Service Unavailable",
+    "Google News: 100 条",
     "Investing.com: 10 条",
     "Yahoo Finance: 17 条"
   ],
