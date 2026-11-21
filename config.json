@@ -1,0 +1,6 @@
+{
+  "symbol": "GC=F",
+  "news_limit": 60,
+  "desktop_refresh_minutes": 10,
+  "stale_after_minutes": 30
+}
