@@ -1,5 +1,7 @@
 # GoldSentry 黄金风险哨兵
 
+**线上看板：** https://weiqiumo-sketch.github.io/gold-risk-monitor/
+
 GoldSentry 将黄金价格、成交量方向代理、美元指数、美国 10 年期收益率和相关新闻合并为一个风险评分。它支持：
 
 - Windows 桌面监控，每 10 分钟自动刷新并弹窗提醒。
