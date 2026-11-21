@@ -4,8 +4,10 @@ const largeTextToggle = $("#large-text");
 const mobileMedia = window.matchMedia("(max-width: 720px)");
 const viewKey = "goldsentry-view-mode";
 const textSizeKey = "goldsentry-large-text";
+const portfolioKey = "goldsentry-local-portfolio";
 let latestSnapshot = null;
 let newsExpanded = false;
+let localPortfolio = null;
 
 function effectiveView(mode) {
   if (mode === "mobile" || mode === "desktop") return mode;
@@ -52,6 +54,69 @@ function initializeTextSize() {
     const large = largeTextToggle.checked;
     document.documentElement.dataset.readable = large ? "large" : "standard";
     localStorage.setItem(textSizeKey, large ? "true" : "false");
+  });
+}
+
+function loadLocalPortfolio() {
+  const query = new URLSearchParams(window.location.search);
+  const setup = query.get("portfolio");
+  if (setup) {
+    const [quantityText, costText] = setup.split(",");
+    const quantity = Number(quantityText);
+    const cost = Number(costText);
+    if (Number.isFinite(quantity) && quantity > 0 && Number.isFinite(cost) && cost > 0) {
+      localPortfolio = { quantity, cost };
+      localStorage.setItem(portfolioKey, JSON.stringify(localPortfolio));
+    }
+    query.delete("portfolio");
+    const nextUrl = new URL(window.location.href);
+    nextUrl.search = query.toString();
+    history.replaceState({}, "", nextUrl);
+  } else {
+    try {
+      const parsed = JSON.parse(localStorage.getItem(portfolioKey) || "null");
+      if (
+        Number.isFinite(Number(parsed?.quantity))
+        && Number(parsed?.quantity) > 0
+        && Number.isFinite(Number(parsed?.cost))
+        && Number(parsed?.cost) > 0
+      ) {
+        localPortfolio = { quantity: Number(parsed.quantity), cost: Number(parsed.cost) };
+      }
+    } catch {
+      localPortfolio = null;
+    }
+  }
+  const quantityInput = $("#portfolio-quantity");
+  const costInput = $("#portfolio-cost-input");
+  if (localPortfolio) {
+    quantityInput.value = localPortfolio.quantity;
+    costInput.value = localPortfolio.cost;
+    $("#portfolio-editor").open = false;
+  }
+}
+
+function initializePortfolioForm() {
+  $("#portfolio-form")?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const quantity = Number($("#portfolio-quantity").value);
+    const cost = Number($("#portfolio-cost-input").value);
+    if (!Number.isFinite(quantity) || quantity <= 0 || !Number.isFinite(cost) || cost <= 0) {
+      setText("#portfolio-action", "请输入有效的持仓克数和成本价。");
+      return;
+    }
+    localPortfolio = { quantity, cost };
+    localStorage.setItem(portfolioKey, JSON.stringify(localPortfolio));
+    $("#portfolio-editor").open = false;
+    if (latestSnapshot) renderPortfolio(latestSnapshot);
+  });
+  $("#portfolio-clear")?.addEventListener("click", () => {
+    localPortfolio = null;
+    localStorage.removeItem(portfolioKey);
+    $("#portfolio-quantity").value = "";
+    $("#portfolio-cost-input").value = "";
+    $("#portfolio-editor").open = true;
+    if (latestSnapshot) renderPortfolio(latestSnapshot);
   });
 }
 
@@ -334,6 +399,67 @@ function renderGuidance(guidance) {
   }
 }
 
+function renderPortfolio(snapshot) {
+  const cloud = snapshot.portfolio_cloud;
+  const cloudStatus = $("#portfolio-cloud-status");
+  if (cloud?.configured) {
+    cloudStatus.className = "pill live";
+    cloudStatus.textContent = cloud.message || "云端持仓提醒已启用";
+  } else {
+    cloudStatus.className = "pill stale";
+    cloudStatus.textContent = "本机计算";
+  }
+  if (!localPortfolio) {
+    setText("#portfolio-value", "--");
+    setText("#portfolio-cost", "--");
+    setText("#portfolio-pnl", "--");
+    setText("#portfolio-breakeven", "--");
+    setText("#portfolio-action", "输入持仓克数和成本价后，页面会在本机计算并提醒。");
+    return;
+  }
+  const price = Number(snapshot.display_price);
+  if (!Number.isFinite(price)) {
+    setText("#portfolio-action", "当前价格不可用，等待下一次行情更新。");
+    return;
+  }
+  const quantity = Number(localPortfolio.quantity);
+  const costBasis = Number(localPortfolio.cost);
+  const marketValue = price * quantity;
+  const totalCost = costBasis * quantity;
+  const pnl = marketValue - totalCost;
+  const pnlPct = totalCost > 0 ? pnl / totalCost : 0;
+  const breakevenGap = price > 0 ? (costBasis / price - 1) * 100 : 0;
+  setText("#portfolio-value", `¥${formatNumber(marketValue, 0)}`);
+  setText("#portfolio-cost", `¥${formatNumber(totalCost, 0)}`);
+  setText(
+    "#portfolio-pnl",
+    `${pnl >= 0 ? "+" : "−"}¥${formatNumber(Math.abs(pnl), 0)}（${formatPercent(pnlPct)}）`,
+  );
+  setTone($("#portfolio-pnl"), pnl);
+  setText(
+    "#portfolio-breakeven",
+    breakevenGap > 0
+      ? `还需 +${breakevenGap.toFixed(2)}%`
+      : "已经回本",
+  );
+  const buy = snapshot.trade_levels?.buy;
+  const sell = snapshot.trade_levels?.sell;
+  let action;
+  if (price >= costBasis) {
+    action = "价格已经达到你的成本区，可按分阶段计划处理长期底仓和机动仓。";
+  } else if (buy && price >= buy.target1_cny) {
+    action = "价格进入第一反弹目标区，优先分批处理机动仓，不把反弹目标当成完整回本。";
+  } else if (buy && price >= buy.breakout_entry_cny) {
+    action = "价格站上短期突破位；只用小仓位试买，等待回踩确认。";
+  } else if (sell && price <= sell.breakdown_entry_cny) {
+    action = "价格跌破短期防守位；暂停补仓，按计划核查机动仓风险。";
+  } else {
+    action = "当前位于多空触发区之间，不追单。每上涨 1 元/克，本持仓价值增加 "
+      + `¥${formatNumber(quantity, 0)}。`;
+  }
+  setText("#portfolio-action", action);
+}
+
 function renderTradeLevels(levels) {
   const buyPlan = $("#buy-plan");
   const sellPlan = $("#sell-plan");
@@ -464,6 +590,7 @@ function render(snapshot) {
   setTone($("#macro-score"), macroScore);
 
   renderAlerts(snapshot.alerts);
+  renderPortfolio(snapshot);
   renderComparison(snapshot.gold_comparison);
   renderTradeLevels(snapshot.trade_levels);
   renderGuidance(snapshot.trade_guidance);
@@ -517,6 +644,8 @@ async function loadSnapshot() {
 
 initializeViewMode();
 initializeTextSize();
+loadLocalPortfolio();
+initializePortfolioForm();
 initializeMobileNavigation();
 $("#news-toggle")?.addEventListener("click", () => {
   newsExpanded = !newsExpanded;

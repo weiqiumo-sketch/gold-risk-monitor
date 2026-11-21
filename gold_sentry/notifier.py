@@ -105,6 +105,17 @@ class GitHubIssueNotifier:
                     "",
                 ]
             )
+        portfolio = snapshot.get("portfolio_cloud")
+        if portfolio and portfolio.get("configured"):
+            lines.extend(
+                [
+                    "## 个人持仓云端提醒",
+                    "",
+                    f"- **状态：** {portfolio.get('message', '监测中')}",
+                    "- **隐私：** 数量、成本和精确盈亏未写入公开 Issue。",
+                    "",
+                ]
+            )
         guidance = snapshot.get("trade_guidance")
         if guidance:
             lines.extend(

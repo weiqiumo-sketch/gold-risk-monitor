@@ -38,6 +38,8 @@ jobs:
       - name: Collect market and news risk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GOLD_HOLDINGS_GRAMS: ${{ secrets.GOLD_HOLDINGS_GRAMS }}
+          GOLD_COST_BASIS_CNY: ${{ secrets.GOLD_COST_BASIS_CNY }}
         run: python app.py --update-web site/data/latest.json --github-issue
 
       - name: Save latest public snapshot

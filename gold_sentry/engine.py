@@ -25,6 +25,7 @@ from .lexicon import (
 )
 from .models import Bar, NewsAnalysis, NewsItem
 from .news import fetch_news
+from .portfolio import PortfolioConfig, evaluate_portfolio_alert, read_portfolio_from_env
 
 
 CN_TZ = timezone(timedelta(hours=8))
@@ -600,6 +601,7 @@ def compose_snapshot(
     | None = None,
     comparison_error: str | None = None,
     comparison_status: list[str] | None = None,
+    portfolio_config: PortfolioConfig | None = None,
 ) -> dict[str, Any]:
     generated = now or datetime.now(timezone.utc)
     if generated.tzinfo is None:
@@ -768,6 +770,11 @@ def compose_snapshot(
         buy_point_active,
         sell_point_active,
     )
+    portfolio_cloud, portfolio_alert = evaluate_portfolio_alert(
+        portfolio_config,
+        display_price,
+        trade_levels,
+    )
     risk_score = round(
         100
         * _clamp(
@@ -931,6 +938,8 @@ def compose_snapshot(
                 ),
             }
         )
+    if portfolio_alert:
+        alerts.append(portfolio_alert)
     for alert in alerts:
         alert["message"] += (
             f" 当前阶段：{trade_guidance['stage']}。"
@@ -960,7 +969,7 @@ def compose_snapshot(
         alert_signature_source.encode("utf-8")
     ).hexdigest()[:16]
     return {
-        "schema_version": 4,
+        "schema_version": 5,
         "generated_at": generated.astimezone(timezone.utc),
         "generated_at_china": generated.astimezone(CN_TZ),
         "market_time": market_time,
@@ -999,6 +1008,12 @@ def compose_snapshot(
         "action_text": action_text,
         "trade_levels": trade_levels,
         "trade_guidance": trade_guidance,
+        "portfolio_cloud": portfolio_cloud
+        or {
+            "configured": False,
+            "state": "not_configured",
+            "message": "云端持仓提醒未配置；本机持仓数据仅保存在当前浏览器。",
+        },
         "gold_comparison": gold_comparison,
         "reasons": reasons,
         "alerts": alerts,
@@ -1030,6 +1045,7 @@ def compose_snapshot(
 
 
 def build_live_snapshot(symbol: str = "GC=F", news_limit: int = 60) -> dict[str, Any]:
+    portfolio_config = read_portfolio_from_env()
     market: MarketData | None = None
     market_error: str | None = None
     raw_news: list[NewsItem] = []
@@ -1075,6 +1091,7 @@ def build_live_snapshot(symbol: str = "GC=F", news_limit: int = 60) -> dict[str,
         comparison_inputs=(domestic_quote, international_quote),
         comparison_error="; ".join(comparison_errors) or None,
         comparison_status=comparison_status,
+        portfolio_config=portfolio_config,
     )
 
 

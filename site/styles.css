@@ -167,6 +167,7 @@ a { color: inherit; }
 }
 
 #overview,
+#portfolio,
 #comparison,
 #plans,
 #guidance,
@@ -386,6 +387,118 @@ h1 {
 }
 
 .comparison-panel.unavailable .comparison-grid { opacity: 0.55; }
+
+.personal-panel {
+  margin-bottom: 14px;
+  border-color: rgba(240, 190, 98, 0.2);
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.portfolio-grid div {
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.portfolio-grid span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.portfolio-grid strong {
+  display: block;
+  margin-top: 5px;
+  font-size: 19px;
+  letter-spacing: -0.025em;
+}
+
+.portfolio-action {
+  margin: 12px 0 0;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.65;
+}
+
+.portfolio-editor {
+  margin-top: 12px;
+  border-top: 1px solid var(--line);
+  padding-top: 11px;
+}
+
+.portfolio-editor summary {
+  width: fit-content;
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.portfolio-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto auto;
+  align-items: end;
+  gap: 9px;
+  margin-top: 13px;
+}
+
+.portfolio-form label {
+  display: grid;
+  gap: 5px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.portfolio-form input {
+  min-height: 44px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  outline: 0;
+  background: #091421;
+  color: var(--text);
+  font: inherit;
+  font-size: 16px;
+}
+
+.portfolio-form input:focus {
+  border-color: rgba(240, 190, 98, 0.55);
+  box-shadow: 0 0 0 2px rgba(240, 190, 98, 0.1);
+}
+
+.portfolio-form button {
+  min-height: 44px;
+  padding: 0 15px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--gold);
+  color: #07101b;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.portfolio-form button.secondary {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+}
+
+.privacy-note {
+  display: block;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
 
 .guidance-panel {
   margin-bottom: 14px;
@@ -889,6 +1002,9 @@ html[data-layout="mobile"] .comparison-spread > strong { font-size: 23px; }
 html[data-layout="mobile"] .guidance-summary { font-size: 14px; }
 html[data-layout="mobile"] .guidance-details summary { font-size: 12px; }
 html[data-layout="mobile"] .guidance-steps li { font-size: 12px; }
+html[data-layout="mobile"] .portfolio-grid { grid-template-columns: 1fr 1fr; }
+html[data-layout="mobile"] .portfolio-form { grid-template-columns: 1fr 1fr; }
+html[data-layout="mobile"] .portfolio-form button { width: 100%; }
 
 html[data-layout="mobile"] .alert {
   padding: 13px 14px;
@@ -934,6 +1050,7 @@ html[data-layout="mobile"] .news-item { padding: 12px; }
 html[data-layout="mobile"] .news-item h3 { font-size: 11px; }
 html[data-layout="mobile"] .news-meta { gap: 5px; font-size: 8px; }
 html[data-layout="mobile"] #overview,
+html[data-layout="mobile"] #portfolio,
 html[data-layout="mobile"] #comparison,
 html[data-layout="mobile"] #plans,
 html[data-layout="mobile"] #guidance,
@@ -997,6 +1114,8 @@ html[data-layout="mobile"] .mobile-nav a:focus-visible {
   .metrics, .method-grid, .plans { grid-template-columns: 1fr 1fr; }
   .comparison-grid { grid-template-columns: 1fr 1fr; }
   .comparison-spread { grid-column: 1 / -1; }
+  .portfolio-grid { grid-template-columns: 1fr 1fr; }
+  .portfolio-form { grid-template-columns: 1fr 1fr; }
   .method-grid { grid-template-columns: 1fr; }
   .panel { padding: 17px; }
   .range { display: none; }
@@ -1036,6 +1155,12 @@ html[data-readable="large"] .comparison-price time,
 html[data-readable="large"] .comparison-spread small { font-size: 14px; }
 html[data-readable="large"] .comparison-spread > b { font-size: 16px; }
 html[data-readable="large"] .comparison-note { font-size: 14px; }
+html[data-readable="large"] .portfolio-grid span { font-size: 14px; }
+html[data-readable="large"] .portfolio-grid strong { font-size: 22px; }
+html[data-readable="large"] .portfolio-action { font-size: 17px; }
+html[data-readable="large"] .portfolio-editor summary { font-size: 16px; }
+html[data-readable="large"] .portfolio-form label { font-size: 14px; }
+html[data-readable="large"] .privacy-note { font-size: 13px; }
 html[data-readable="large"] .plan-side { font-size: 14px; }
 html[data-readable="large"] .plan-status { font-size: 14px; }
 html[data-readable="large"] .plan-levels span { font-size: 14px; }
