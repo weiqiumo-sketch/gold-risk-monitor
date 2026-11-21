@@ -221,6 +221,71 @@ function renderReasons(reasons) {
   }
 }
 
+function renderComparison(comparison) {
+  const panel = $("#comparison");
+  const status = $("#comparison-status");
+  panel.classList.toggle("unavailable", !comparison?.available);
+  if (!comparison?.available) {
+    status.className = "pill error";
+    status.textContent = "国内外价格暂不可用";
+    setText("#domestic-price", "--");
+    setText("#domestic-change", "--");
+    setText("#domestic-range", "--");
+    setText("#domestic-time", "更新时间 --");
+    setText("#international-price-cny", "--");
+    setText("#international-price-usd", "--");
+    setText("#international-range", "--");
+    setText("#international-time", "更新时间 --");
+    setText("#spread-pct", "--");
+    setText("#spread-value", "--");
+    setText("#spread-label", "等待价差");
+    setText("#comparison-note", comparison?.error || "国内价格、国际价格或汇率暂不可用。");
+    return;
+  }
+  const domestic = comparison.domestic;
+  const international = comparison.international;
+  const spread = comparison.spread;
+  const aligned = Boolean(comparison.time_aligned);
+  status.className = `pill ${aligned ? "live" : "stale"}`;
+  status.textContent = aligned
+    ? comparison.status
+    : `${comparison.status} · 交易时段不同`;
+
+  setText("#domestic-price", `¥${formatNumber(domestic.price_cny_per_gram, 2)}`);
+  setText("#domestic-change", formatPercent(Number(domestic.change_pct) / 100));
+  setTone($("#domestic-change"), Number(domestic.change_pct));
+  setText(
+    "#domestic-range",
+    `¥${formatNumber(domestic.low_cny_per_gram, 2)}—${formatNumber(domestic.high_cny_per_gram, 2)}`,
+  );
+  setText("#domestic-time", `上金所更新 ${dateFormatter.format(new Date(domestic.updated_at))}`);
+
+  setText("#international-price-cny", `¥${formatNumber(international.price_cny_per_gram, 2)}`);
+  setText("#international-price-usd", `$${formatNumber(international.price_usd_per_oz, 2)}/盎司`);
+  setText(
+    "#international-range",
+    international.low_cny_per_gram != null && international.high_cny_per_gram != null
+      ? `¥${formatNumber(international.low_cny_per_gram, 2)}—${formatNumber(international.high_cny_per_gram, 2)}`
+      : "--",
+  );
+  setText("#international-time", `国际更新 ${dateFormatter.format(new Date(international.updated_at))}`);
+
+  const spreadPct = Number(spread.pct);
+  const spreadValue = Number(spread.cny_per_gram);
+  setText("#spread-pct", `${spreadPct > 0 ? "+" : ""}${spreadPct.toFixed(2)}%`);
+  setTone($("#spread-pct"), spreadPct);
+  setText(
+    "#spread-value",
+    `${spreadValue > 0 ? "+" : ""}${formatNumber(spreadValue, 2)} 元/克`,
+  );
+  setText("#spread-label", spread.label);
+  $("#spread-marker").style.left = `${50 + Math.max(-3, Math.min(3, spreadPct)) / 6 * 100}%`;
+  const timingNote = aligned
+    ? "两边报价时间接近。"
+    : `两边报价相差约 ${Math.round(Number(comparison.time_gap_minutes || 0))} 分钟，比较时需注意交易时段。`;
+  setText("#comparison-note", `${comparison.note || ""} ${timingNote}`);
+}
+
 function renderTradeLevels(levels) {
   const buyPlan = $("#buy-plan");
   const sellPlan = $("#sell-plan");
@@ -345,6 +410,7 @@ function render(snapshot) {
   setTone($("#macro-score"), macroScore);
 
   renderAlerts(snapshot.alerts);
+  renderComparison(snapshot.gold_comparison);
   renderTradeLevels(snapshot.trade_levels);
   renderChart(snapshot.chart_points);
   renderMacro(snapshot.macro_points);

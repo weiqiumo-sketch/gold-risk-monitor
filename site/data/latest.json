@@ -1,7 +1,7 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-21T03:52:29.001386+00:00",
-  "generated_at_china": "2026-11-21T11:52:29.001386+08:00",
+  "generated_at": "2026-11-21T04:04:55.615350+00:00",
+  "generated_at_china": "2026-11-21T12:04:55.615350+08:00",
   "market_time": "2026-11-20T21:59:57+00:00",
   "symbol": "GC=F",
   "price": 3539.0,
@@ -16,21 +16,21 @@
   "day_high_cny_per_gram": 781.34,
   "day_low_cny_per_gram": 752.31,
   "market_status": "休市或数据延迟",
-  "data_age_minutes": 352.5333564333333,
-  "buy_volume_proxy": 939.512547496601,
+  "data_age_minutes": 364.9769225,
+  "buy_volume_proxy": 915.6060711213241,
   "sell_volume_proxy": 0.0,
-  "volume_ratio": 0.37628865979381443,
+  "volume_ratio": 0.3739754098360656,
   "signed_volume_ratio": 1.0,
   "return_15m": 0.0016132089245479708,
   "return_1h": 0.003800743695423048,
-  "market_score": 0.2212092827077749,
-  "momentum_score": 0.23607153825604552,
-  "flow_score": 0.209049255441008,
-  "news_score": -0.4913,
+  "market_score": 0.22029830213767987,
+  "momentum_score": 0.2356178622691206,
+  "flow_score": 0.207764116575592,
+  "news_score": -0.4915,
   "news_impact": 0.8966,
   "news_summary": "利空黄金的新闻占优",
   "macro_score": 0.06666666666666667,
-  "composite_score": -0.35180833333333333,
+  "composite_score": -0.3519583333333333,
   "risk_score": 40.6,
   "confidence": 49.9,
   "signal_type": "WATCH",
@@ -93,8 +93,43 @@
     "structure_high_cny": 761.2,
     "structure_low_cny": 752.5
   },
+  "gold_comparison": {
+    "available": true,
+    "status": "国内折价",
+    "time_aligned": false,
+    "time_gap_minutes": 574.1,
+    "fx_usd_cny": 6.68,
+    "domestic": {
+      "symbol": "AU9999",
+      "name": "沪金99",
+      "contract": "Au99.99",
+      "price_cny_per_gram": 755.01,
+      "change_pct": -1.2478,
+      "high_cny_per_gram": 773.5,
+      "low_cny_per_gram": 755.01,
+      "volume": 8998.0,
+      "updated_at": "2026-11-21T02:30:00+08:00",
+      "source": "Sina Finance · SGE Au99.99 last completed session"
+    },
+    "international": {
+      "symbol": "XAU/USD",
+      "name": "国际现货黄金",
+      "price_usd_per_oz": 3539.0,
+      "price_cny_per_gram": 760.06,
+      "high_cny_per_gram": 781.03,
+      "low_cny_per_gram": 752.27,
+      "updated_at": "2026-11-21T04:04:07+00:00",
+      "source": "Gold API · XAU/USD"
+    },
+    "spread": {
+      "cny_per_gram": -5.05,
+      "pct": -0.6645,
+      "label": "国内折价"
+    },
+    "note": "国内价为上金所 Au99.99，国际价为伦敦现货 XAU/USD 换算值。价差受交易时段、汇率、税费、运输保险和国内供需影响，不能直接视为无风险套利。"
+  },
   "reasons": [
-    "15 分钟成交量为基准的 0.38 倍，方向成交差 +100%",
+    "15 分钟成交量为基准的 0.37 倍，方向成交差 +100%",
     "15 分钟涨跌 +0.16%，1 小时涨跌 +0.38%",
     "中性",
     "收益率下降，支持黄金",
@@ -109,7 +144,7 @@
       "message": "新闻情绪分 -0.49、冲击度 0.90，利空黄金的新闻占优。"
     }
   ],
-  "alert_signature": "7d4efbd5bbfdbc3c",
+  "alert_signature": "5e5a0d56d5af6769",
   "macro_points": [
     {
       "key": "DX-Y.NYB",
@@ -140,7 +175,7 @@
       "source": "247wallst.com",
       "published_at": "2026-11-21T01:01:24+00:00",
       "sentiment": 0.0,
-      "importance": 0.6591,
+      "importance": 0.6547,
       "matched_terms": []
     },
     {
@@ -149,7 +184,7 @@
       "source": "The Times of India",
       "published_at": "2026-11-20T14:16:00+00:00",
       "sentiment": -0.7333,
-      "importance": 0.6113,
+      "importance": 0.6089,
       "matched_terms": [
         "-price crash"
       ]
@@ -160,7 +195,7 @@
       "source": "BigGo Finance",
       "published_at": "2026-11-20T12:11:06+00:00",
       "sentiment": -0.8,
-      "importance": 0.5882,
+      "importance": 0.5861,
       "matched_terms": [
         "-gold plunges"
       ]
@@ -171,7 +206,7 @@
       "source": "Investing.com South Africa",
       "published_at": "2026-11-20T20:16:36+00:00",
       "sentiment": -1.0,
-      "importance": 0.57,
+      "importance": 0.5667,
       "matched_terms": [
         "-fed hike",
         "-hike bets",
@@ -184,7 +219,7 @@
       "source": "Beinsure",
       "published_at": "2026-11-20T09:58:20+00:00",
       "sentiment": -0.8,
-      "importance": 0.5664,
+      "importance": 0.5645,
       "matched_terms": [
         "-rate hike"
       ]
@@ -195,7 +230,7 @@
       "source": "FXEmpire",
       "published_at": "2026-11-21T02:00:27+00:00",
       "sentiment": -0.5333,
-      "importance": 0.5557,
+      "importance": 0.551,
       "matched_terms": [
         "-selloff"
       ]
@@ -206,7 +241,7 @@
       "source": "FXEmpire",
       "published_at": "2026-11-21T01:30:00+00:00",
       "sentiment": -1.0,
-      "importance": 0.5444,
+      "importance": 0.5399,
       "matched_terms": [
         "-new lows",
         "-panic in markets"
@@ -218,7 +253,7 @@
       "source": "BullionVault",
       "published_at": "2026-11-20T17:34:15+00:00",
       "sentiment": 0.0,
-      "importance": 0.5289,
+      "importance": 0.526,
       "matched_terms": []
     },
     {
@@ -227,20 +262,11 @@
       "source": "TradingView",
       "published_at": "2026-11-20T17:33:39+00:00",
       "sentiment": -1.0,
-      "importance": 0.5287,
+      "importance": 0.5258,
       "matched_terms": [
         "-rate hike",
         "-hike bets"
       ]
-    },
-    {
-      "title": "Gold price fall nears $3,500: cost and capex pressures for mine planners",
-      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPTmc0NklkLXVFcFkzMzQ2RGRqMjdSTk1QNk0wZDhIWVN0TnJEVnlUaWlieXpDU1lGb21aQjJTaVB2aHpzcG16Q0xLYVRJVW5icVdvNW91M0JXMWRaM3JEQm9IcTAwbEw0M19wVjhhcTB4Vk9ab0dUekllb0FEcUMyUkNvY1ktN19yNEgwb25DTEFLUzFoc2F6X3ZfQnAxYWs0d3ljSTFjZHpWWXdPWWlj?oc=5",
-      "source": "Geomechanics.io",
-      "published_at": "2026-11-21T00:01:39+00:00",
-      "sentiment": 0.0,
-      "importance": 0.5134,
-      "matched_terms": []
     },
     {
       "title": "Gold Miners Slump Toward Yearly Lows as Bullion Breaks Below $3,600",
@@ -248,7 +274,16 @@
       "source": "BigGo Finance",
       "published_at": "2026-11-20T16:25:00+00:00",
       "sentiment": 0.0,
-      "importance": 0.5131,
+      "importance": 0.5104,
+      "matched_terms": []
+    },
+    {
+      "title": "Gold price fall nears $3,500: cost and capex pressures for mine planners",
+      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPTmc0NklkLXVFcFkzMzQ2RGRqMjdSTk1QNk0wZDhIWVN0TnJEVnlUaWlieXpDU1lGb21aQjJTaVB2aHpzcG16Q0xLYVRJVW5icVdvNW91M0JXMWRaM3JEQm9IcTAwbEw0M19wVjhhcTB4Vk9ab0dUekllb0FEcUMyUkNvY1ktN19yNEgwb25DTEFLUzFoc2F6X3ZfQnAxYWs0d3ljSTFjZHpWWXdPWWlj?oc=5",
+      "source": "Geomechanics.io",
+      "published_at": "2026-11-21T00:01:39+00:00",
+      "sentiment": 0.0,
+      "importance": 0.5092,
       "matched_terms": []
     },
     {
@@ -257,7 +292,7 @@
       "source": "Mining.com",
       "published_at": "2026-11-20T23:50:45+00:00",
       "sentiment": 0.0,
-      "importance": 0.5098,
+      "importance": 0.5056,
       "matched_terms": []
     },
     {
@@ -266,7 +301,7 @@
       "source": "finance.yahoo.com",
       "published_at": "2026-11-20T22:56:19+00:00",
       "sentiment": -0.6667,
-      "importance": 0.4921,
+      "importance": 0.4882,
       "matched_terms": [
         "-hawkish"
       ]
@@ -277,7 +312,7 @@
       "source": "The Jewelry Wire",
       "published_at": "2026-11-20T14:35:43+00:00",
       "sentiment": -0.7333,
-      "importance": 0.4902,
+      "importance": 0.4877,
       "matched_terms": [
         "-price crash"
       ]
@@ -288,7 +323,7 @@
       "source": "FXEmpire",
       "published_at": "2026-11-20T14:19:50+00:00",
       "sentiment": 0.0,
-      "importance": 0.487,
+      "importance": 0.4846,
       "matched_terms": []
     },
     {
@@ -297,7 +332,7 @@
       "source": "Bloomberg.com",
       "published_at": "2026-11-20T22:12:39+00:00",
       "sentiment": -1.0,
-      "importance": 0.4785,
+      "importance": 0.4748,
       "matched_terms": [
         "-hawkish",
         "-selloff"
@@ -309,7 +344,7 @@
       "source": "Mining.com.au",
       "published_at": "2026-11-20T21:32:21+00:00",
       "sentiment": 0.0,
-      "importance": 0.4665,
+      "importance": 0.4629,
       "matched_terms": []
     },
     {
@@ -318,7 +353,7 @@
       "source": "Kitco",
       "published_at": "2026-11-20T21:26:44+00:00",
       "sentiment": 0.0,
-      "importance": 0.4648,
+      "importance": 0.4612,
       "matched_terms": []
     },
     {
@@ -327,7 +362,7 @@
       "source": "Yahoo Finance",
       "published_at": "2026-11-20T12:11:16+00:00",
       "sentiment": -0.8,
-      "importance": 0.4632,
+      "importance": 0.4611,
       "matched_terms": [
         "-rate hike"
       ]
@@ -338,7 +373,7 @@
       "source": "CoinMarketCap",
       "published_at": "2026-11-20T21:06:54+00:00",
       "sentiment": -0.6667,
-      "importance": 0.4591,
+      "importance": 0.4556,
       "matched_terms": [
         "-gold sinks"
       ]
@@ -349,7 +384,7 @@
       "source": "USA Today",
       "published_at": "2026-11-20T21:04:00+00:00",
       "sentiment": -0.6,
-      "importance": 0.4583,
+      "importance": 0.4548,
       "matched_terms": [
         "-gold falls"
       ]
@@ -360,7 +395,7 @@
       "source": "Kitco",
       "published_at": "2026-11-20T21:00:25+00:00",
       "sentiment": 0.0,
-      "importance": 0.4573,
+      "importance": 0.4537,
       "matched_terms": []
     },
     {
@@ -369,7 +404,7 @@
       "source": "Yahoo Finance",
       "published_at": "2026-11-20T11:00:00+00:00",
       "sentiment": 0.0,
-      "importance": 0.4512,
+      "importance": 0.4492,
       "matched_terms": []
     },
     {
@@ -378,16 +413,7 @@
       "source": "Kitco",
       "published_at": "2026-11-20T20:12:13+00:00",
       "sentiment": 0.0,
-      "importance": 0.4439,
-      "matched_terms": []
-    },
-    {
-      "title": "Customs Gridlock Traps $715 Million in Bullion as Wedding Season Intensifies India's Supply Constraints",
-      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxORVNzMWxaTDRnT19fTVprcmJzLXljSDNpUXdjaXRfc3RWRnBrRlRjQy1wZjViZWU4RkxCZl84Q3I2SnNpWlF6dV96dXRreDNHZFpIUGZsUWhEeVcwNGZkeXJhb1R5NE5ITWhSWkE4WDhneVBuZWhtdmN1Q3Rxcmw4UndUa0d0aFhrd1pyYWxISXVfa1habkpBeHR5U1NBYzNTaU5PVHlfME42WThkSm9mZXhGZTV2aGFpei1uRUxYSQ?oc=5",
-      "source": "ChemAnalyst",
-      "published_at": "2026-11-20T19:58:13+00:00",
-      "sentiment": 0.0,
-      "importance": 0.4401,
+      "importance": 0.4405,
       "matched_terms": []
     },
     {
@@ -396,10 +422,19 @@
       "source": "FXEmpire",
       "published_at": "2026-11-20T09:46:25+00:00",
       "sentiment": -0.6,
-      "importance": 0.4396,
+      "importance": 0.4377,
       "matched_terms": [
         "-gold slides"
       ]
+    },
+    {
+      "title": "Customs Gridlock Traps $715 Million in Bullion as Wedding Season Intensifies India's Supply Constraints",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxORVNzMWxaTDRnT19fTVprcmJzLXljSDNpUXdjaXRfc3RWRnBrRlRjQy1wZjViZWU4RkxCZl84Q3I2SnNpWlF6dV96dXRreDNHZFpIUGZsUWhEeVcwNGZkeXJhb1R5NE5ITWhSWkE4WDhneVBuZWhtdmN1Q3Rxcmw4UndUa0d0aFhrd1pyYWxISXVfa1habkpBeHR5U1NBYzNTaU5PVHlfME42WThkSm9mZXhGZTV2aGFpei1uRUxYSQ?oc=5",
+      "source": "ChemAnalyst",
+      "published_at": "2026-11-20T19:58:13+00:00",
+      "sentiment": 0.0,
+      "importance": 0.4367,
+      "matched_terms": []
     },
     {
       "title": "XAUUSD: Gold Slides Toward $3,500, Heads for Worst Week Since March",
@@ -407,7 +442,7 @@
       "source": "TradingView",
       "published_at": "2026-11-20T07:07:00+00:00",
       "sentiment": -0.6,
-      "importance": 0.417,
+      "importance": 0.4154,
       "matched_terms": [
         "-gold slides"
       ]
@@ -418,7 +453,7 @@
       "source": "Livemint",
       "published_at": "2026-11-20T06:53:53+00:00",
       "sentiment": -1.0,
-      "importance": 0.4153,
+      "importance": 0.4137,
       "matched_terms": [
         "-rate-hike",
         "-sell-off"
@@ -430,18 +465,18 @@
       "source": "The Times of India",
       "published_at": "2026-11-20T06:51:00+00:00",
       "sentiment": 0.0,
-      "importance": 0.4149,
+      "importance": 0.4133,
       "matched_terms": []
     },
     {
-      "title": "Gold price crash: Yellow metal and silver slump over 4% each on MCX - CNBC TV18",
-      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNRGZpR3FZaVdXUkxnX1VzUnlNZWx2QXNrY3F2UXJaMmliX21xZEdZV0lwUVkzYlNZa1VPNjRFZkV1T0E1TVhkRXlpeXZ3Y1pwemdTZG9waVo2VDY1NFpac0JRaHctOFpnY093NzhpMlVQZXd1Z2dZVVhOTkd1ZzZMclpVMXVITGdZclZHY2hkcHB4S1JTcHYwV1c2TnFxTy1abHEwaE8xUWpIbWdmTTQyQWctOXdUUQ?oc=5",
-      "source": "LinkedIn",
-      "published_at": "2026-11-20T06:29:37+00:00",
-      "sentiment": -0.7333,
-      "importance": 0.4122,
+      "title": "Gold Crashes 5 % to $3 , 538 as Waller Floats 50bp December Hike",
+      "url": "http://www.zerohedge.com/news/2026-11-19/gold-crashes-5-3538-waller-floats-50bp-december-hike",
+      "source": "zerohedge.com",
+      "published_at": "2026-11-20T06:45:00+00:00",
+      "sentiment": -0.8667,
+      "importance": 0.4126,
       "matched_terms": [
-        "-price crash"
+        "-gold crashes"
       ]
     }
   ],
@@ -473,8 +508,8 @@
     },
     {
       "time": "2026-11-20T22:30:00+08:00",
-      "price": 767.32,
-      "price_usd_per_oz": 3572.8
+      "price": 767.34,
+      "price_usd_per_oz": 3572.9
     },
     {
       "time": "2026-11-20T22:35:00+08:00",
@@ -488,8 +523,8 @@
     },
     {
       "time": "2026-11-20T22:45:00+08:00",
-      "price": 768.05,
-      "price_usd_per_oz": 3576.2
+      "price": 768.11,
+      "price_usd_per_oz": 3576.5
     },
     {
       "time": "2026-11-20T22:50:00+08:00",
@@ -498,18 +533,18 @@
     },
     {
       "time": "2026-11-20T22:55:00+08:00",
-      "price": 768.63,
-      "price_usd_per_oz": 3578.9
+      "price": 768.72,
+      "price_usd_per_oz": 3579.3
     },
     {
       "time": "2026-11-20T23:00:00+08:00",
-      "price": 767.53,
-      "price_usd_per_oz": 3573.8
+      "price": 767.58,
+      "price_usd_per_oz": 3574.0
     },
     {
       "time": "2026-11-20T23:05:00+08:00",
-      "price": 766.35,
-      "price_usd_per_oz": 3568.3
+      "price": 766.27,
+      "price_usd_per_oz": 3567.9
     },
     {
       "time": "2026-11-20T23:10:00+08:00",
@@ -523,13 +558,13 @@
     },
     {
       "time": "2026-11-20T23:20:00+08:00",
-      "price": 759.27,
-      "price_usd_per_oz": 3535.3
+      "price": 759.33,
+      "price_usd_per_oz": 3535.6
     },
     {
       "time": "2026-11-20T23:25:00+08:00",
-      "price": 759.63,
-      "price_usd_per_oz": 3537.0
+      "price": 759.74,
+      "price_usd_per_oz": 3537.5
     },
     {
       "time": "2026-11-20T23:30:00+08:00",
@@ -563,8 +598,8 @@
     },
     {
       "time": "2026-11-21T00:00:00+08:00",
-      "price": 760.38,
-      "price_usd_per_oz": 3540.5
+      "price": 760.3,
+      "price_usd_per_oz": 3540.1
     },
     {
       "time": "2026-11-21T00:05:00+08:00",
@@ -598,8 +633,8 @@
     },
     {
       "time": "2026-11-21T00:35:00+08:00",
-      "price": 762.27,
-      "price_usd_per_oz": 3549.3
+      "price": 762.23,
+      "price_usd_per_oz": 3549.1
     },
     {
       "time": "2026-11-21T00:40:00+08:00",
@@ -613,8 +648,8 @@
     },
     {
       "time": "2026-11-21T00:50:00+08:00",
-      "price": 760.25,
-      "price_usd_per_oz": 3539.9
+      "price": 760.3,
+      "price_usd_per_oz": 3540.1
     },
     {
       "time": "2026-11-21T00:55:00+08:00",
@@ -638,18 +673,18 @@
     },
     {
       "time": "2026-11-21T01:15:00+08:00",
-      "price": 758.56,
-      "price_usd_per_oz": 3532.0
+      "price": 758.6,
+      "price_usd_per_oz": 3532.2
     },
     {
       "time": "2026-11-21T01:20:00+08:00",
-      "price": 758.28,
-      "price_usd_per_oz": 3530.7
+      "price": 758.23,
+      "price_usd_per_oz": 3530.5
     },
     {
       "time": "2026-11-21T01:25:00+08:00",
-      "price": 758.23,
-      "price_usd_per_oz": 3530.5
+      "price": 758.32,
+      "price_usd_per_oz": 3530.9
     },
     {
       "time": "2026-11-21T01:30:00+08:00",
@@ -658,8 +693,8 @@
     },
     {
       "time": "2026-11-21T01:35:00+08:00",
-      "price": 757.78,
-      "price_usd_per_oz": 3528.4
+      "price": 757.87,
+      "price_usd_per_oz": 3528.8
     },
     {
       "time": "2026-11-21T01:40:00+08:00",
@@ -678,8 +713,8 @@
     },
     {
       "time": "2026-11-21T01:55:00+08:00",
-      "price": 758.49,
-      "price_usd_per_oz": 3531.7
+      "price": 758.51,
+      "price_usd_per_oz": 3531.8
     },
     {
       "time": "2026-11-21T02:00:00+08:00",
@@ -688,8 +723,8 @@
     },
     {
       "time": "2026-11-21T02:05:00+08:00",
-      "price": 757.46,
-      "price_usd_per_oz": 3526.9
+      "price": 757.5,
+      "price_usd_per_oz": 3527.1
     },
     {
       "time": "2026-11-21T02:10:00+08:00",
@@ -723,8 +758,8 @@
     },
     {
       "time": "2026-11-21T02:40:00+08:00",
-      "price": 753.17,
-      "price_usd_per_oz": 3506.9
+      "price": 753.19,
+      "price_usd_per_oz": 3507.0
     },
     {
       "time": "2026-11-21T02:45:00+08:00",
@@ -758,8 +793,8 @@
     },
     {
       "time": "2026-11-21T03:15:00+08:00",
-      "price": 755.59,
-      "price_usd_per_oz": 3518.2
+      "price": 755.53,
+      "price_usd_per_oz": 3517.9
     },
     {
       "time": "2026-11-21T03:20:00+08:00",
@@ -803,8 +838,8 @@
     },
     {
       "time": "2026-11-21T04:00:00+08:00",
-      "price": 755.55,
-      "price_usd_per_oz": 3518.0
+      "price": 755.51,
+      "price_usd_per_oz": 3517.8
     },
     {
       "time": "2026-11-21T04:05:00+08:00",
@@ -813,8 +848,8 @@
     },
     {
       "time": "2026-11-21T04:10:00+08:00",
-      "price": 754.88,
-      "price_usd_per_oz": 3514.9
+      "price": 754.84,
+      "price_usd_per_oz": 3514.7
     },
     {
       "time": "2026-11-21T04:15:00+08:00",
@@ -823,13 +858,13 @@
     },
     {
       "time": "2026-11-21T04:20:00+08:00",
-      "price": 755.42,
-      "price_usd_per_oz": 3517.4
+      "price": 755.36,
+      "price_usd_per_oz": 3517.1
     },
     {
       "time": "2026-11-21T04:25:00+08:00",
-      "price": 755.06,
-      "price_usd_per_oz": 3515.7
+      "price": 755.1,
+      "price_usd_per_oz": 3515.9
     },
     {
       "time": "2026-11-21T04:30:00+08:00",
@@ -933,10 +968,12 @@
     "CNY=X: Yahoo Finance hourly chart",
     "^TNX: Yahoo Finance hourly chart",
     "Bing News: 0 条",
-    "GDELT: 获取失败 - request failed after 3 attempts: HTTP Error 429: Too Many Requests",
+    "GDELT: 75 条",
     "Google News: 100 条",
     "Investing.com: 10 条",
-    "Yahoo Finance: 17 条"
+    "Yahoo Finance: 17 条",
+    "SGE Au99.99: 2026-11-21T02:30:00+08:00",
+    "XAU/USD: 2026-11-21T04:04:07+00:00"
   ],
   "methodology": {
     "flow": "按 5 分钟 K 线方向和相对实体强度分配成交量，属于买卖压力代理",

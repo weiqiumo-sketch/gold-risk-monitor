@@ -80,9 +80,32 @@ class GitHubIssueNotifier:
             f"- **风险：** {snapshot.get('risk_score', 0)}/100",
             f"- **置信度：** {snapshot.get('confidence', 0)}%",
             "",
-            "## 触发提醒",
-            "",
         ]
+        comparison = snapshot.get("gold_comparison")
+        if comparison and comparison.get("available"):
+            domestic = comparison["domestic"]
+            international = comparison["international"]
+            spread = comparison["spread"]
+            lines.extend(
+                [
+                    "## 国内外金价对比",
+                    "",
+                    f"- **上金所 Au99.99：** {domestic['price_cny_per_gram']:,.2f} 元/克，"
+                    f"更新时间 {domestic['updated_at']}",
+                    f"- **国际现货 XAU/USD：** {international['price_usd_per_oz']:,.2f} 美元/盎司，"
+                    f"折合 {international['price_cny_per_gram']:,.2f} 元/克",
+                    f"- **国内价差：** {spread['cny_per_gram']:+.2f} 元/克"
+                    f"（{spread['pct']:+.2f}%），{spread['label']}",
+                    f"- **交易时段：** "
+                    + (
+                        "国内外报价时间接近"
+                        if comparison.get("time_aligned")
+                        else f"相差约 {comparison.get('time_gap_minutes', 0):.0f} 分钟，仅供比较"
+                    ),
+                    "",
+                ]
+            )
+        lines.extend(["## 触发提醒", ""])
         for alert in snapshot.get("alerts", []):
             lines.append(
                 f"- **[{alert.get('severity')}] {alert.get('title')}：** "

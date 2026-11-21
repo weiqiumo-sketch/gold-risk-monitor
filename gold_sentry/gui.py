@@ -45,6 +45,7 @@ class GoldSentryApp:
         self.decision_var = tk.StringVar(value="等待数据")
         self.action_var = tk.StringVar(value="正在获取行情和新闻…")
         self.levels_var = tk.StringVar(value="正在计算买卖价位…")
+        self.comparison_var = tk.StringVar(value="正在读取国内外金价…")
         self.last_signature = ""
         self._build_style()
         self._build_layout()
@@ -163,6 +164,13 @@ class GoldSentryApp:
             wraplength=1020,
             font=("Microsoft YaHei UI", 10),
         ).pack(anchor="w", pady=(4, 0))
+        tk.Label(
+            signal,
+            textvariable=self.comparison_var,
+            bg=PANEL_2,
+            fg=AMBER,
+            font=("Microsoft YaHei UI", 10, "bold"),
+        ).pack(anchor="w", pady=(8, 0))
 
         body = tk.PanedWindow(
             self.root,
@@ -308,6 +316,22 @@ class GoldSentryApp:
         self.risk_var.set(f"{snapshot.get('risk_score', 0):.1f}")
         self.decision_var.set(str(snapshot.get("decision", "观望")))
         self.action_var.set(str(snapshot.get("action_text", "")))
+        comparison = snapshot.get("gold_comparison")
+        if comparison and comparison.get("available"):
+            domestic = comparison["domestic"]["price_cny_per_gram"]
+            international = comparison["international"]["price_cny_per_gram"]
+            spread = comparison["spread"]
+            timing = (
+                ""
+                if comparison.get("time_aligned")
+                else " · 交易时段不同"
+            )
+            self.comparison_var.set(
+                f"国内 {domestic:,.2f} | 国际 {international:,.2f} | "
+                f"{spread['label']} {spread['pct']:+.2f}%{timing}"
+            )
+        else:
+            self.comparison_var.set("国内外金价对比暂不可用")
         levels = snapshot.get("trade_levels")
         if levels:
             buy = levels["buy"]

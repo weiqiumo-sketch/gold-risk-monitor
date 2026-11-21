@@ -45,15 +45,23 @@ def _ssl_context() -> ssl.SSLContext:
     return ssl.create_default_context()
 
 
-def fetch_bytes(url: str, accept: str = "*/*", attempts: int = 3) -> bytes:
+def fetch_bytes(
+    url: str,
+    accept: str = "*/*",
+    attempts: int = 3,
+    headers: dict[str, str] | None = None,
+) -> bytes:
+    request_headers = {
+        "User-Agent": USER_AGENT,
+        "Accept": accept,
+        "Accept-Language": "en-US,en;q=0.8,zh-CN;q=0.6",
+        "Cache-Control": "no-cache",
+    }
+    if headers:
+        request_headers.update(headers)
     request = urllib.request.Request(
         url,
-        headers={
-            "User-Agent": USER_AGENT,
-            "Accept": accept,
-            "Accept-Language": "en-US,en;q=0.8,zh-CN;q=0.6",
-            "Cache-Control": "no-cache",
-        },
+        headers=request_headers,
     )
     last_error: Exception | None = None
     for attempt in range(attempts):

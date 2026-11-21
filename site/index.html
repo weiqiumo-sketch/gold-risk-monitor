@@ -52,6 +52,51 @@
       <article class="alert skeleton">正在检查风险阈值…</article>
     </section>
 
+    <section id="comparison" class="panel comparison-panel">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow">CHINA VS WORLD</p>
+          <h2>国内与国际金价对比</h2>
+        </div>
+        <span id="comparison-status" class="pill">正在读取国内外价格</span>
+      </div>
+      <div class="comparison-grid">
+        <article class="comparison-price domestic-price">
+          <span class="comparison-label">上海黄金交易所 · Au99.99</span>
+          <strong id="domestic-price">--</strong>
+          <div class="comparison-change-row">
+            <span>日内涨跌</span>
+            <b id="domestic-change">--</b>
+          </div>
+          <small>区间 <span id="domestic-range">--</span></small>
+          <time id="domestic-time">更新时间 --</time>
+        </article>
+        <article class="comparison-price international-price">
+          <span class="comparison-label">伦敦现货 · XAU/USD</span>
+          <strong id="international-price-cny">--</strong>
+          <div class="comparison-change-row">
+            <span>国际美元价</span>
+            <b id="international-price-usd">--</b>
+          </div>
+          <small>换算区间 <span id="international-range">--</span></small>
+          <time id="international-time">更新时间 --</time>
+        </article>
+        <article class="comparison-spread">
+          <span class="comparison-label">国内相对国际换算价</span>
+          <strong id="spread-pct">--</strong>
+          <b id="spread-value">--</b>
+          <div class="spread-meter" aria-hidden="true">
+            <span class="spread-center"></span>
+            <i id="spread-marker"></i>
+          </div>
+          <small id="spread-label">等待价差</small>
+        </article>
+      </div>
+      <p id="comparison-note" class="comparison-note">
+        国际价格将按实时 USD/CNY 和 1 金衡盎司 = 31.1034768 克换算。
+      </p>
+    </section>
+
     <section id="plans" class="plans" aria-label="买卖价位计划">
       <article id="buy-plan" class="plan buy-plan">
         <div class="plan-head">
@@ -201,6 +246,7 @@
   </main>
   <nav class="mobile-nav" aria-label="手机页面导航">
     <a class="active" href="#overview">总览</a>
+    <a href="#comparison">对比</a>
     <a href="#plans">买卖点</a>
     <a href="#market">行情</a>
     <a href="#news">新闻</a>

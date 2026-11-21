@@ -10,6 +10,13 @@ from datetime import datetime, timedelta, timezone
 from typing import Any
 
 from .data import TROY_OUNCE_GRAMS, DataError, MarketData, fetch_market_data
+from .comparison import (
+    DomesticGoldQuote,
+    InternationalGoldQuote,
+    build_comparison,
+    fetch_domestic_sge,
+    fetch_international_spot,
+)
 from .lexicon import (
     BEARISH_TERMS,
     BULLISH_TERMS,
@@ -423,6 +430,13 @@ def compose_snapshot(
     news_status: list[str],
     market_error: str | None = None,
     now: datetime | None = None,
+    comparison_inputs: tuple[
+        DomesticGoldQuote | None,
+        InternationalGoldQuote | None,
+    ]
+    | None = None,
+    comparison_error: str | None = None,
+    comparison_status: list[str] | None = None,
 ) -> dict[str, Any]:
     generated = now or datetime.now(timezone.utc)
     if generated.tzinfo is None:
@@ -502,6 +516,13 @@ def compose_snapshot(
                 "price_usd_per_oz": usd_value,
             }
         )
+    domestic_quote, international_quote = comparison_inputs or (None, None)
+    gold_comparison = build_comparison(
+        domestic_quote,
+        international_quote,
+        fx_usd_cny,
+        comparison_error,
+    )
 
     if market and market_metrics["is_fresh"]:
         action_score = _clamp(
@@ -720,6 +741,26 @@ def compose_snapshot(
                 "message": f"波动、成交异常与新闻冲击共同推高至 {risk_score:.1f}/100。",
             }
         )
+    comparison_spread = gold_comparison.get("spread")
+    if (
+        gold_comparison.get("available")
+        and gold_comparison.get("time_aligned")
+        and comparison_spread
+        and abs(float(comparison_spread["pct"])) >= 1.5
+    ):
+        direction = "升水" if float(comparison_spread["pct"]) > 0 else "折价"
+        alerts.append(
+            {
+                "type": "SPREAD",
+                "severity": "高" if abs(float(comparison_spread["pct"])) >= 3 else "中",
+                "title": f"国内外金价显著{direction}",
+                "message": (
+                    f"上金所 Au99.99 相对国际换算价{direction} "
+                    f"{float(comparison_spread['pct']):+.2f}%"
+                    f"（{float(comparison_spread['cny_per_gram']):+.2f} 元/克）。"
+                ),
+            }
+        )
 
     level_signature = ""
     if trade_levels and trade_levels["active_side"] == "BUY":
@@ -730,10 +771,15 @@ def compose_snapshot(
         level_signature = (
             f"|SELL:{round(trade_levels['sell']['breakdown_entry'] / 5) * 5}"
         )
+    comparison_signature = ""
+    if gold_comparison.get("available") and gold_comparison.get("spread"):
+        comparison_signature = (
+            f"|SPREAD:{round(float(gold_comparison['spread']['pct']) * 10)}"
+        )
     alert_signature_source = "|".join(
         f"{alert['type']}:{alert['title']}:{alert['severity']}"
         for alert in alerts
-    ) + level_signature
+    ) + level_signature + comparison_signature
     alert_signature = hashlib.sha256(
         alert_signature_source.encode("utf-8")
     ).hexdigest()[:16]
@@ -776,6 +822,7 @@ def compose_snapshot(
         "decision": decision,
         "action_text": action_text,
         "trade_levels": trade_levels,
+        "gold_comparison": gold_comparison,
         "reasons": reasons,
         "alerts": alerts,
         "alert_signature": alert_signature,
@@ -793,7 +840,9 @@ def compose_snapshot(
             for item in scored_news[:30]
         ],
         "chart_points": display_chart_points,
-        "source_status": source_status + news.source_status,
+        "source_status": source_status
+        + news.source_status
+        + (comparison_status or []),
         "methodology": {
             "flow": "按 5 分钟 K 线方向和相对实体强度分配成交量，属于买卖压力代理",
             "news": "对 24 小时新闻标题做多来源去重、时效、来源级别和词袋情绪评分",
@@ -808,9 +857,15 @@ def build_live_snapshot(symbol: str = "GC=F", news_limit: int = 60) -> dict[str,
     market_error: str | None = None
     raw_news: list[NewsItem] = []
     news_status: list[str] = []
-    with ThreadPoolExecutor(max_workers=2) as pool:
+    domestic_quote: DomesticGoldQuote | None = None
+    international_quote: InternationalGoldQuote | None = None
+    comparison_status: list[str] = []
+    comparison_errors: list[str] = []
+    with ThreadPoolExecutor(max_workers=4) as pool:
         market_future = pool.submit(fetch_market_data, symbol)
         news_future = pool.submit(fetch_news, news_limit)
+        domestic_future = pool.submit(fetch_domestic_sge)
+        international_future = pool.submit(fetch_international_spot)
         try:
             market = market_future.result()
         except (DataError, ValueError, Exception) as exc:
@@ -819,11 +874,30 @@ def build_live_snapshot(symbol: str = "GC=F", news_limit: int = 60) -> dict[str,
             raw_news, news_status = news_future.result()
         except (DataError, ValueError, Exception) as exc:
             news_status = [f"新闻: 获取失败 - {exc}"]
+        try:
+            domestic_quote = domestic_future.result()
+            comparison_status.append(
+                f"SGE Au99.99: {domestic_quote.updated_at.isoformat()}"
+            )
+        except (DataError, ValueError, Exception) as exc:
+            comparison_errors.append(f"国内 SGE: {exc}")
+            comparison_status.append(f"国内 SGE: 获取失败 - {exc}")
+        try:
+            international_quote = international_future.result()
+            comparison_status.append(
+                f"XAU/USD: {international_quote.updated_at.isoformat()}"
+            )
+        except (DataError, ValueError, Exception) as exc:
+            comparison_errors.append(f"国际现货: {exc}")
+            comparison_status.append(f"国际现货: 获取失败 - {exc}")
     return compose_snapshot(
         market=market,
         raw_news=raw_news,
         news_status=news_status,
         market_error=market_error,
+        comparison_inputs=(domestic_quote, international_quote),
+        comparison_error="; ".join(comparison_errors) or None,
+        comparison_status=comparison_status,
     )
 
 
@@ -885,4 +959,35 @@ def demo_snapshot(direction: str = "sell") -> dict[str, Any]:
             published_at=now - timedelta(minutes=10),
         )
     ]
-    return compose_snapshot(market, news, ["演示新闻: 1 条"], now=now)
+    international_cny = bars[-1].close * 7.1 / TROY_OUNCE_GRAMS
+    domestic = DomesticGoldQuote(
+        symbol="AU9999",
+        name="沪金99",
+        contract="Au99.99",
+        price_cny_per_gram=international_cny + 4.5,
+        previous_close=international_cny + 4.1,
+        open=international_cny + 4.2,
+        high=international_cny + 5.0,
+        low=international_cny + 3.8,
+        volume=8000,
+        updated_at=now,
+        change_pct=0.05,
+        source="演示 SGE Au99.99",
+    )
+    international = InternationalGoldQuote(
+        symbol="XAU/USD",
+        name="国际现货黄金",
+        price_usd_per_oz=bars[-1].close,
+        high_usd_per_oz=bars[-1].close + 1,
+        low_usd_per_oz=bars[-1].close - 1,
+        updated_at=now,
+        source="演示 XAU/USD",
+    )
+    return compose_snapshot(
+        market,
+        news,
+        ["演示新闻: 1 条"],
+        now=now,
+        comparison_inputs=(domestic, international),
+        comparison_status=["演示国内外金价对比"],
+    )
