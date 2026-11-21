@@ -1,4 +1,70 @@
 const $ = (selector) => document.querySelector(selector);
+const viewSelect = $("#view-mode");
+const mobileMedia = window.matchMedia("(max-width: 720px)");
+const viewKey = "goldsentry-view-mode";
+
+function effectiveView(mode) {
+  if (mode === "mobile" || mode === "desktop") return mode;
+  return mobileMedia.matches ? "mobile" : "desktop";
+}
+
+function applyViewMode(mode, persist = false) {
+  const normalized = ["auto", "mobile", "desktop"].includes(mode) ? mode : "auto";
+  document.documentElement.dataset.view = normalized;
+  document.documentElement.dataset.layout = effectiveView(normalized);
+  if (viewSelect) viewSelect.value = normalized;
+  if (persist) {
+    localStorage.setItem(viewKey, normalized);
+    const url = new URL(window.location.href);
+    if (normalized === "auto") url.searchParams.delete("view");
+    else url.searchParams.set("view", normalized);
+    history.replaceState({}, "", url);
+  }
+}
+
+function initializeViewMode() {
+  const queryMode = new URLSearchParams(window.location.search).get("view");
+  const storedMode = localStorage.getItem(viewKey);
+  applyViewMode(queryMode || storedMode || "auto");
+  if (viewSelect) {
+    viewSelect.addEventListener("change", () => {
+      applyViewMode(viewSelect.value, true);
+      document.documentElement.classList.remove("layout-transition");
+      requestAnimationFrame(() => document.documentElement.classList.add("layout-transition"));
+    });
+  }
+  mobileMedia.addEventListener("change", () => {
+    applyViewMode(document.documentElement.dataset.view || "auto");
+  });
+}
+
+function initializeMobileNavigation() {
+  const links = [...document.querySelectorAll(".mobile-nav a")];
+  const sections = links
+    .map((link) => document.querySelector(link.getAttribute("href")))
+    .filter(Boolean);
+  const activate = (id) => {
+    for (const link of links) {
+      const active = link.getAttribute("href") === `#${id}`;
+      link.classList.toggle("active", active);
+      if (active) link.setAttribute("aria-current", "page");
+      else link.removeAttribute("aria-current");
+    }
+  };
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+      if (visible[0]) activate(visible[0].target.id);
+    },
+    { rootMargin: "-18% 0px -62% 0px", threshold: [0.05, 0.25, 0.5] },
+  );
+  sections.forEach((section) => observer.observe(section));
+  links.forEach((link) => link.addEventListener("click", () => {
+    activate(link.getAttribute("href").slice(1));
+  }));
+}
 
 const dateFormatter = new Intl.DateTimeFormat("zh-CN", {
   timeZone: "Asia/Shanghai",
@@ -328,5 +394,7 @@ async function loadSnapshot() {
   }
 }
 
+initializeViewMode();
+initializeMobileNavigation();
 loadSnapshot();
 setInterval(loadSnapshot, 60_000);

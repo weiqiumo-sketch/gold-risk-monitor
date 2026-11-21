@@ -11,6 +11,7 @@ GoldSentry 将黄金价格、成交量方向代理、美元指数、美国 10 �
 - 休市或数据过期时明确标记，不把旧行情当成实时买卖信号。
 - 同时给出买入/做多的突破位、回踩区、止损位、目标位，以及卖出/做空的破位位、反抽区、止损位和目标位。
 - 看板、桌面提醒和 GitHub Issue 默认使用中国常用单位 **人民币/克（元/克）**。
+- 同一 URL 自动适配手机与电脑：电脑端使用多栏行情布局，手机端使用双列指标、单列卡片和固定底部导航。
 
 ## 信号含义
 
@@ -92,6 +93,14 @@ python app.py --update-web site/data/latest.json
 ```
 
 程序只使用 Python 标准库，需要 Python 3.11 或更高版本。
+
+## 手机版与电脑版
+
+- 自动适配：https://weiqiumo-sketch.github.io/gold-risk-monitor/
+- 手机版入口：https://weiqiumo-sketch.github.io/gold-risk-monitor/mobile.html
+- 电脑版入口：https://weiqiumo-sketch.github.io/gold-risk-monitor/desktop.html
+
+页面右上角也可以在“自动 / 手机版 / 电脑版”之间切换，选择结果会保存在当前浏览器中。手机版包含“总览、买卖点、行情、新闻”固定底部导航；电脑版保留宽屏走势图、宏观面板和双列新闻布局。
 
 ## GitHub 部署
 
