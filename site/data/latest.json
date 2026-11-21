@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-21T03:20:32.354428+00:00",
-  "generated_at_china": "2026-11-21T11:20:32.354428+08:00",
+  "generated_at": "2026-11-21T03:22:57.589430+00:00",
+  "generated_at_china": "2026-11-21T11:22:57.589430+08:00",
   "market_time": "2026-11-20T21:59:57+00:00",
   "symbol": "GC=F",
   "price": 3539.0,
@@ -9,7 +9,7 @@
   "day_high": 3638.1,
   "day_low": 3502.9,
   "market_status": "休市或数据延迟",
-  "data_age_minutes": 320.58924046666664,
+  "data_age_minutes": 323.0098238333333,
   "buy_volume_proxy": 939.512547496601,
   "sell_volume_proxy": 0.0,
   "volume_ratio": 0.37628865979381443,
@@ -68,7 +68,7 @@
       "source": "247wallst.com",
       "published_at": "2026-11-21T01:01:24+00:00",
       "sentiment": 0.0,
-      "importance": 0.6706,
+      "importance": 0.6697,
       "matched_terms": []
     },
     {
@@ -77,7 +77,7 @@
       "source": "NDTV",
       "published_at": "2026-11-20T17:17:09+00:00",
       "sentiment": -1.0,
-      "importance": 0.6574,
+      "importance": 0.6568,
       "matched_terms": [
         "-gold sinks",
         "-one-year low"
@@ -89,7 +89,7 @@
       "source": "The Times of India",
       "published_at": "2026-11-20T14:16:00+00:00",
       "sentiment": -0.7333,
-      "importance": 0.6176,
+      "importance": 0.6171,
       "matched_terms": [
         "-price crash"
       ]
@@ -100,7 +100,7 @@
       "source": "BigGo Finance",
       "published_at": "2026-11-20T12:11:06+00:00",
       "sentiment": -0.8,
-      "importance": 0.5939,
+      "importance": 0.5934,
       "matched_terms": [
         "-gold plunges"
       ]
@@ -111,7 +111,7 @@
       "source": "Investing.com South Africa",
       "published_at": "2026-11-20T20:16:36+00:00",
       "sentiment": -1.0,
-      "importance": 0.5789,
+      "importance": 0.5782,
       "matched_terms": [
         "-fed hike",
         "-hike bets",
@@ -124,7 +124,7 @@
       "source": "Beinsure",
       "published_at": "2026-11-20T09:58:20+00:00",
       "sentiment": -0.8,
-      "importance": 0.5714,
+      "importance": 0.5711,
       "matched_terms": [
         "-rate hike"
       ]
@@ -135,7 +135,7 @@
       "source": "FXEmpire",
       "published_at": "2026-11-21T02:00:27+00:00",
       "sentiment": -0.5333,
-      "importance": 0.5678,
+      "importance": 0.5669,
       "matched_terms": [
         "-selloff"
       ]
@@ -146,7 +146,7 @@
       "source": "FXEmpire",
       "published_at": "2026-11-21T00:38:22+00:00",
       "sentiment": -1.0,
-      "importance": 0.5373,
+      "importance": 0.5364,
       "matched_terms": [
         "-new lows",
         "-panic in markets"
@@ -158,7 +158,7 @@
       "source": "BullionVault",
       "published_at": "2026-11-20T17:34:15+00:00",
       "sentiment": 0.0,
-      "importance": 0.5365,
+      "importance": 0.5359,
       "matched_terms": []
     },
     {
@@ -167,7 +167,7 @@
       "source": "TradingView",
       "published_at": "2026-11-20T17:33:39+00:00",
       "sentiment": -1.0,
-      "importance": 0.5363,
+      "importance": 0.5358,
       "matched_terms": [
         "-rate hike",
         "-hike bets"
@@ -179,7 +179,7 @@
       "source": "Geomechanics.io",
       "published_at": "2026-11-21T00:01:39+00:00",
       "sentiment": 0.0,
-      "importance": 0.5243,
+      "importance": 0.5235,
       "matched_terms": []
     },
     {
@@ -188,7 +188,7 @@
       "source": "Mining.com",
       "published_at": "2026-11-20T23:50:45+00:00",
       "sentiment": 0.0,
-      "importance": 0.5206,
+      "importance": 0.5197,
       "matched_terms": []
     },
     {
@@ -197,7 +197,7 @@
       "source": "BigGo Finance",
       "published_at": "2026-11-20T16:25:00+00:00",
       "sentiment": 0.0,
-      "importance": 0.5202,
+      "importance": 0.5197,
       "matched_terms": []
     },
     {
@@ -206,7 +206,7 @@
       "source": "Shanghai Metals Market",
       "published_at": "2026-11-20T16:20:00+00:00",
       "sentiment": 0.0,
-      "importance": 0.5191,
+      "importance": 0.5186,
       "matched_terms": []
     },
     {
@@ -215,7 +215,7 @@
       "source": "finance.yahoo.com",
       "published_at": "2026-11-20T22:56:19+00:00",
       "sentiment": -0.6667,
-      "importance": 0.5023,
+      "importance": 0.5016,
       "matched_terms": [
         "-hawkish"
       ]
@@ -226,7 +226,7 @@
       "source": "The Jewelry Wire",
       "published_at": "2026-11-20T14:35:43+00:00",
       "sentiment": -0.7333,
-      "importance": 0.4966,
+      "importance": 0.4961,
       "matched_terms": [
         "-price crash"
       ]
@@ -237,7 +237,7 @@
       "source": "FXEmpire",
       "published_at": "2026-11-20T14:19:50+00:00",
       "sentiment": 0.0,
-      "importance": 0.4934,
+      "importance": 0.4929,
       "matched_terms": []
     },
     {
@@ -246,7 +246,7 @@
       "source": "Bloomberg.com",
       "published_at": "2026-11-20T22:12:39+00:00",
       "sentiment": -1.0,
-      "importance": 0.4884,
+      "importance": 0.4876,
       "matched_terms": [
         "-hawkish",
         "-selloff"
@@ -258,7 +258,7 @@
       "source": "Mining.com.au",
       "published_at": "2026-11-20T21:32:21+00:00",
       "sentiment": 0.0,
-      "importance": 0.476,
+      "importance": 0.4753,
       "matched_terms": []
     },
     {
@@ -267,7 +267,7 @@
       "source": "Kitco",
       "published_at": "2026-11-20T21:26:44+00:00",
       "sentiment": 0.0,
-      "importance": 0.4743,
+      "importance": 0.4736,
       "matched_terms": []
     },
     {
@@ -276,7 +276,7 @@
       "source": "Yahoo Finance",
       "published_at": "2026-11-20T12:11:16+00:00",
       "sentiment": -0.8,
-      "importance": 0.4689,
+      "importance": 0.4685,
       "matched_terms": [
         "-rate hike"
       ]
@@ -287,7 +287,7 @@
       "source": "CoinMarketCap",
       "published_at": "2026-11-20T21:06:54+00:00",
       "sentiment": -0.6667,
-      "importance": 0.4684,
+      "importance": 0.4677,
       "matched_terms": [
         "-gold sinks"
       ]
@@ -298,7 +298,7 @@
       "source": "USA Today",
       "published_at": "2026-11-20T21:04:00+00:00",
       "sentiment": -0.6,
-      "importance": 0.4675,
+      "importance": 0.4668,
       "matched_terms": [
         "-gold falls"
       ]
@@ -309,7 +309,7 @@
       "source": "Kitco",
       "published_at": "2026-11-20T21:00:25+00:00",
       "sentiment": 0.0,
-      "importance": 0.4665,
+      "importance": 0.4658,
       "matched_terms": []
     },
     {
@@ -318,7 +318,7 @@
       "source": "Yahoo Finance",
       "published_at": "2026-11-20T11:00:00+00:00",
       "sentiment": 0.0,
-      "importance": 0.4565,
+      "importance": 0.4561,
       "matched_terms": []
     },
     {
@@ -327,7 +327,7 @@
       "source": "Kitco",
       "published_at": "2026-11-20T20:12:13+00:00",
       "sentiment": 0.0,
-      "importance": 0.4527,
+      "importance": 0.452,
       "matched_terms": []
     },
     {
@@ -336,7 +336,7 @@
       "source": "ChemAnalyst",
       "published_at": "2026-11-20T19:58:13+00:00",
       "sentiment": 0.0,
-      "importance": 0.4488,
+      "importance": 0.4481,
       "matched_terms": []
     },
     {
@@ -345,7 +345,7 @@
       "source": "FXEmpire",
       "published_at": "2026-11-20T09:46:25+00:00",
       "sentiment": -0.6,
-      "importance": 0.4446,
+      "importance": 0.4442,
       "matched_terms": [
         "-gold slides"
       ]
@@ -356,7 +356,7 @@
       "source": "TradingView",
       "published_at": "2026-11-20T07:07:00+00:00",
       "sentiment": -0.6,
-      "importance": 0.4213,
+      "importance": 0.421,
       "matched_terms": [
         "-gold slides"
       ]
@@ -367,7 +367,7 @@
       "source": "Livemint",
       "published_at": "2026-11-20T06:53:53+00:00",
       "sentiment": -1.0,
-      "importance": 0.4195,
+      "importance": 0.4192,
       "matched_terms": [
         "-rate-hike",
         "-sell-off"
