@@ -92,6 +92,7 @@ class MarketAnalysisTests(unittest.TestCase):
         self.assertIn("多头", buy["trade_guidance"]["stage"])
         self.assertIn("空头", sell["trade_guidance"]["stage"])
         self.assertGreaterEqual(len(buy["trade_guidance"]["steps"]), 4)
+        self.assertIn("当前阶段", buy["alerts"][0]["message"])
 
     def test_usd_per_ounce_is_converted_to_cny_per_gram(self) -> None:
         converted = usd_oz_to_cny_gram(3539.0, 7.1)

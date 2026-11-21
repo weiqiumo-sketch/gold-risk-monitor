@@ -951,10 +951,11 @@ def compose_snapshot(
         comparison_signature = (
             f"|SPREAD:{round(float(gold_comparison['spread']['pct']) * 10)}"
         )
+    guidance_signature = f"|GUIDE:{trade_guidance.get('stage', '等待')}"
     alert_signature_source = "|".join(
         f"{alert['type']}:{alert['title']}:{alert['severity']}"
         for alert in alerts
-    ) + level_signature + comparison_signature
+    ) + level_signature + comparison_signature + guidance_signature
     alert_signature = hashlib.sha256(
         alert_signature_source.encode("utf-8")
     ).hexdigest()[:16]
