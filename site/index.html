@@ -34,7 +34,7 @@
         <p id="action-text" class="hero-copy">读取价格方向、成交压力、美元、美债收益率和重大新闻。</p>
       </div>
       <div class="price-block">
-        <span class="muted">COMEX 黄金 / 美元每盎司</span>
+        <span class="muted">COMEX 黄金 / 人民币每克</span>
         <strong id="price">--</strong>
         <span id="price-change" class="change neutral">--</span>
       </div>
@@ -80,7 +80,7 @@
         </div>
       </article>
     </section>
-    <p id="level-note" class="level-note">价位按最近约 2 小时结构和 5 分钟 ATR 计算。</p>
+    <p id="level-note" class="level-note">单位：元/克。价位按最近约 2 小时结构和 5 分钟 ATR 计算。</p>
 
     <section class="metrics" aria-label="关键指标">
       <article class="card">
@@ -178,6 +178,7 @@
       <summary>数据来源与评估方法</summary>
       <div class="method-grid">
         <p><strong>成交压力：</strong>使用 5 分钟 K 线方向、实体强度和成交量构建买盘/卖盘代理。普通行情源不提供逐笔主动成交，因此该值不是交易所认证的主动买/主动卖数据。</p>
+        <p><strong>中国单位：</strong>原始 COMEX 美元/盎司行情按实时 USD/CNY 和 1 金衡盎司 = 31.1034768 克折算为人民币/克；汇率变化也会影响人民币金价。</p>
         <p><strong>新闻评分：</strong>对最近 24 小时的黄金相关标题做多来源去重，结合时效、来源级别、冲击词和定向词计算。重大事件仍应核对新闻正文。</p>
         <p><strong>提醒原则：</strong>买卖提醒需要价格方向、成交量异常和综合评分同时达到阈值。新闻或休市数据可单独触发风险提示。</p>
         <p><strong>重要限制：</strong>本工具用于风险监控，不构成投资建议，也不执行自动交易。GitHub Actions 定时任务可能延迟数分钟。</p>

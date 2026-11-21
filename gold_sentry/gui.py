@@ -22,6 +22,10 @@ AMBER = "#fbbf24"
 BLUE = "#60a5fa"
 
 
+def format_cny(value: Any) -> str:
+    return f"{float(value):,.2f}" if isinstance(value, (int, float)) else "--"
+
+
 class GoldSentryApp:
     def __init__(self, root: tk.Tk) -> None:
         self.root = root
@@ -121,17 +125,21 @@ class GoldSentryApp:
 
         cards = tk.Frame(self.root, bg=BG, padx=18)
         cards.pack(fill="x")
-        price_card, _, price_value = self._card(cards)
+        price_card, price_title, price_value = self._card(cards)
         price_card.grid(row=0, column=0, sticky="nsew", padx=4)
+        price_title.configure(text="黄金价格 · 元/克")
         price_value.configure(textvariable=self.price_var)
-        change_card, _, change_value = self._card(cards)
+        change_card, change_title, change_value = self._card(cards)
         change_card.grid(row=0, column=1, sticky="nsew", padx=4)
+        change_title.configure(text="日涨跌")
         change_value.configure(textvariable=self.change_var)
-        flow_card, _, flow_value = self._card(cards)
+        flow_card, flow_title, flow_value = self._card(cards)
         flow_card.grid(row=0, column=2, sticky="nsew", padx=4)
+        flow_title.configure(text="成交方向代理")
         flow_value.configure(textvariable=self.flow_var)
-        risk_card, _, risk_value = self._card(cards)
+        risk_card, risk_title, risk_value = self._card(cards)
         risk_card.grid(row=0, column=3, sticky="nsew", padx=4)
+        risk_title.configure(text="风险分")
         risk_value.configure(textvariable=self.risk_var, fg=AMBER)
         self.risk_value_label = risk_value
         for column in range(4):
@@ -291,7 +299,7 @@ class GoldSentryApp:
 
     def _render(self, snapshot: dict[str, Any]) -> None:
         self.snapshot = snapshot
-        price = snapshot.get("price")
+        price = snapshot.get("display_price")
         self.price_var.set(f"{price:,.2f}" if isinstance(price, (int, float)) else "--")
         change = float(snapshot.get("price_change_pct", 0))
         self.change_var.set(f"{change:+.2f}%")
@@ -305,14 +313,14 @@ class GoldSentryApp:
             buy = levels["buy"]
             sell = levels["sell"]
             self.levels_var.set(
-                f"买入：突破 {buy['breakout_entry']:,.1f}，回踩 "
-                f"{buy['pullback_zone'][0]:,.1f}—{buy['pullback_zone'][1]:,.1f}，"
-                f"止损 {buy['stop']:,.1f}，目标 {buy['target1']:,.1f} / "
-                f"{buy['target2']:,.1f}\n"
-                f"卖出：破位 {sell['breakdown_entry']:,.1f}，反抽 "
-                f"{sell['rebound_zone'][0]:,.1f}—{sell['rebound_zone'][1]:,.1f}，"
-                f"止损 {sell['stop']:,.1f}，目标 {sell['target1']:,.1f} / "
-                f"{sell['target2']:,.1f}"
+                f"买入：突破 {format_cny(buy['breakout_entry_cny'])}，回踩 "
+                f"{format_cny(buy['pullback_zone_cny'][0])}—{format_cny(buy['pullback_zone_cny'][1])}，"
+                f"止损 {format_cny(buy['stop_cny'])}，目标 {format_cny(buy['target1_cny'])} / "
+                f"{format_cny(buy['target2_cny'])} 元/克\n"
+                f"卖出：破位 {format_cny(sell['breakdown_entry_cny'])}，反抽 "
+                f"{format_cny(sell['rebound_zone_cny'][0])}—{format_cny(sell['rebound_zone_cny'][1])}，"
+                f"止损 {format_cny(sell['stop_cny'])}，目标 {format_cny(sell['target1_cny'])} / "
+                f"{format_cny(sell['target2_cny'])} 元/克"
             )
         else:
             self.levels_var.set("行情不足，暂不计算买卖价位。")

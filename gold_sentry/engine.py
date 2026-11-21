@@ -9,7 +9,7 @@ from dataclasses import asdict
 from datetime import datetime, timedelta, timezone
 from typing import Any
 
-from .data import DataError, MarketData, fetch_market_data
+from .data import TROY_OUNCE_GRAMS, DataError, MarketData, fetch_market_data
 from .lexicon import (
     BEARISH_TERMS,
     BULLISH_TERMS,
@@ -44,6 +44,12 @@ def _directional_window(bars: list[Bar]) -> tuple[float, float, float]:
 
 def _round_price(value: float) -> float:
     return round(value, 1)
+
+
+def usd_oz_to_cny_gram(value: float, fx_usd_cny: float | None) -> float | None:
+    if fx_usd_cny is None or fx_usd_cny <= 0:
+        return None
+    return round(value * fx_usd_cny / TROY_OUNCE_GRAMS, 2)
 
 
 def build_trade_levels(
@@ -426,6 +432,7 @@ def compose_snapshot(
         market_metrics = analyze_bars(market.bars, generated)
         macro_score, macro_reasons = _macro_score(market)
         price = market.price
+        fx_usd_cny = market.fx_usd_cny
         price_change_pct = (
             (market.price / market.previous_close - 1) * 100
             if market.previous_close
@@ -462,12 +469,39 @@ def compose_snapshot(
         macro_score = 0.0
         macro_reasons = []
         price = None
+        fx_usd_cny = None
         price_change_pct = 0.0
         day_high = None
         day_low = None
         market_time = None
         source_status = [f"行情: 获取失败 - {market_error or 'unknown error'}"]
         macro_points = []
+
+    display_price = (
+        usd_oz_to_cny_gram(float(price), fx_usd_cny)
+        if isinstance(price, (int, float))
+        else None
+    )
+    display_day_high = (
+        usd_oz_to_cny_gram(float(day_high), fx_usd_cny)
+        if isinstance(day_high, (int, float))
+        else None
+    )
+    display_day_low = (
+        usd_oz_to_cny_gram(float(day_low), fx_usd_cny)
+        if isinstance(day_low, (int, float))
+        else None
+    )
+    display_chart_points = []
+    for point in market_metrics["chart_points"]:
+        usd_value = float(point["price"])
+        display_chart_points.append(
+            {
+                "time": point["time"],
+                "price": usd_oz_to_cny_gram(usd_value, fx_usd_cny),
+                "price_usd_per_oz": usd_value,
+            }
+        )
 
     if market and market_metrics["is_fresh"]:
         action_score = _clamp(
@@ -489,6 +523,32 @@ def compose_snapshot(
         if market and isinstance(price, (int, float))
         else None
     )
+    if trade_levels:
+        trade_levels["fx_usd_cny"] = fx_usd_cny
+        trade_levels["atr_cny"] = usd_oz_to_cny_gram(
+            float(trade_levels["atr"]),
+            fx_usd_cny,
+        )
+        trade_levels["structure_high_cny"] = usd_oz_to_cny_gram(
+            float(trade_levels["structure_high"]),
+            fx_usd_cny,
+        )
+        trade_levels["structure_low_cny"] = usd_oz_to_cny_gram(
+            float(trade_levels["structure_low"]),
+            fx_usd_cny,
+        )
+        for side, zone_key in (("buy", "pullback_zone"), ("sell", "rebound_zone")):
+            plan = trade_levels[side]
+            plan[f"{zone_key}_cny"] = [
+                usd_oz_to_cny_gram(zone_value, fx_usd_cny)
+                for zone_value in plan[zone_key]
+            ]
+            for key in ("breakout_entry", "breakdown_entry", "stop", "target1", "target2"):
+                if key in plan:
+                    plan[f"{key}_cny"] = usd_oz_to_cny_gram(
+                        float(plan[key]),
+                        fx_usd_cny,
+                    )
     buy_point_active = bool(
         market_metrics["is_fresh"]
         and trade_levels
@@ -562,6 +622,14 @@ def compose_snapshot(
         reasons.append(
             f"黄金新闻 {news.item_count} 条，情绪分 {news.score:+.2f}，{news.summary}"
         )
+    if fx_usd_cny:
+        reasons.append(
+            f"美元兑人民币汇率 {fx_usd_cny:.4f}，"
+            "价格已按 1 金衡盎司 = 31.1034768 克折算为人民币/克"
+        )
+
+    def cny_text(value: float | None, digits: int = 2) -> str:
+        return f"{value:,.{digits}f} 元/克" if isinstance(value, (int, float)) else "汇率不可用"
 
     alerts: list[dict[str, Any]] = []
     if market_metrics["is_fresh"] and (
@@ -580,17 +648,17 @@ def compose_snapshot(
                 "message": (
                     (
                         f"15 分钟成交量异常放大至 {market_metrics['volume_ratio']:.2f} 倍，"
-                        f"买盘方向占优，现价 {price:,.2f} 美元。"
+                        f"买盘方向占优，现价 {cny_text(display_price)}。"
                         if market_metrics["large_buy"]
-                        else f"价格已站上结构突破位，现价 {price:,.2f} 美元。"
+                        else f"价格已站上结构突破位，现价 {cny_text(display_price)}。"
                     )
                     + (
-                        f" 突破买点 {trade_levels['buy']['breakout_entry']:,.1f}，"
-                        f"回踩区 {trade_levels['buy']['pullback_zone'][0]:,.1f}—"
-                        f"{trade_levels['buy']['pullback_zone'][1]:,.1f}，"
-                        f"止损 {trade_levels['buy']['stop']:,.1f}，"
-                        f"目标 {trade_levels['buy']['target1']:,.1f} / "
-                        f"{trade_levels['buy']['target2']:,.1f}。"
+                        f" 突破买点 {cny_text(trade_levels['buy']['breakout_entry_cny'])}，"
+                        f"回踩区 {cny_text(trade_levels['buy']['pullback_zone_cny'][0])}—"
+                        f"{cny_text(trade_levels['buy']['pullback_zone_cny'][1])}，"
+                        f"止损 {cny_text(trade_levels['buy']['stop_cny'])}，"
+                        f"目标 {cny_text(trade_levels['buy']['target1_cny'])} / "
+                        f"{cny_text(trade_levels['buy']['target2_cny'])}。"
                         if trade_levels
                         else ""
                     )
@@ -613,17 +681,17 @@ def compose_snapshot(
                 "message": (
                     (
                         f"15 分钟成交量异常放大至 {market_metrics['volume_ratio']:.2f} 倍，"
-                        f"卖盘方向占优，现价 {price:,.2f} 美元。"
+                        f"卖盘方向占优，现价 {cny_text(display_price)}。"
                         if market_metrics["large_sell"]
-                        else f"价格已跌破结构支撑位，现价 {price:,.2f} 美元。"
+                        else f"价格已跌破结构支撑位，现价 {cny_text(display_price)}。"
                     )
                     + (
-                        f" 破位卖点 {trade_levels['sell']['breakdown_entry']:,.1f}，"
-                        f"反抽区 {trade_levels['sell']['rebound_zone'][0]:,.1f}—"
-                        f"{trade_levels['sell']['rebound_zone'][1]:,.1f}，"
-                        f"止损 {trade_levels['sell']['stop']:,.1f}，"
-                        f"目标 {trade_levels['sell']['target1']:,.1f} / "
-                        f"{trade_levels['sell']['target2']:,.1f}。"
+                        f" 破位卖点 {cny_text(trade_levels['sell']['breakdown_entry_cny'])}，"
+                        f"反抽区 {cny_text(trade_levels['sell']['rebound_zone_cny'][0])}—"
+                        f"{cny_text(trade_levels['sell']['rebound_zone_cny'][1])}，"
+                        f"止损 {cny_text(trade_levels['sell']['stop_cny'])}，"
+                        f"目标 {cny_text(trade_levels['sell']['target1_cny'])} / "
+                        f"{cny_text(trade_levels['sell']['target2_cny'])}。"
                         if trade_levels
                         else ""
                     )
@@ -670,15 +738,22 @@ def compose_snapshot(
         alert_signature_source.encode("utf-8")
     ).hexdigest()[:16]
     return {
-        "schema_version": 2,
+        "schema_version": 3,
         "generated_at": generated.astimezone(timezone.utc),
         "generated_at_china": generated.astimezone(CN_TZ),
         "market_time": market_time,
         "symbol": market.symbol if market else "GC=F",
         "price": price,
+        "price_usd_per_oz": price,
+        "price_cny_per_gram": display_price,
+        "display_price": display_price,
+        "display_unit": "元/克",
+        "fx_usd_cny": fx_usd_cny,
         "price_change_pct": price_change_pct,
         "day_high": day_high,
         "day_low": day_low,
+        "day_high_cny_per_gram": display_day_high,
+        "day_low_cny_per_gram": display_day_low,
         "market_status": market_metrics["market_status"],
         "data_age_minutes": market_metrics["age_minutes"],
         "buy_volume_proxy": market_metrics["buy_volume"],
@@ -717,11 +792,12 @@ def compose_snapshot(
             }
             for item in scored_news[:30]
         ],
-        "chart_points": market_metrics["chart_points"],
+        "chart_points": display_chart_points,
         "source_status": source_status + news.source_status,
         "methodology": {
             "flow": "按 5 分钟 K 线方向和相对实体强度分配成交量，属于买卖压力代理",
             "news": "对 24 小时新闻标题做多来源去重、时效、来源级别和词袋情绪评分",
+            "unit": "用户界面以美元兑人民币汇率折算为人民币/克，原始价格为 COMEX 美元/盎司",
             "note": "未接入逐笔成交、盘口和完整新闻正文；该工具用于风险提醒，不构成投资建议",
         },
     }
@@ -794,6 +870,7 @@ def demo_snapshot(direction: str = "sell") -> dict[str, Any]:
         day_low=min(bar.low for bar in bars[-40:]),
         market_time=now,
         currency="USD",
+        fx_usd_cny=7.1,
         source_status=["演示数据"],
     )
     news = [

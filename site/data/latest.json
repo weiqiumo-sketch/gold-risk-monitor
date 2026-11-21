@@ -1,31 +1,38 @@
 {
-  "schema_version": 2,
-  "generated_at": "2026-11-21T03:34:48.899773+00:00",
-  "generated_at_china": "2026-11-21T11:34:48.899773+08:00",
+  "schema_version": 3,
+  "generated_at": "2026-11-21T03:42:47.307048+00:00",
+  "generated_at_china": "2026-11-21T11:42:47.307048+08:00",
   "market_time": "2026-11-20T21:59:57+00:00",
   "symbol": "GC=F",
   "price": 3539.0,
+  "price_usd_per_oz": 3539.0,
+  "price_cny_per_gram": 760.06,
+  "display_price": 760.06,
+  "display_unit": "元/克",
+  "fx_usd_cny": 6.68,
   "price_change_pct": -3.9750373083706436,
   "day_high": 3638.1,
   "day_low": 3502.9,
+  "day_high_cny_per_gram": 781.34,
+  "day_low_cny_per_gram": 752.31,
   "market_status": "休市或数据延迟",
-  "data_age_minutes": 334.86499621666667,
-  "buy_volume_proxy": 939.512547496601,
+  "data_age_minutes": 342.8384508,
+  "buy_volume_proxy": 915.6060711213241,
   "sell_volume_proxy": 0.0,
-  "volume_ratio": 0.37628865979381443,
+  "volume_ratio": 0.3739754098360656,
   "signed_volume_ratio": 1.0,
   "return_15m": 0.0016132089245479708,
   "return_1h": 0.003800743695423048,
-  "market_score": 0.2212092827077749,
-  "momentum_score": 0.23607153825604552,
-  "flow_score": 0.209049255441008,
-  "news_score": -0.5136,
-  "news_impact": 0.9122,
+  "market_score": 0.22029830213767987,
+  "momentum_score": 0.2356178622691206,
+  "flow_score": 0.207764116575592,
+  "news_score": -0.4912,
+  "news_impact": 0.8966,
   "news_summary": "利空黄金的新闻占优",
   "macro_score": 0.06666666666666667,
-  "composite_score": -0.3685333333333333,
-  "risk_score": 41.2,
-  "confidence": 50.2,
+  "composite_score": -0.35173333333333334,
+  "risk_score": 40.6,
+  "confidence": 49.9,
   "signal_type": "WATCH",
   "decision": "休市观察",
   "action_text": "当前没有新鲜价格数据，继续监测新闻和宏观风险；恢复交易后再判断买卖方向。",
@@ -47,7 +54,15 @@
       "risk_reward": "1.5R / 2.5R",
       "status": "休市，下一交易时段复评",
       "distance_pct": 0.17612459215614606,
-      "triggered": false
+      "triggered": false,
+      "pullback_zone_cny": [
+        760.25,
+        761.01
+      ],
+      "breakout_entry_cny": 761.39,
+      "stop_cny": 752.16,
+      "target1_cny": 775.24,
+      "target2_cny": 784.48
     },
     "sell": {
       "name": "卖出 / 做空计划",
@@ -62,23 +77,36 @@
       "risk_reward": "1.5R / 2.5R",
       "status": "休市，下一交易时段复评",
       "distance_pct": -1.020993265333603,
-      "triggered": false
+      "triggered": false,
+      "rebound_zone_cny": [
+        752.69,
+        753.45
+      ],
+      "breakdown_entry_cny": 752.31,
+      "stop_cny": 761.54,
+      "target1_cny": 738.45,
+      "target2_cny": 729.22
     },
-    "note": "价位基于最近约 2 小时结构与 14 根 5 分钟 ATR。突破和回踩均为条件单参考，成交前需重新确认价格、成交量和新闻。"
+    "note": "价位基于最近约 2 小时结构与 14 根 5 分钟 ATR。突破和回踩均为条件单参考，成交前需重新确认价格、成交量和新闻。",
+    "fx_usd_cny": 6.68,
+    "atr_cny": 1.33,
+    "structure_high_cny": 761.2,
+    "structure_low_cny": 752.5
   },
   "reasons": [
-    "15 分钟成交量为基准的 0.38 倍，方向成交差 +100%",
+    "15 分钟成交量为基准的 0.37 倍，方向成交差 +100%",
     "15 分钟涨跌 +0.16%，1 小时涨跌 +0.38%",
     "中性",
     "收益率下降，支持黄金",
-    "黄金新闻 60 条，情绪分 -0.51，利空黄金的新闻占优"
+    "黄金新闻 60 条，情绪分 -0.49，利空黄金的新闻占优",
+    "美元兑人民币汇率 6.6800，价格已按 1 金衡盎司 = 31.1034768 克折算为人民币/克"
   ],
   "alerts": [
     {
       "type": "NEWS",
       "severity": "高",
       "title": "重大利空黄金新闻",
-      "message": "新闻情绪分 -0.51、冲击度 0.91，利空黄金的新闻占优。"
+      "message": "新闻情绪分 -0.49、冲击度 0.90，利空黄金的新闻占优。"
     }
   ],
   "alert_signature": "7d4efbd5bbfdbc3c",
@@ -96,6 +124,13 @@
       "value": 4.912,
       "change_label": "-2.4 bp",
       "bias": "收益率下降，支持黄金"
+    },
+    {
+      "key": "CNY=X",
+      "label": "美元兑人民币",
+      "value": 6.68,
+      "change_label": "+0.21%",
+      "bias": "人民币走弱，抬高人民币金价"
     }
   ],
   "news": [
@@ -105,20 +140,8 @@
       "source": "247wallst.com",
       "published_at": "2026-11-21T01:01:24+00:00",
       "sentiment": 0.0,
-      "importance": 0.6654,
+      "importance": 0.6625,
       "matched_terms": []
-    },
-    {
-      "title": "Gold Sinks To One-Year Low, Silver Plunges Rs 2.46 lakh From Record High",
-      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQaEV3c3JCVEFmQnBxMk9jdVBPZ2F5dl9OcmxWaUdrMzFpLXh1QUF5OHpsNFBIc0RTNFBBTDEzTENMR2ZqcHZSdFA0cW1mUnpoLWxEeVV0eDJIOFlISzMtUmEydVlHTnZ1MVRLZDh1amhlRndOT1p3b2VGYXNoZlhlOThScHduQmh2d3ZnOTEwcEFHaXJfemhMU0RNVmsxZ1hXb2tDRk5FUzVxeU5RTTd4TDByRUhSZ9IBvgFBVV95cUxPY3hreTRZY2hQbW16YldnaG4zcmhydTVrZ2diSnBpUVRndlR5WFRhN2Y3SEplRzNjVU93ZHRMamRQZGtBRGZEQzRobmFEVXVoRndaZ0sxWVFOMzBYbXlXZThGNWNmdnhtWGpyRDhnZ0gwN3J1TFA2alRJR1BtLXJBSEpWSGNtT3lZV1hKQkl3R0hJNFQ4a24waGw4WnpYNjh3cjJWaFRpempUMVBzWEVjU185ZDltd0U2bEpTSWFB?oc=5",
-      "source": "NDTV",
-      "published_at": "2026-11-20T17:17:09+00:00",
-      "sentiment": -1.0,
-      "importance": 0.654,
-      "matched_terms": [
-        "-gold sinks",
-        "-one-year low"
-      ]
     },
     {
       "title": "Gold price crash: From Rs 1.80 lakh to below Rs 1.25 lakh, will gold now plunge to Rs 1 lakh per 10 gms?",
@@ -126,7 +149,7 @@
       "source": "The Times of India",
       "published_at": "2026-11-20T14:16:00+00:00",
       "sentiment": -0.7333,
-      "importance": 0.6148,
+      "importance": 0.6132,
       "matched_terms": [
         "-price crash"
       ]
@@ -137,7 +160,7 @@
       "source": "BigGo Finance",
       "published_at": "2026-11-20T12:11:06+00:00",
       "sentiment": -0.8,
-      "importance": 0.5913,
+      "importance": 0.5899,
       "matched_terms": [
         "-gold plunges"
       ]
@@ -148,7 +171,7 @@
       "source": "Investing.com South Africa",
       "published_at": "2026-11-20T20:16:36+00:00",
       "sentiment": -1.0,
-      "importance": 0.5749,
+      "importance": 0.5727,
       "matched_terms": [
         "-fed hike",
         "-hike bets",
@@ -161,7 +184,7 @@
       "source": "Beinsure",
       "published_at": "2026-11-20T09:58:20+00:00",
       "sentiment": -0.8,
-      "importance": 0.5692,
+      "importance": 0.5679,
       "matched_terms": [
         "-rate hike"
       ]
@@ -172,9 +195,21 @@
       "source": "FXEmpire",
       "published_at": "2026-11-21T02:00:27+00:00",
       "sentiment": -0.5333,
-      "importance": 0.5624,
+      "importance": 0.5593,
       "matched_terms": [
         "-selloff"
+      ]
+    },
+    {
+      "title": "Gold (XAUUSD), Silver, Platinum Forecasts – Gold Tests New Lows Amid Panic In Markets",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNSHlkVV92b21POWFZanFRbHlZQVFOSktkVmx1Smltcm1OZGIyQVpVbUNJcTBGYWdFZnNWT1BkdzRqSHFLRnRrNlRDZUpLZlNVcWxoTXdDM2JBVkRaOF9aNkw1ZG92U3E4d3JTb0dZZW1rU0hJWUVzOGVTRm51YldseHkxNk5CTDVEZ0tzb1BlVExYT25QUlZibEZaVktlRU9GbXVvLVFjbENXUlcwakVXM1RwU0Z3VVZOV1hhYlZHSUN5cWoyVVlOSGNn?oc=5",
+      "source": "FXEmpire",
+      "published_at": "2026-11-21T01:30:00+00:00",
+      "sentiment": -1.0,
+      "importance": 0.5479,
+      "matched_terms": [
+        "-new lows",
+        "-panic in markets"
       ]
     },
     {
@@ -183,7 +218,7 @@
       "source": "BullionVault",
       "published_at": "2026-11-20T17:34:15+00:00",
       "sentiment": 0.0,
-      "importance": 0.5331,
+      "importance": 0.5312,
       "matched_terms": []
     },
     {
@@ -192,22 +227,10 @@
       "source": "TradingView",
       "published_at": "2026-11-20T17:33:39+00:00",
       "sentiment": -1.0,
-      "importance": 0.5329,
+      "importance": 0.531,
       "matched_terms": [
         "-rate hike",
         "-hike bets"
-      ]
-    },
-    {
-      "title": "Gold (XAUUSD), Silver, Platinum Forecasts – Gold Tests New Lows Amid Panic In Markets",
-      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNSHlkVV92b21POWFZanFRbHlZQVFOSktkVmx1Smltcm1OZGIyQVpVbUNJcTBGYWdFZnNWT1BkdzRqSHFLRnRrNlRDZUpLZlNVcWxoTXdDM2JBVkRaOF9aNkw1ZG92U3E4d3JTb0dZZW1rU0hJWUVzOGVTRm51YldseHkxNk5CTDVEZ0tzb1BlVExYT25QUlZibEZaVktlRU9GbXVvLVFjbENXUlcwakVXM1RwU0Z3VVZOV1hhYlZHSUN5cWoyVVlOSGNn?oc=5",
-      "source": "FXEmpire",
-      "published_at": "2026-11-21T00:38:22+00:00",
-      "sentiment": -1.0,
-      "importance": 0.5322,
-      "matched_terms": [
-        "-new lows",
-        "-panic in markets"
       ]
     },
     {
@@ -216,7 +239,7 @@
       "source": "Geomechanics.io",
       "published_at": "2026-11-21T00:01:39+00:00",
       "sentiment": 0.0,
-      "importance": 0.5194,
+      "importance": 0.5167,
       "matched_terms": []
     },
     {
@@ -225,7 +248,7 @@
       "source": "BigGo Finance",
       "published_at": "2026-11-20T16:25:00+00:00",
       "sentiment": 0.0,
-      "importance": 0.517,
+      "importance": 0.5152,
       "matched_terms": []
     },
     {
@@ -234,7 +257,7 @@
       "source": "Mining.com",
       "published_at": "2026-11-20T23:50:45+00:00",
       "sentiment": 0.0,
-      "importance": 0.5157,
+      "importance": 0.513,
       "matched_terms": []
     },
     {
@@ -243,7 +266,7 @@
       "source": "finance.yahoo.com",
       "published_at": "2026-11-20T22:56:19+00:00",
       "sentiment": -0.6667,
-      "importance": 0.4977,
+      "importance": 0.4952,
       "matched_terms": [
         "-hawkish"
       ]
@@ -254,7 +277,7 @@
       "source": "The Jewelry Wire",
       "published_at": "2026-11-20T14:35:43+00:00",
       "sentiment": -0.7333,
-      "importance": 0.4937,
+      "importance": 0.4921,
       "matched_terms": [
         "-price crash"
       ]
@@ -265,7 +288,7 @@
       "source": "FXEmpire",
       "published_at": "2026-11-20T14:19:50+00:00",
       "sentiment": 0.0,
-      "importance": 0.4905,
+      "importance": 0.489,
       "matched_terms": []
     },
     {
@@ -274,7 +297,7 @@
       "source": "Bloomberg.com",
       "published_at": "2026-11-20T22:12:39+00:00",
       "sentiment": -1.0,
-      "importance": 0.4839,
+      "importance": 0.4815,
       "matched_terms": [
         "-hawkish",
         "-selloff"
@@ -286,7 +309,7 @@
       "source": "Mining.com.au",
       "published_at": "2026-11-20T21:32:21+00:00",
       "sentiment": 0.0,
-      "importance": 0.4717,
+      "importance": 0.4693,
       "matched_terms": []
     },
     {
@@ -295,7 +318,7 @@
       "source": "Kitco",
       "published_at": "2026-11-20T21:26:44+00:00",
       "sentiment": 0.0,
-      "importance": 0.47,
+      "importance": 0.4677,
       "matched_terms": []
     },
     {
@@ -304,7 +327,7 @@
       "source": "Yahoo Finance",
       "published_at": "2026-11-20T12:11:16+00:00",
       "sentiment": -0.8,
-      "importance": 0.4664,
+      "importance": 0.4649,
       "matched_terms": [
         "-rate hike"
       ]
@@ -315,7 +338,7 @@
       "source": "CoinMarketCap",
       "published_at": "2026-11-20T21:06:54+00:00",
       "sentiment": -0.6667,
-      "importance": 0.4642,
+      "importance": 0.4619,
       "matched_terms": [
         "-gold sinks"
       ]
@@ -326,7 +349,7 @@
       "source": "USA Today",
       "published_at": "2026-11-20T21:04:00+00:00",
       "sentiment": -0.6,
-      "importance": 0.4634,
+      "importance": 0.4611,
       "matched_terms": [
         "-gold falls"
       ]
@@ -337,7 +360,7 @@
       "source": "Kitco",
       "published_at": "2026-11-20T21:00:25+00:00",
       "sentiment": 0.0,
-      "importance": 0.4623,
+      "importance": 0.46,
       "matched_terms": []
     },
     {
@@ -346,7 +369,7 @@
       "source": "Yahoo Finance",
       "published_at": "2026-11-20T11:00:00+00:00",
       "sentiment": 0.0,
-      "importance": 0.4541,
+      "importance": 0.4528,
       "matched_terms": []
     },
     {
@@ -355,7 +378,7 @@
       "source": "Kitco",
       "published_at": "2026-11-20T20:12:13+00:00",
       "sentiment": 0.0,
-      "importance": 0.4487,
+      "importance": 0.4465,
       "matched_terms": []
     },
     {
@@ -364,7 +387,7 @@
       "source": "ChemAnalyst",
       "published_at": "2026-11-20T19:58:13+00:00",
       "sentiment": 0.0,
-      "importance": 0.4449,
+      "importance": 0.4427,
       "matched_terms": []
     },
     {
@@ -373,7 +396,7 @@
       "source": "FXEmpire",
       "published_at": "2026-11-20T09:46:25+00:00",
       "sentiment": -0.6,
-      "importance": 0.4423,
+      "importance": 0.4411,
       "matched_terms": [
         "-gold slides"
       ]
@@ -384,7 +407,7 @@
       "source": "TradingView",
       "published_at": "2026-11-20T07:07:00+00:00",
       "sentiment": -0.6,
-      "importance": 0.4194,
+      "importance": 0.4183,
       "matched_terms": [
         "-gold slides"
       ]
@@ -395,7 +418,7 @@
       "source": "Livemint",
       "published_at": "2026-11-20T06:53:53+00:00",
       "sentiment": -1.0,
-      "importance": 0.4176,
+      "importance": 0.4166,
       "matched_terms": [
         "-rate-hike",
         "-sell-off"
@@ -407,398 +430,506 @@
       "source": "The Times of India",
       "published_at": "2026-11-20T06:51:00+00:00",
       "sentiment": 0.0,
-      "importance": 0.4172,
+      "importance": 0.4162,
       "matched_terms": []
+    },
+    {
+      "title": "Gold Crashes 5 % to $3 , 538 as Waller Floats 50bp December Hike",
+      "url": "http://www.zerohedge.com/news/2026-11-19/gold-crashes-5-3538-waller-floats-50bp-december-hike",
+      "source": "zerohedge.com",
+      "published_at": "2026-11-20T06:45:00+00:00",
+      "sentiment": -0.8667,
+      "importance": 0.4154,
+      "matched_terms": [
+        "-gold crashes"
+      ]
     }
   ],
   "chart_points": [
     {
       "time": "2026-11-20T22:05:00+08:00",
-      "price": 3571.3
+      "price": 767.0,
+      "price_usd_per_oz": 3571.3
     },
     {
       "time": "2026-11-20T22:10:00+08:00",
-      "price": 3581.0
+      "price": 769.08,
+      "price_usd_per_oz": 3581.0
     },
     {
       "time": "2026-11-20T22:15:00+08:00",
-      "price": 3582.3
+      "price": 769.36,
+      "price_usd_per_oz": 3582.3
     },
     {
       "time": "2026-11-20T22:20:00+08:00",
-      "price": 3577.3
+      "price": 768.29,
+      "price_usd_per_oz": 3577.3
     },
     {
       "time": "2026-11-20T22:25:00+08:00",
-      "price": 3570.0
+      "price": 766.72,
+      "price_usd_per_oz": 3570.0
     },
     {
       "time": "2026-11-20T22:30:00+08:00",
-      "price": 3572.8
+      "price": 767.34,
+      "price_usd_per_oz": 3572.9
     },
     {
       "time": "2026-11-20T22:35:00+08:00",
-      "price": 3578.3
+      "price": 768.5,
+      "price_usd_per_oz": 3578.3
     },
     {
       "time": "2026-11-20T22:40:00+08:00",
-      "price": 3568.0
+      "price": 766.29,
+      "price_usd_per_oz": 3568.0
     },
     {
       "time": "2026-11-20T22:45:00+08:00",
-      "price": 3576.2
+      "price": 768.11,
+      "price_usd_per_oz": 3576.5
     },
     {
       "time": "2026-11-20T22:50:00+08:00",
-      "price": 3575.2
+      "price": 767.83,
+      "price_usd_per_oz": 3575.2
     },
     {
       "time": "2026-11-20T22:55:00+08:00",
-      "price": 3578.9
+      "price": 768.72,
+      "price_usd_per_oz": 3579.3
     },
     {
       "time": "2026-11-20T23:00:00+08:00",
-      "price": 3573.8
+      "price": 767.58,
+      "price_usd_per_oz": 3574.0
     },
     {
       "time": "2026-11-20T23:05:00+08:00",
-      "price": 3568.3
+      "price": 766.27,
+      "price_usd_per_oz": 3567.9
     },
     {
       "time": "2026-11-20T23:10:00+08:00",
-      "price": 3559.6
+      "price": 764.48,
+      "price_usd_per_oz": 3559.6
     },
     {
       "time": "2026-11-20T23:15:00+08:00",
-      "price": 3543.1
+      "price": 760.94,
+      "price_usd_per_oz": 3543.1
     },
     {
       "time": "2026-11-20T23:20:00+08:00",
-      "price": 3535.3
+      "price": 759.33,
+      "price_usd_per_oz": 3535.6
     },
     {
       "time": "2026-11-20T23:25:00+08:00",
-      "price": 3537.0
+      "price": 759.74,
+      "price_usd_per_oz": 3537.5
     },
     {
       "time": "2026-11-20T23:30:00+08:00",
-      "price": 3547.5
+      "price": 761.89,
+      "price_usd_per_oz": 3547.5
     },
     {
       "time": "2026-11-20T23:35:00+08:00",
-      "price": 3562.1
+      "price": 765.02,
+      "price_usd_per_oz": 3562.1
     },
     {
       "time": "2026-11-20T23:40:00+08:00",
-      "price": 3554.4
+      "price": 763.37,
+      "price_usd_per_oz": 3554.4
     },
     {
       "time": "2026-11-20T23:45:00+08:00",
-      "price": 3557.8
+      "price": 764.1,
+      "price_usd_per_oz": 3557.8
     },
     {
       "time": "2026-11-20T23:50:00+08:00",
-      "price": 3552.7
+      "price": 763.0,
+      "price_usd_per_oz": 3552.7
     },
     {
       "time": "2026-11-20T23:55:00+08:00",
-      "price": 3551.9
+      "price": 762.83,
+      "price_usd_per_oz": 3551.9
     },
     {
       "time": "2026-11-21T00:00:00+08:00",
-      "price": 3540.5
+      "price": 760.3,
+      "price_usd_per_oz": 3540.1
     },
     {
       "time": "2026-11-21T00:05:00+08:00",
-      "price": 3551.0
+      "price": 762.64,
+      "price_usd_per_oz": 3551.0
     },
     {
       "time": "2026-11-21T00:10:00+08:00",
-      "price": 3555.6
+      "price": 763.63,
+      "price_usd_per_oz": 3555.6
     },
     {
       "time": "2026-11-21T00:15:00+08:00",
-      "price": 3548.1
+      "price": 762.01,
+      "price_usd_per_oz": 3548.1
     },
     {
       "time": "2026-11-21T00:20:00+08:00",
-      "price": 3542.4
+      "price": 760.79,
+      "price_usd_per_oz": 3542.4
     },
     {
       "time": "2026-11-21T00:25:00+08:00",
-      "price": 3543.8
+      "price": 761.09,
+      "price_usd_per_oz": 3543.8
     },
     {
       "time": "2026-11-21T00:30:00+08:00",
-      "price": 3547.4
+      "price": 761.86,
+      "price_usd_per_oz": 3547.4
     },
     {
       "time": "2026-11-21T00:35:00+08:00",
-      "price": 3549.3
+      "price": 762.23,
+      "price_usd_per_oz": 3549.1
     },
     {
       "time": "2026-11-21T00:40:00+08:00",
-      "price": 3545.7
+      "price": 761.5,
+      "price_usd_per_oz": 3545.7
     },
     {
       "time": "2026-11-21T00:45:00+08:00",
-      "price": 3543.2
+      "price": 760.96,
+      "price_usd_per_oz": 3543.2
     },
     {
       "time": "2026-11-21T00:50:00+08:00",
-      "price": 3539.9
+      "price": 760.3,
+      "price_usd_per_oz": 3540.1
     },
     {
       "time": "2026-11-21T00:55:00+08:00",
-      "price": 3547.5
+      "price": 761.89,
+      "price_usd_per_oz": 3547.5
     },
     {
       "time": "2026-11-21T01:00:00+08:00",
-      "price": 3536.7
+      "price": 759.57,
+      "price_usd_per_oz": 3536.7
     },
     {
       "time": "2026-11-21T01:05:00+08:00",
-      "price": 3539.0
+      "price": 760.06,
+      "price_usd_per_oz": 3539.0
     },
     {
       "time": "2026-11-21T01:10:00+08:00",
-      "price": 3536.5
+      "price": 759.52,
+      "price_usd_per_oz": 3536.5
     },
     {
       "time": "2026-11-21T01:15:00+08:00",
-      "price": 3532.0
+      "price": 758.6,
+      "price_usd_per_oz": 3532.2
     },
     {
       "time": "2026-11-21T01:20:00+08:00",
-      "price": 3530.7
+      "price": 758.23,
+      "price_usd_per_oz": 3530.5
     },
     {
       "time": "2026-11-21T01:25:00+08:00",
-      "price": 3530.5
+      "price": 758.32,
+      "price_usd_per_oz": 3530.9
     },
     {
       "time": "2026-11-21T01:30:00+08:00",
-      "price": 3531.0
+      "price": 758.34,
+      "price_usd_per_oz": 3531.0
     },
     {
       "time": "2026-11-21T01:35:00+08:00",
-      "price": 3528.4
+      "price": 757.87,
+      "price_usd_per_oz": 3528.8
     },
     {
       "time": "2026-11-21T01:40:00+08:00",
-      "price": 3527.7
+      "price": 757.63,
+      "price_usd_per_oz": 3527.7
     },
     {
       "time": "2026-11-21T01:45:00+08:00",
-      "price": 3525.1
+      "price": 757.08,
+      "price_usd_per_oz": 3525.1
     },
     {
       "time": "2026-11-21T01:50:00+08:00",
-      "price": 3529.0
+      "price": 757.91,
+      "price_usd_per_oz": 3529.0
     },
     {
       "time": "2026-11-21T01:55:00+08:00",
-      "price": 3531.7
+      "price": 758.51,
+      "price_usd_per_oz": 3531.8
     },
     {
       "time": "2026-11-21T02:00:00+08:00",
-      "price": 3528.2
+      "price": 757.74,
+      "price_usd_per_oz": 3528.2
     },
     {
       "time": "2026-11-21T02:05:00+08:00",
-      "price": 3526.9
+      "price": 757.5,
+      "price_usd_per_oz": 3527.1
     },
     {
       "time": "2026-11-21T02:10:00+08:00",
-      "price": 3522.1
+      "price": 756.43,
+      "price_usd_per_oz": 3522.1
     },
     {
       "time": "2026-11-21T02:15:00+08:00",
-      "price": 3525.0
+      "price": 757.05,
+      "price_usd_per_oz": 3525.0
     },
     {
       "time": "2026-11-21T02:20:00+08:00",
-      "price": 3524.4
+      "price": 756.92,
+      "price_usd_per_oz": 3524.4
     },
     {
       "time": "2026-11-21T02:25:00+08:00",
-      "price": 3514.5
+      "price": 754.8,
+      "price_usd_per_oz": 3514.5
     },
     {
       "time": "2026-11-21T02:30:00+08:00",
-      "price": 3517.6
+      "price": 755.46,
+      "price_usd_per_oz": 3517.6
     },
     {
       "time": "2026-11-21T02:35:00+08:00",
-      "price": 3515.8
+      "price": 755.08,
+      "price_usd_per_oz": 3515.8
     },
     {
       "time": "2026-11-21T02:40:00+08:00",
-      "price": 3506.9
+      "price": 753.19,
+      "price_usd_per_oz": 3507.0
     },
     {
       "time": "2026-11-21T02:45:00+08:00",
-      "price": 3507.0
+      "price": 753.19,
+      "price_usd_per_oz": 3507.0
     },
     {
       "time": "2026-11-21T02:50:00+08:00",
-      "price": 3519.5
+      "price": 755.87,
+      "price_usd_per_oz": 3519.5
     },
     {
       "time": "2026-11-21T02:55:00+08:00",
-      "price": 3535.6
+      "price": 759.33,
+      "price_usd_per_oz": 3535.6
     },
     {
       "time": "2026-11-21T03:00:00+08:00",
-      "price": 3527.2
+      "price": 757.53,
+      "price_usd_per_oz": 3527.2
     },
     {
       "time": "2026-11-21T03:05:00+08:00",
-      "price": 3523.5
+      "price": 756.73,
+      "price_usd_per_oz": 3523.5
     },
     {
       "time": "2026-11-21T03:10:00+08:00",
-      "price": 3518.8
+      "price": 755.72,
+      "price_usd_per_oz": 3518.8
     },
     {
       "time": "2026-11-21T03:15:00+08:00",
-      "price": 3518.2
+      "price": 755.53,
+      "price_usd_per_oz": 3517.9
     },
     {
       "time": "2026-11-21T03:20:00+08:00",
-      "price": 3517.1
+      "price": 755.36,
+      "price_usd_per_oz": 3517.1
     },
     {
       "time": "2026-11-21T03:25:00+08:00",
-      "price": 3513.6
+      "price": 754.61,
+      "price_usd_per_oz": 3513.6
     },
     {
       "time": "2026-11-21T03:30:00+08:00",
-      "price": 3513.9
+      "price": 754.67,
+      "price_usd_per_oz": 3513.9
     },
     {
       "time": "2026-11-21T03:35:00+08:00",
-      "price": 3529.0
+      "price": 757.91,
+      "price_usd_per_oz": 3529.0
     },
     {
       "time": "2026-11-21T03:40:00+08:00",
-      "price": 3532.6
+      "price": 758.69,
+      "price_usd_per_oz": 3532.6
     },
     {
       "time": "2026-11-21T03:45:00+08:00",
-      "price": 3525.7
+      "price": 757.2,
+      "price_usd_per_oz": 3525.7
     },
     {
       "time": "2026-11-21T03:50:00+08:00",
-      "price": 3520.1
+      "price": 756.0,
+      "price_usd_per_oz": 3520.1
     },
     {
       "time": "2026-11-21T03:55:00+08:00",
-      "price": 3524.7
+      "price": 756.99,
+      "price_usd_per_oz": 3524.7
     },
     {
       "time": "2026-11-21T04:00:00+08:00",
-      "price": 3518.0
+      "price": 755.51,
+      "price_usd_per_oz": 3517.8
     },
     {
       "time": "2026-11-21T04:05:00+08:00",
-      "price": 3517.5
+      "price": 755.44,
+      "price_usd_per_oz": 3517.5
     },
     {
       "time": "2026-11-21T04:10:00+08:00",
-      "price": 3514.9
+      "price": 754.84,
+      "price_usd_per_oz": 3514.7
     },
     {
       "time": "2026-11-21T04:15:00+08:00",
-      "price": 3521.2
+      "price": 756.24,
+      "price_usd_per_oz": 3521.2
     },
     {
       "time": "2026-11-21T04:20:00+08:00",
-      "price": 3517.4
+      "price": 755.36,
+      "price_usd_per_oz": 3517.1
     },
     {
       "time": "2026-11-21T04:25:00+08:00",
-      "price": 3515.7
+      "price": 755.1,
+      "price_usd_per_oz": 3515.9
     },
     {
       "time": "2026-11-21T04:30:00+08:00",
-      "price": 3506.6
+      "price": 753.1,
+      "price_usd_per_oz": 3506.6
     },
     {
       "time": "2026-11-21T04:35:00+08:00",
-      "price": 3514.1
+      "price": 754.71,
+      "price_usd_per_oz": 3514.1
     },
     {
       "time": "2026-11-21T04:40:00+08:00",
-      "price": 3506.8
+      "price": 753.14,
+      "price_usd_per_oz": 3506.8
     },
     {
       "time": "2026-11-21T04:45:00+08:00",
-      "price": 3526.4
+      "price": 757.35,
+      "price_usd_per_oz": 3526.4
     },
     {
       "time": "2026-11-21T04:50:00+08:00",
-      "price": 3520.5
+      "price": 756.09,
+      "price_usd_per_oz": 3520.5
     },
     {
       "time": "2026-11-21T04:55:00+08:00",
-      "price": 3526.2
+      "price": 757.31,
+      "price_usd_per_oz": 3526.2
     },
     {
       "time": "2026-11-21T05:00:00+08:00",
-      "price": 3525.6
+      "price": 757.18,
+      "price_usd_per_oz": 3525.6
     },
     {
       "time": "2026-11-21T05:05:00+08:00",
-      "price": 3523.2
+      "price": 756.67,
+      "price_usd_per_oz": 3523.2
     },
     {
       "time": "2026-11-21T05:10:00+08:00",
-      "price": 3519.3
+      "price": 755.83,
+      "price_usd_per_oz": 3519.3
     },
     {
       "time": "2026-11-21T05:15:00+08:00",
-      "price": 3517.9
+      "price": 755.53,
+      "price_usd_per_oz": 3517.9
     },
     {
       "time": "2026-11-21T05:20:00+08:00",
-      "price": 3521.3
+      "price": 756.26,
+      "price_usd_per_oz": 3521.3
     },
     {
       "time": "2026-11-21T05:25:00+08:00",
-      "price": 3523.8
+      "price": 756.8,
+      "price_usd_per_oz": 3523.8
     },
     {
       "time": "2026-11-21T05:30:00+08:00",
-      "price": 3524.6
+      "price": 756.97,
+      "price_usd_per_oz": 3524.6
     },
     {
       "time": "2026-11-21T05:35:00+08:00",
-      "price": 3526.7
+      "price": 757.42,
+      "price_usd_per_oz": 3526.7
     },
     {
       "time": "2026-11-21T05:40:00+08:00",
-      "price": 3526.7
+      "price": 757.42,
+      "price_usd_per_oz": 3526.7
     },
     {
       "time": "2026-11-21T05:45:00+08:00",
-      "price": 3533.3
+      "price": 758.84,
+      "price_usd_per_oz": 3533.3
     },
     {
       "time": "2026-11-21T05:50:00+08:00",
-      "price": 3535.1
+      "price": 759.22,
+      "price_usd_per_oz": 3535.1
     },
     {
       "time": "2026-11-21T05:55:00+08:00",
-      "price": 3539.0
+      "price": 760.06,
+      "price_usd_per_oz": 3539.0
     },
     {
       "time": "2026-11-21T05:59:57+08:00",
-      "price": 3539.0
+      "price": 760.06,
+      "price_usd_per_oz": 3539.0
     }
   ],
   "source_status": [
     "GC=F: Yahoo Finance 5-minute chart",
+    "CNY=X: Yahoo Finance hourly chart",
     "^TNX: Yahoo Finance hourly chart",
     "DX-Y.NYB: Yahoo Finance hourly chart",
     "Bing News: 0 条",
@@ -810,6 +941,7 @@
   "methodology": {
     "flow": "按 5 分钟 K 线方向和相对实体强度分配成交量，属于买卖压力代理",
     "news": "对 24 小时新闻标题做多来源去重、时效、来源级别和词袋情绪评分",
+    "unit": "用户界面以美元兑人民币汇率折算为人民币/克，原始价格为 COMEX 美元/盎司",
     "note": "未接入逐笔成交、盘口和完整新闻正文；该工具用于风险提醒，不构成投资建议"
   }
 }

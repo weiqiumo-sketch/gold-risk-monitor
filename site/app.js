@@ -170,29 +170,29 @@ function renderTradeLevels(levels) {
   if (levels.active_side === "SELL") sellPlan.classList.add("active");
 
   setText("#buy-plan-status", levels.buy.status || "--");
-  setText("#buy-breakout", `$${formatNumber(levels.buy.breakout_entry, 1)}`);
+  setText("#buy-breakout", `¥${formatNumber(levels.buy.breakout_entry_cny, 2)}`);
   setText(
     "#buy-pullback",
-    `$${formatNumber(levels.buy.pullback_zone[0], 1)}—${formatNumber(levels.buy.pullback_zone[1], 1)}`,
+    `¥${formatNumber(levels.buy.pullback_zone_cny[0], 2)}—${formatNumber(levels.buy.pullback_zone_cny[1], 2)}`,
   );
-  setText("#buy-stop", `$${formatNumber(levels.buy.stop, 1)}`);
-  setText("#buy-target1", `$${formatNumber(levels.buy.target1, 1)}`);
-  setText("#buy-target2", `$${formatNumber(levels.buy.target2, 1)}`);
+  setText("#buy-stop", `¥${formatNumber(levels.buy.stop_cny, 2)}`);
+  setText("#buy-target1", `¥${formatNumber(levels.buy.target1_cny, 2)}`);
+  setText("#buy-target2", `¥${formatNumber(levels.buy.target2_cny, 2)}`);
   setText("#buy-rr", levels.buy.risk_reward || "--");
 
   setText("#sell-plan-status", levels.sell.status || "--");
-  setText("#sell-breakdown", `$${formatNumber(levels.sell.breakdown_entry, 1)}`);
+  setText("#sell-breakdown", `¥${formatNumber(levels.sell.breakdown_entry_cny, 2)}`);
   setText(
     "#sell-rebound",
-    `$${formatNumber(levels.sell.rebound_zone[0], 1)}—${formatNumber(levels.sell.rebound_zone[1], 1)}`,
+    `¥${formatNumber(levels.sell.rebound_zone_cny[0], 2)}—${formatNumber(levels.sell.rebound_zone_cny[1], 2)}`,
   );
-  setText("#sell-stop", `$${formatNumber(levels.sell.stop, 1)}`);
-  setText("#sell-target1", `$${formatNumber(levels.sell.target1, 1)}`);
-  setText("#sell-target2", `$${formatNumber(levels.sell.target2, 1)}`);
+  setText("#sell-stop", `¥${formatNumber(levels.sell.stop_cny, 2)}`);
+  setText("#sell-target1", `¥${formatNumber(levels.sell.target1_cny, 2)}`);
+  setText("#sell-target2", `¥${formatNumber(levels.sell.target2_cny, 2)}`);
   setText("#sell-rr", levels.sell.risk_reward || "--");
   setText(
     "#level-note",
-    `${levels.note || ""} ATR ${formatNumber(levels.atr, 1)} · 结构高 ${formatNumber(levels.structure_high, 1)} · 结构低 ${formatNumber(levels.structure_low, 1)}`,
+    `单位：元/克。${levels.note || ""} ATR ${formatNumber(levels.atr_cny, 2)} · 结构高 ${formatNumber(levels.structure_high_cny, 2)} · 结构低 ${formatNumber(levels.structure_low_cny, 2)}`,
   );
 }
 
@@ -235,9 +235,9 @@ function renderNews(news) {
 }
 
 function render(snapshot) {
-  const price = Number(snapshot.price);
+  const price = Number(snapshot.display_price ?? snapshot.price_cny_per_gram);
   const change = Number(snapshot.price_change_pct || 0) / 100;
-  setText("#price", Number.isFinite(price) ? `$${formatNumber(price)}` : "--");
+  setText("#price", Number.isFinite(price) ? `¥${formatNumber(price)}` : "--");
   setText("#price-change", formatPercent(change));
   setTone($("#price-change"), change);
   setText("#decision", snapshot.decision || "观望");
@@ -263,8 +263,8 @@ function render(snapshot) {
   $("#sell-flow").style.width = `${(1 - buyShare) * 100}%`;
 
   setText("#confidence", `${Number(snapshot.confidence || 0).toFixed(0)}%`);
-  setText("#day-high", formatNumber(snapshot.day_high));
-  setText("#day-low", formatNumber(snapshot.day_low));
+  setText("#day-high", `¥${formatNumber(snapshot.day_high_cny_per_gram)}`);
+  setText("#day-low", `¥${formatNumber(snapshot.day_low_cny_per_gram)}`);
   const return15 = Number(snapshot.return_15m || 0);
   const return1h = Number(snapshot.return_1h || 0);
   setText("#return-15m", formatPercent(return15));

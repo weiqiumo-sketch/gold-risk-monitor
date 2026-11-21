@@ -19,6 +19,7 @@ USER_AGENT = (
     "AppleWebKit/537.36 Chrome/124.0 Safari/537.36 GoldSentry/1.0"
 )
 YAHOO_HOSTS = ("https://query1.finance.yahoo.com", "https://query2.finance.yahoo.com")
+TROY_OUNCE_GRAMS = 31.1034768
 
 
 @dataclass
@@ -31,6 +32,7 @@ class MarketData:
     day_low: float
     market_time: datetime
     currency: str
+    fx_usd_cny: float | None = None
     source_status: list[str] = field(default_factory=list)
     macro_points: list[MarketPoint] = field(default_factory=list)
 
@@ -151,7 +153,15 @@ def _market_point(symbol: str, label: str, is_yield: bool = False) -> MarketPoin
     else:
         change_pct = (latest / previous - 1) * 100 if previous else 0.0
         change_label = f"{change_pct:+.2f}%"
-        if abs(change_pct) < 0.1:
+        if symbol == "CNY=X":
+            bias = (
+                "人民币走弱，抬高人民币金价"
+                if change_pct > 0.1
+                else "人民币走强，压低人民币金价"
+                if change_pct < -0.1
+                else "汇率中性"
+            )
+        elif abs(change_pct) < 0.1:
             bias = "中性"
         elif change_pct > 0:
             bias = "美元走强，压制黄金"
@@ -181,10 +191,11 @@ def fetch_market_data(symbol: str = "GC=F") -> MarketData:
         else bars[-1].timestamp
     )
     macro_points: list[MarketPoint] = []
-    with ThreadPoolExecutor(max_workers=2) as pool:
+    with ThreadPoolExecutor(max_workers=3) as pool:
         future_map = {
             pool.submit(_market_point, "DX-Y.NYB", "美元指数"): "DX-Y.NYB",
             pool.submit(_market_point, "^TNX", "美国10年期收益率", True): "^TNX",
+            pool.submit(_market_point, "CNY=X", "美元兑人民币"): "CNY=X",
         }
         for future in as_completed(future_map):
             key = future_map[future]
@@ -193,8 +204,9 @@ def fetch_market_data(symbol: str = "GC=F") -> MarketData:
                 statuses.append(f"{key}: Yahoo Finance hourly chart")
             except Exception as exc:
                 statuses.append(f"{key}: 获取失败 - {exc}")
-    order = {"DX-Y.NYB": 0, "^TNX": 1}
+    order = {"DX-Y.NYB": 0, "^TNX": 1, "CNY=X": 2}
     macro_points.sort(key=lambda point: order.get(point.key, 99))
+    fx_point = next((point for point in macro_points if point.key == "CNY=X"), None)
     return MarketData(
         symbol=symbol,
         bars=bars,
@@ -204,6 +216,7 @@ def fetch_market_data(symbol: str = "GC=F") -> MarketData:
         day_low=day_low,
         market_time=market_time,
         currency=str(meta.get("currency") or "USD"),
+        fx_usd_cny=fx_point.value if fx_point else None,
         source_status=statuses,
         macro_points=macro_points,
     )

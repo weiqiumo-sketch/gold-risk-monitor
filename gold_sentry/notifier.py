@@ -64,8 +64,12 @@ class GitHubIssueNotifier:
         return None
 
     def _issue_body(self, snapshot: dict[str, Any]) -> str:
-        price = snapshot.get("price")
-        price_text = f"{price:,.2f} 美元/盎司" if isinstance(price, (int, float)) else "暂无"
+        price = snapshot.get("display_price")
+        price_text = f"{price:,.2f} 元/克" if isinstance(price, (int, float)) else "汇率不可用"
+
+        def cny(value: Any) -> str:
+            return f"{float(value):,.2f}" if isinstance(value, (int, float)) else "--"
+
         lines = [
             "## 当前信号",
             "",
@@ -99,19 +103,19 @@ class GitHubIssueNotifier:
                     "## 行动价位",
                     "",
                     f"- **当前偏向：** {active}",
-                    f"- **买入 / 做多：** 突破 `{buy['breakout_entry']:,.1f}`，"
-                    f"回踩 `{buy['pullback_zone'][0]:,.1f}—{buy['pullback_zone'][1]:,.1f}`，"
-                    f"止损 `{buy['stop']:,.1f}`，目标 "
-                    f"`{buy['target1']:,.1f}` / `{buy['target2']:,.1f}`。"
+                    f"- **买入 / 做多：** 突破 `{cny(buy['breakout_entry_cny'])}`，"
+                    f"回踩 `{cny(buy['pullback_zone_cny'][0])}—{cny(buy['pullback_zone_cny'][1])}`，"
+                    f"止损 `{cny(buy['stop_cny'])}`，目标 "
+                    f"`{cny(buy['target1_cny'])}` / `{cny(buy['target2_cny'])}` 元/克。"
                     f"状态：{buy['status']}",
-                    f"- **卖出 / 做空：** 破位 `{sell['breakdown_entry']:,.1f}`，"
-                    f"反抽 `{sell['rebound_zone'][0]:,.1f}—{sell['rebound_zone'][1]:,.1f}`，"
-                    f"止损 `{sell['stop']:,.1f}`，目标 "
-                    f"`{sell['target1']:,.1f}` / `{sell['target2']:,.1f}`。"
+                    f"- **卖出 / 做空：** 破位 `{cny(sell['breakdown_entry_cny'])}`，"
+                    f"反抽 `{cny(sell['rebound_zone_cny'][0])}—{cny(sell['rebound_zone_cny'][1])}`，"
+                    f"止损 `{cny(sell['stop_cny'])}`，目标 "
+                    f"`{cny(sell['target1_cny'])}` / `{cny(sell['target2_cny'])}` 元/克。"
                     f"状态：{sell['status']}",
-                    f"- **计算口径：** ATR `{levels.get('atr', 0):,.1f}`，"
-                    f"结构高 `{levels.get('structure_high', 0):,.1f}`，"
-                    f"结构低 `{levels.get('structure_low', 0):,.1f}`。",
+                    f"- **计算口径：** ATR `{cny(levels.get('atr_cny'))}`，"
+                    f"结构高 `{cny(levels.get('structure_high_cny'))}`，"
+                    f"结构低 `{cny(levels.get('structure_low_cny'))}` 元/克。",
                     f"- **重要限制：** {levels.get('note', '')}",
                 ]
             )
@@ -130,7 +134,8 @@ class GitHubIssueNotifier:
                 "",
                 *[f"- {reason}" for reason in snapshot.get("reasons", [])],
                 "",
-                "> 数据来自 Yahoo Finance、新闻 RSS 与 GDELT。买卖方向为 K 线成交量代理，"
+                "> 价格按实时 USD/CNY 和 1 金衡盎司 = 31.1034768 克折算。"
+                "数据来自 Yahoo Finance、新闻 RSS 与 GDELT。买卖方向为 K 线成交量代理，"
                 "不是逐笔主动成交数据。此提醒仅用于风险监控，不构成投资建议。",
                 "",
                 f"<!-- gold-sentry-signature:{snapshot.get('alert_signature', '')} -->",

@@ -8,6 +8,8 @@ from gold_sentry.engine import (
     analyze_news,
     build_trade_levels,
     compose_snapshot,
+    demo_snapshot,
+    usd_oz_to_cny_gram,
 )
 from gold_sentry.models import Bar, NewsItem
 
@@ -85,6 +87,20 @@ class MarketAnalysisTests(unittest.TestCase):
         self.assertLess(sell["composite_score"], 0)
         self.assertEqual(buy["trade_levels"]["active_side"], "BUY")
         self.assertEqual(sell["trade_levels"]["active_side"], "SELL")
+        self.assertIsNotNone(buy["display_price"])
+        self.assertIsNotNone(buy["trade_levels"]["buy"]["breakout_entry_cny"])
+
+    def test_usd_per_ounce_is_converted_to_cny_per_gram(self) -> None:
+        converted = usd_oz_to_cny_gram(3539.0, 7.1)
+        self.assertAlmostEqual(converted, 807.85, places=2)
+        buy = demo_snapshot("buy")
+        self.assertEqual(buy["display_unit"], "元/克")
+        self.assertEqual(buy["fx_usd_cny"], 7.1)
+        self.assertAlmostEqual(
+            buy["price_cny_per_gram"],
+            buy["price_usd_per_oz"] * 7.1 / 31.1034768,
+            places=2,
+        )
 
     def test_trade_levels_have_valid_long_and_short_ordering(self) -> None:
         bars = make_bars("buy", self.now)
