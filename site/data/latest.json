@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-21T03:07:15.556336+00:00",
-  "generated_at_china": "2026-11-21T11:07:15.556336+08:00",
+  "generated_at": "2026-11-21T03:20:32.354428+00:00",
+  "generated_at_china": "2026-11-21T11:20:32.354428+08:00",
   "market_time": "2026-11-20T21:59:57+00:00",
   "symbol": "GC=F",
   "price": 3539.0,
@@ -9,28 +9,28 @@
   "day_high": 3638.1,
   "day_low": 3502.9,
   "market_status": "休市或数据延迟",
-  "data_age_minutes": 307.3092722666667,
-  "buy_volume_proxy": 915.6060711213241,
+  "data_age_minutes": 320.58924046666664,
+  "buy_volume_proxy": 939.512547496601,
   "sell_volume_proxy": 0.0,
-  "volume_ratio": 0.3739754098360656,
+  "volume_ratio": 0.37628865979381443,
   "signed_volume_ratio": 1.0,
   "return_15m": 0.0016132089245479708,
   "return_1h": 0.003800743695423048,
-  "market_score": 0.22029830213767987,
-  "momentum_score": 0.2356178622691206,
-  "flow_score": 0.207764116575592,
-  "news_score": -0.4763,
+  "market_score": 0.2212092827077749,
+  "momentum_score": 0.23607153825604552,
+  "flow_score": 0.209049255441008,
+  "news_score": -0.4765,
   "news_impact": 0.9139,
   "news_summary": "利空黄金的新闻占优",
   "macro_score": 0.06666666666666667,
-  "composite_score": -0.34055833333333335,
+  "composite_score": -0.34070833333333334,
   "risk_score": 41.3,
   "confidence": 49.7,
   "signal_type": "WATCH",
   "decision": "休市观察",
   "action_text": "当前没有新鲜价格数据，继续监测新闻和宏观风险；恢复交易后再判断买卖方向。",
   "reasons": [
-    "15 分钟成交量为基准的 0.37 倍，方向成交差 +100%",
+    "15 分钟成交量为基准的 0.38 倍，方向成交差 +100%",
     "15 分钟涨跌 +0.16%，1 小时涨跌 +0.38%",
     "中性",
     "收益率下降，支持黄金",
@@ -68,7 +68,7 @@
       "source": "247wallst.com",
       "published_at": "2026-11-21T01:01:24+00:00",
       "sentiment": 0.0,
-      "importance": 0.6755,
+      "importance": 0.6706,
       "matched_terms": []
     },
     {
@@ -77,7 +77,7 @@
       "source": "NDTV",
       "published_at": "2026-11-20T17:17:09+00:00",
       "sentiment": -1.0,
-      "importance": 0.6606,
+      "importance": 0.6574,
       "matched_terms": [
         "-gold sinks",
         "-one-year low"
@@ -89,7 +89,7 @@
       "source": "The Times of India",
       "published_at": "2026-11-20T14:16:00+00:00",
       "sentiment": -0.7333,
-      "importance": 0.6203,
+      "importance": 0.6176,
       "matched_terms": [
         "-price crash"
       ]
@@ -100,7 +100,7 @@
       "source": "BigGo Finance",
       "published_at": "2026-11-20T12:11:06+00:00",
       "sentiment": -0.8,
-      "importance": 0.5963,
+      "importance": 0.5939,
       "matched_terms": [
         "-gold plunges"
       ]
@@ -111,7 +111,7 @@
       "source": "Investing.com South Africa",
       "published_at": "2026-11-20T20:16:36+00:00",
       "sentiment": -1.0,
-      "importance": 0.5827,
+      "importance": 0.5789,
       "matched_terms": [
         "-fed hike",
         "-hike bets",
@@ -124,7 +124,7 @@
       "source": "Beinsure",
       "published_at": "2026-11-20T09:58:20+00:00",
       "sentiment": -0.8,
-      "importance": 0.5736,
+      "importance": 0.5714,
       "matched_terms": [
         "-rate hike"
       ]
@@ -135,7 +135,7 @@
       "source": "FXEmpire",
       "published_at": "2026-11-21T02:00:27+00:00",
       "sentiment": -0.5333,
-      "importance": 0.573,
+      "importance": 0.5678,
       "matched_terms": [
         "-selloff"
       ]
@@ -146,7 +146,7 @@
       "source": "FXEmpire",
       "published_at": "2026-11-21T00:38:22+00:00",
       "sentiment": -1.0,
-      "importance": 0.542,
+      "importance": 0.5373,
       "matched_terms": [
         "-new lows",
         "-panic in markets"
@@ -158,7 +158,7 @@
       "source": "BullionVault",
       "published_at": "2026-11-20T17:34:15+00:00",
       "sentiment": 0.0,
-      "importance": 0.5397,
+      "importance": 0.5365,
       "matched_terms": []
     },
     {
@@ -167,7 +167,7 @@
       "source": "TradingView",
       "published_at": "2026-11-20T17:33:39+00:00",
       "sentiment": -1.0,
-      "importance": 0.5396,
+      "importance": 0.5363,
       "matched_terms": [
         "-rate hike",
         "-hike bets"
@@ -179,7 +179,7 @@
       "source": "Geomechanics.io",
       "published_at": "2026-11-21T00:01:39+00:00",
       "sentiment": 0.0,
-      "importance": 0.5289,
+      "importance": 0.5243,
       "matched_terms": []
     },
     {
@@ -188,7 +188,7 @@
       "source": "Mining.com",
       "published_at": "2026-11-20T23:50:45+00:00",
       "sentiment": 0.0,
-      "importance": 0.5251,
+      "importance": 0.5206,
       "matched_terms": []
     },
     {
@@ -197,7 +197,7 @@
       "source": "BigGo Finance",
       "published_at": "2026-11-20T16:25:00+00:00",
       "sentiment": 0.0,
-      "importance": 0.5233,
+      "importance": 0.5202,
       "matched_terms": []
     },
     {
@@ -206,7 +206,7 @@
       "source": "Shanghai Metals Market",
       "published_at": "2026-11-20T16:20:00+00:00",
       "sentiment": 0.0,
-      "importance": 0.5221,
+      "importance": 0.5191,
       "matched_terms": []
     },
     {
@@ -215,7 +215,7 @@
       "source": "finance.yahoo.com",
       "published_at": "2026-11-20T22:56:19+00:00",
       "sentiment": -0.6667,
-      "importance": 0.5067,
+      "importance": 0.5023,
       "matched_terms": [
         "-hawkish"
       ]
@@ -226,7 +226,7 @@
       "source": "The Jewelry Wire",
       "published_at": "2026-11-20T14:35:43+00:00",
       "sentiment": -0.7333,
-      "importance": 0.4994,
+      "importance": 0.4966,
       "matched_terms": [
         "-price crash"
       ]
@@ -237,7 +237,7 @@
       "source": "FXEmpire",
       "published_at": "2026-11-20T14:19:50+00:00",
       "sentiment": 0.0,
-      "importance": 0.4961,
+      "importance": 0.4934,
       "matched_terms": []
     },
     {
@@ -246,7 +246,7 @@
       "source": "Bloomberg.com",
       "published_at": "2026-11-20T22:12:39+00:00",
       "sentiment": -1.0,
-      "importance": 0.4926,
+      "importance": 0.4884,
       "matched_terms": [
         "-hawkish",
         "-selloff"
@@ -258,7 +258,7 @@
       "source": "Mining.com.au",
       "published_at": "2026-11-20T21:32:21+00:00",
       "sentiment": 0.0,
-      "importance": 0.48,
+      "importance": 0.476,
       "matched_terms": []
     },
     {
@@ -267,8 +267,19 @@
       "source": "Kitco",
       "published_at": "2026-11-20T21:26:44+00:00",
       "sentiment": 0.0,
-      "importance": 0.4783,
+      "importance": 0.4743,
       "matched_terms": []
+    },
+    {
+      "title": "Gold price today, Friday, November 20, 2026: Gold prices continue to fall as rate hike expectations crystallize",
+      "url": "https://news.google.com/rss/articles/CBMikAJBVV95cUxPTWVucXBjLXNwR3NFaDRBOEtsSTVNUnFfeXRCb3hndUlvT0V4VGpuV0ZLbnI1dzEzZmtOTnNMMlFZdVVkaFFTQ0M2aXY1S3dFOFRja1FwRFpYUFpXM0J4dGxCV0pMcEhoclJfa0NxR1loR2NEalljdjNMZEpVdkNzeS1QWUtZS1laRHYydWRGTFQwNi01MDdaNmhpZzlDTGZtUExVUURYWHJ0bTNiY3R5ZXhhbThvQmtadWtOOGxmc1EzeTdVSl9keGJxdGxvTzZkNHVTQjhZQWtlY0w0M1gtOFd1VlhLRXo0aFNTdEszb0ltQ0NZOXJfVXRqdE43TERBR0U2bWUzb3U4TVRwQ3hOdw?oc=5",
+      "source": "Yahoo Finance",
+      "published_at": "2026-11-20T12:11:16+00:00",
+      "sentiment": -0.8,
+      "importance": 0.4689,
+      "matched_terms": [
+        "-rate hike"
+      ]
     },
     {
       "title": "Why Is Bitcoin Falling? BTC Price Breaks $60K as Gold Sinks Too",
@@ -276,7 +287,7 @@
       "source": "CoinMarketCap",
       "published_at": "2026-11-20T21:06:54+00:00",
       "sentiment": -0.6667,
-      "importance": 0.4723,
+      "importance": 0.4684,
       "matched_terms": [
         "-gold sinks"
       ]
@@ -287,20 +298,9 @@
       "source": "USA Today",
       "published_at": "2026-11-20T21:04:00+00:00",
       "sentiment": -0.6,
-      "importance": 0.4715,
+      "importance": 0.4675,
       "matched_terms": [
         "-gold falls"
-      ]
-    },
-    {
-      "title": "Gold price today, Friday, November 20, 2026: Gold prices continue to fall as rate hike expectations crystallize",
-      "url": "https://news.google.com/rss/articles/CBMikAJBVV95cUxPTWVucXBjLXNwR3NFaDRBOEtsSTVNUnFfeXRCb3hndUlvT0V4VGpuV0ZLbnI1dzEzZmtOTnNMMlFZdVVkaFFTQ0M2aXY1S3dFOFRja1FwRFpYUFpXM0J4dGxCV0pMcEhoclJfa0NxR1loR2NEalljdjNMZEpVdkNzeS1QWUtZS1laRHYydWRGTFQwNi01MDdaNmhpZzlDTGZtUExVUURYWHJ0bTNiY3R5ZXhhbThvQmtadWtOOGxmc1EzeTdVSl9keGJxdGxvTzZkNHVTQjhZQWtlY0w0M1gtOFd1VlhLRXo0aFNTdEszb0ltQ0NZOXJfVXRqdE43TERBR0U2bWUzb3U4TVRwQ3hOdw?oc=5",
-      "source": "Yahoo Finance",
-      "published_at": "2026-11-20T12:11:16+00:00",
-      "sentiment": -0.8,
-      "importance": 0.4713,
-      "matched_terms": [
-        "-rate hike"
       ]
     },
     {
@@ -309,7 +309,7 @@
       "source": "Kitco",
       "published_at": "2026-11-20T21:00:25+00:00",
       "sentiment": 0.0,
-      "importance": 0.4704,
+      "importance": 0.4665,
       "matched_terms": []
     },
     {
@@ -318,7 +318,7 @@
       "source": "Yahoo Finance",
       "published_at": "2026-11-20T11:00:00+00:00",
       "sentiment": 0.0,
-      "importance": 0.4588,
+      "importance": 0.4565,
       "matched_terms": []
     },
     {
@@ -327,7 +327,7 @@
       "source": "Kitco",
       "published_at": "2026-11-20T20:12:13+00:00",
       "sentiment": 0.0,
-      "importance": 0.4564,
+      "importance": 0.4527,
       "matched_terms": []
     },
     {
@@ -336,7 +336,7 @@
       "source": "ChemAnalyst",
       "published_at": "2026-11-20T19:58:13+00:00",
       "sentiment": 0.0,
-      "importance": 0.4525,
+      "importance": 0.4488,
       "matched_terms": []
     },
     {
@@ -345,7 +345,7 @@
       "source": "FXEmpire",
       "published_at": "2026-11-20T09:46:25+00:00",
       "sentiment": -0.6,
-      "importance": 0.4467,
+      "importance": 0.4446,
       "matched_terms": [
         "-gold slides"
       ]
@@ -356,7 +356,7 @@
       "source": "TradingView",
       "published_at": "2026-11-20T07:07:00+00:00",
       "sentiment": -0.6,
-      "importance": 0.4231,
+      "importance": 0.4213,
       "matched_terms": [
         "-gold slides"
       ]
@@ -367,7 +367,7 @@
       "source": "Livemint",
       "published_at": "2026-11-20T06:53:53+00:00",
       "sentiment": -1.0,
-      "importance": 0.4213,
+      "importance": 0.4195,
       "matched_terms": [
         "-rate-hike",
         "-sell-off"
@@ -397,7 +397,7 @@
     },
     {
       "time": "2026-11-20T22:30:00+08:00",
-      "price": 3572.9
+      "price": 3572.8
     },
     {
       "time": "2026-11-20T22:35:00+08:00",
@@ -409,7 +409,7 @@
     },
     {
       "time": "2026-11-20T22:45:00+08:00",
-      "price": 3576.5
+      "price": 3576.2
     },
     {
       "time": "2026-11-20T22:50:00+08:00",
@@ -417,15 +417,15 @@
     },
     {
       "time": "2026-11-20T22:55:00+08:00",
-      "price": 3579.3
+      "price": 3578.9
     },
     {
       "time": "2026-11-20T23:00:00+08:00",
-      "price": 3574.0
+      "price": 3573.8
     },
     {
       "time": "2026-11-20T23:05:00+08:00",
-      "price": 3567.9
+      "price": 3568.3
     },
     {
       "time": "2026-11-20T23:10:00+08:00",
@@ -437,11 +437,11 @@
     },
     {
       "time": "2026-11-20T23:20:00+08:00",
-      "price": 3535.6
+      "price": 3535.3
     },
     {
       "time": "2026-11-20T23:25:00+08:00",
-      "price": 3537.5
+      "price": 3537.0
     },
     {
       "time": "2026-11-20T23:30:00+08:00",
@@ -469,7 +469,7 @@
     },
     {
       "time": "2026-11-21T00:00:00+08:00",
-      "price": 3540.1
+      "price": 3540.5
     },
     {
       "time": "2026-11-21T00:05:00+08:00",
@@ -497,7 +497,7 @@
     },
     {
       "time": "2026-11-21T00:35:00+08:00",
-      "price": 3549.1
+      "price": 3549.3
     },
     {
       "time": "2026-11-21T00:40:00+08:00",
@@ -509,7 +509,7 @@
     },
     {
       "time": "2026-11-21T00:50:00+08:00",
-      "price": 3540.1
+      "price": 3539.9
     },
     {
       "time": "2026-11-21T00:55:00+08:00",
@@ -529,15 +529,15 @@
     },
     {
       "time": "2026-11-21T01:15:00+08:00",
-      "price": 3532.2
+      "price": 3532.0
     },
     {
       "time": "2026-11-21T01:20:00+08:00",
-      "price": 3530.5
+      "price": 3530.7
     },
     {
       "time": "2026-11-21T01:25:00+08:00",
-      "price": 3530.9
+      "price": 3530.5
     },
     {
       "time": "2026-11-21T01:30:00+08:00",
@@ -545,7 +545,7 @@
     },
     {
       "time": "2026-11-21T01:35:00+08:00",
-      "price": 3528.8
+      "price": 3528.4
     },
     {
       "time": "2026-11-21T01:40:00+08:00",
@@ -561,7 +561,7 @@
     },
     {
       "time": "2026-11-21T01:55:00+08:00",
-      "price": 3531.8
+      "price": 3531.7
     },
     {
       "time": "2026-11-21T02:00:00+08:00",
@@ -569,7 +569,7 @@
     },
     {
       "time": "2026-11-21T02:05:00+08:00",
-      "price": 3527.1
+      "price": 3526.9
     },
     {
       "time": "2026-11-21T02:10:00+08:00",
@@ -597,7 +597,7 @@
     },
     {
       "time": "2026-11-21T02:40:00+08:00",
-      "price": 3507.0
+      "price": 3506.9
     },
     {
       "time": "2026-11-21T02:45:00+08:00",
@@ -625,7 +625,7 @@
     },
     {
       "time": "2026-11-21T03:15:00+08:00",
-      "price": 3517.9
+      "price": 3518.2
     },
     {
       "time": "2026-11-21T03:20:00+08:00",
@@ -661,7 +661,7 @@
     },
     {
       "time": "2026-11-21T04:00:00+08:00",
-      "price": 3517.8
+      "price": 3518.0
     },
     {
       "time": "2026-11-21T04:05:00+08:00",
@@ -669,7 +669,7 @@
     },
     {
       "time": "2026-11-21T04:10:00+08:00",
-      "price": 3514.7
+      "price": 3514.9
     },
     {
       "time": "2026-11-21T04:15:00+08:00",
@@ -677,11 +677,11 @@
     },
     {
       "time": "2026-11-21T04:20:00+08:00",
-      "price": 3517.1
+      "price": 3517.4
     },
     {
       "time": "2026-11-21T04:25:00+08:00",
-      "price": 3515.9
+      "price": 3515.7
     },
     {
       "time": "2026-11-21T04:30:00+08:00",
@@ -765,7 +765,7 @@
     "^TNX: Yahoo Finance hourly chart",
     "DX-Y.NYB: Yahoo Finance hourly chart",
     "Bing News: 0 条",
-    "GDELT: 获取失败 - request failed after 3 attempts: HTTP Error 429: Too Many Requests",
+    "GDELT: 75 条",
     "Google News: 100 条",
     "Investing.com: 10 条",
     "Yahoo Finance: 17 条"
